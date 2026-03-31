@@ -3,623 +3,559 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio BTS SIO — École Iris</title>
+  <title>Younes Fri — Portfolio BTS SIO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ── Variables ── */
     :root {
-      --bg:          #0D1117;
-      --surface:     #161B22;
-      --surface2:    #1C2333;
-      --border:      rgba(255,255,255,0.07);
-      --border-hi:   rgba(201,168,76,0.35);
-      --gold:        #C9A84C;
-      --gold-light:  #E2C47A;
-      --text:        #E6E1D6;
-      --muted:       #7D8590;_
-      --white:       #F0EDE8;
-      --nav-h:       68px;
-      --radius:      10px;
-      --transition:  0.3s cubic-bezier(0.4,0,0.2,1);
+      --bg:         #0D1117;
+      --surface:    #161B22;
+      --surface2:   #1C2333;
+      --border:     rgba(255,255,255,0.07);
+      --border-hi:  rgba(201,168,76,0.35);
+      --gold:       #C9A84C;
+      --gold-light: #E2C47A;
+      --text:       #E6E1D6;
+      --muted:      #7D8590;
+      --white:      #F0EDE8;
+      --green:      #3FB950;
+      --nav-h:      68px;
+      --radius:     10px;
+      --ease:       cubic-bezier(0.4,0,0.2,1);
     }
-
-    /* ── Reset ── */
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; font-size:16px; }
+    html { font-size:16px; }
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
+      font-family:'DM Sans',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
     }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
+    a { color:inherit; text-decoration:none; }
+    ul { list-style:none; }
 
-    /* ── Navigation ── */
+    /* NAV */
     nav {
-      position: fixed;
-      inset: 0 0 auto 0;
-      height: var(--nav-h);
-      background: rgba(13,17,23,0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      z-index: 999;
-      display: flex;
-      align-items: center;
+      position:fixed; inset:0 0 auto 0;
+      height:var(--nav-h);
+      background:rgba(13,17,23,0.93);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);
+      z-index:999;
+      display:flex; align-items:center;
     }
     .nav-inner {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      width:100%; max-width:1280px;
+      margin:0 auto; padding:0 2rem;
+      display:flex; align-items:center; justify-content:space-between;
     }
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: 0.02em;
+      font-family:'Playfair Display',serif;
+      font-size:1.1rem; font-weight:600;
+      color:var(--white); letter-spacing:0.02em;
     }
-    .logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 0.25rem;
-    }
+    .logo span { color:var(--gold); }
+    .nav-links { display:flex; gap:0.2rem; }
     .nav-links a {
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--muted);
-      padding: 0.45rem 0.9rem;
-      border-radius: 6px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color var(--transition), background var(--transition);
-      cursor: pointer;
+      font-size:0.78rem; font-weight:500;
+      color:var(--muted); padding:0.4rem 0.8rem;
+      border-radius:6px; letter-spacing:0.05em;
+      text-transform:uppercase;
+      transition:color .3s var(--ease),background .3s var(--ease);
+      cursor:pointer;
     }
     .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--gold);
-      background: rgba(201,168,76,0.08);
-    }
-
-    /* Mobile toggle */
+    .nav-links a.active { color:var(--gold); background:rgba(201,168,76,0.08); }
     .burger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
+      display:none; flex-direction:column; gap:5px;
+      background:none; border:none; cursor:pointer; padding:4px;
     }
     .burger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--muted);
-      border-radius: 2px;
-      transition: var(--transition);
+      display:block; width:22px; height:2px;
+      background:var(--muted); border-radius:2px;
     }
-
-    /* ── Mobile Nav Drawer ── */
     .mobile-nav {
-      display: none;
-      position: fixed;
-      inset: var(--nav-h) 0 0 0;
-      background: rgba(13,17,23,0.97);
-      z-index: 998;
-      flex-direction: column;
-      padding: 2rem;
-      gap: 0.5rem;
+      display:none; position:fixed;
+      inset:var(--nav-h) 0 0 0;
+      background:rgba(13,17,23,0.98);
+      z-index:998; flex-direction:column;
+      padding:1.5rem; gap:0.4rem; overflow-y:auto;
     }
-    .mobile-nav.open { display: flex; }
+    .mobile-nav.open { display:flex; }
     .mobile-nav a {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--muted);
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: var(--transition);
-      cursor: pointer;
+      font-size:0.95rem; font-weight:500; color:var(--muted);
+      padding:0.75rem 1rem; border-radius:8px;
+      text-transform:uppercase; letter-spacing:0.05em;
+      transition:.25s var(--ease); cursor:pointer;
     }
     .mobile-nav a:hover,
-    .mobile-nav a.active { color: var(--gold); background: rgba(201,168,76,0.07); }
+    .mobile-nav a.active { color:var(--gold); background:rgba(201,168,76,0.07); }
 
-    /* ── Pages ── */
+    /* PAGES */
     .page {
-      display: none;
-      min-height: 100vh;
-      padding-top: var(--nav-h);
-      animation: pageFade 0.45s ease both;
+      display:none; min-height:100vh;
+      padding-top:var(--nav-h);
+      animation:pageFade .4s ease both;
     }
-    .page.active { display: block; }
-
+    .page.active { display:block; }
     @keyframes pageFade {
-      from { opacity: 0; transform: translateY(18px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity:0; transform:translateY(16px); }
+      to   { opacity:1; transform:translateY(0); }
     }
 
-    /* ── Layout Container ── */
+    /* LAYOUT */
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 2rem 6rem;
+      max-width:1100px; margin:0 auto;
+      padding:4.5rem 2rem 6rem;
     }
-
-    /* ── Page Header ── */
-    .page-header {
-      margin-bottom: 3.5rem;
-    }
+    .page-header { margin-bottom:3rem; }
     .page-header .label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--gold);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
+      font-family:'DM Mono',monospace; font-size:0.72rem;
+      color:var(--gold); letter-spacing:0.14em;
+      text-transform:uppercase; margin-bottom:0.8rem;
     }
     .page-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 600;
-      color: var(--white);
-      line-height: 1.2;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.9rem,4vw,2.9rem);
+      font-weight:600; color:var(--white); line-height:1.2;
     }
     .page-header .subtitle {
-      margin-top: 1rem;
-      font-size: 1rem;
-      color: var(--muted);
-      max-width: 620px;
-      line-height: 1.75;
+      margin-top:.9rem; font-size:.95rem;
+      color:var(--muted); max-width:600px; line-height:1.75;
     }
-    .divider {
-      width: 48px;
-      height: 2px;
-      background: var(--gold);
-      margin-top: 1.5rem;
-    }
+    .divider { width:44px; height:2px; background:var(--gold); margin-top:1.4rem; }
 
-    /* ── Cards ── */
+    /* CARDS */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      transition: border-color var(--transition), transform var(--transition);
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:2rem;
+      transition:border-color .3s var(--ease),transform .3s var(--ease);
     }
-    .card:hover {
-      border-color: var(--border-hi);
-      transform: translateY(-3px);
-    }
+    .card:hover { border-color:var(--border-hi); transform:translateY(-3px); }
     .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 1rem;
+      font-family:'Playfair Display',serif;
+      font-size:1.15rem; font-weight:600;
+      color:var(--white); margin-bottom:.9rem;
     }
-    .card p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
+    .card p { font-size:.93rem; color:var(--muted); line-height:1.8; }
 
-    /* ── Grid ── */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
+    /* GRIDS */
+    .grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; }
+    .grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
 
-    /* ── Styled List ── */
-    .slist { margin-top: 0.5rem; }
+    /* SLIST */
+    .slist { margin-top:.5rem; }
     .slist li {
-      position: relative;
-      padding: 0.55rem 0 0.55rem 1.4rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      border-bottom: 1px solid var(--border);
+      position:relative; padding:.55rem 0 .55rem 1.4rem;
+      font-size:.9rem; color:var(--muted);
+      border-bottom:1px solid var(--border);
     }
-    .slist li:last-child { border-bottom: none; }
+    .slist li:last-child { border-bottom:none; }
     .slist li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--gold);
+      content:''; position:absolute; left:0; top:50%;
+      transform:translateY(-50%); width:5px; height:5px;
+      border-radius:50%; background:var(--gold);
     }
-    .slist li strong { color: var(--text); }
+    .slist li strong { color:var(--text); }
 
-    /* ── Badge ── */
+    /* BADGE */
     .badge {
-      display: inline-block;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 4px;
-      padding: 0.3rem 0.75rem;
-      margin-bottom: 1rem;
+      display:inline-block; font-family:'DM Mono',monospace;
+      font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--gold); background:rgba(201,168,76,.1);
+      border:1px solid rgba(201,168,76,.25);
+      border-radius:4px; padding:.28rem .7rem; margin-bottom:.9rem;
     }
 
-    /* ── Info Block (highlight) ── */
+    /* INFO BLOCK */
     .info-block {
-      background: rgba(201,168,76,0.05);
-      border-left: 3px solid var(--gold);
-      border-radius: 0 var(--radius) var(--radius) 0;
-      padding: 1.25rem 1.5rem;
-      margin: 1.5rem 0;
+      background:rgba(201,168,76,.05);
+      border-left:3px solid var(--gold);
+      border-radius:0 var(--radius) var(--radius) 0;
+      padding:1.2rem 1.5rem; margin:1.5rem 0;
     }
     .info-block h4 {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.6rem;
+      font-size:.78rem; font-weight:600; color:var(--gold);
+      text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem;
     }
-    .info-block p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
+    .info-block p { font-size:.9rem; color:var(--muted); line-height:1.75; }
 
-    /* ── Epreuve number ── */
-    .epreuve-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 52px;
-      height: 52px;
-      border: 2px solid var(--gold);
-      border-radius: 8px;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-
-    .epreuve-header {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-    .epreuve-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--white);
-    }
-    .epreuve-header p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    /* ── Section sub-title ── */
+    /* SUB HEADING */
     .sub-heading {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin: 2rem 0 0.8rem;
+      font-family:'DM Mono',monospace; font-size:.7rem;
+      letter-spacing:.12em; text-transform:uppercase;
+      color:var(--gold); margin:1.75rem 0 .7rem;
     }
-    .body-text {
-      font-size: 0.93rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    .body-text + .body-text { margin-top: 0.8rem; }
+    .body-text { font-size:.93rem; color:var(--muted); line-height:1.8; }
 
-    /* ── CTA Button ── */
+    /* BUTTONS */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      background: var(--gold);
-      color: var(--bg);
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.87rem;
-      letter-spacing: 0.04em;
-      transition: background var(--transition), transform var(--transition);
-      border: none;
-      cursor: pointer;
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.72rem 1.6rem;
+      background:var(--gold); color:var(--bg);
+      border-radius:6px; font-weight:600; font-size:.85rem;
+      letter-spacing:.04em; border:none; cursor:pointer;
+      transition:background .3s var(--ease),transform .3s var(--ease);
     }
-    .btn:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-    }
+    .btn:hover { background:var(--gold-light); transform:translateY(-2px); }
     .btn-outline {
-      background: transparent;
-      color: var(--gold);
-      border: 1px solid var(--border-hi);
+      background:transparent; color:var(--gold);
+      border:1px solid var(--border-hi);
     }
-    .btn-outline:hover {
-      background: rgba(201,168,76,0.08);
-      color: var(--gold-light);
-    }
-    .btn-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
+    .btn-outline:hover { background:rgba(201,168,76,.08); color:var(--gold-light); }
+    .btn-row { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.75rem; }
 
-    /* ── Contact ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-top: 2rem;
+    /* EPREUVE NUM */
+    .epreuve-num {
+      display:inline-flex; align-items:center; justify-content:center;
+      width:50px; height:50px;
+      border:2px solid var(--gold); border-radius:8px;
+      font-family:'Playfair Display',serif;
+      font-size:1.3rem; font-weight:700; color:var(--gold); flex-shrink:0;
     }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-group label {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
+    .epreuve-header { display:flex; align-items:center; gap:1.2rem; margin-bottom:1.75rem; }
+    .epreuve-header h2 {
+      font-family:'Playfair Display',serif;
+      font-size:1.15rem; font-weight:600; color:var(--white);
     }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.85rem 1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.93rem;
-      transition: border-color var(--transition);
-    }
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--border-hi);
-    }
-    .form-group textarea { resize: vertical; min-height: 140px; }
+    .epreuve-header p { font-size:.82rem; color:var(--muted); margin-top:.2rem; }
 
-    .contact-info-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
+    /* TAGS */
+    .tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.75rem; }
+    .tag {
+      font-family:'DM Mono',monospace; font-size:.68rem;
+      color:var(--muted); background:var(--surface2);
+      border:1px solid var(--border); border-radius:4px;
+      padding:.28rem .65rem; letter-spacing:.04em;
+      transition:border-color .25s,color .25s;
     }
-    .contact-info-panel h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      color: var(--white);
-      margin-bottom: 1.75rem;
-    }
-    .contact-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .contact-row:last-child { border-bottom: none; }
-    .contact-icon-box {
-      width: 38px;
-      height: 38px;
-      background: rgba(201,168,76,0.1);
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-family: 'DM Mono', monospace;
-    }
-    .contact-row .cr-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 0.2rem;
-    }
-    .contact-row .cr-val {
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    .contact-row .cr-val a {
-      color: var(--gold);
-      transition: color var(--transition);
-    }
-    .contact-row .cr-val a:hover { color: var(--gold-light); }
+    .tag:hover { border-color:var(--border-hi); color:var(--gold); }
 
-    /* ── Home Page ── */
-    #home-page {
+    /* SPACING */
+    .mt-2 { margin-top:2rem; }
+    .mt-3 { margin-top:3rem; }
+
+    /* ── HOME ── */
+    #page-home {
       background:
-        radial-gradient(ellipse 80% 60% at 60% 10%, rgba(201,168,76,0.06) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 55% at 65% 5%, rgba(201,168,76,.06) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 40% at 8% 85%, rgba(201,168,76,.04) 0%, transparent 60%);
     }
     .hero {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      min-height: calc(100vh - var(--nav-h));
-      display: flex;
-      align-items: center;
+      max-width:1100px; margin:0 auto; padding:0 2rem;
+      min-height:calc(100vh - var(--nav-h));
+      display:flex; align-items:center;
     }
-    .hero-inner { max-width: 680px; }
+    .hero-layout { display:flex; align-items:center; gap:5rem; width:100%; }
+    .hero-inner { flex:1; max-width:620px; }
     .hero-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
+      font-family:'DM Mono',monospace; font-size:.72rem;
+      letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
+      margin-bottom:1.5rem; display:flex; align-items:center; gap:.75rem;
     }
-    .hero-tag::before {
-      content: '';
-      display: block;
-      width: 32px;
-      height: 1px;
-      background: var(--gold);
-    }
+    .hero-tag::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
     .hero-inner h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.5rem;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.6rem,5vw,4rem);
+      font-weight:700; color:var(--white);
+      line-height:1.1; letter-spacing:-.01em; margin-bottom:1.4rem;
     }
-    .hero-inner h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
+    .hero-inner h1 em { font-style:normal; color:var(--gold); }
     .hero-inner p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-      max-width: 540px;
+      font-size:1rem; color:var(--muted); line-height:1.85;
+      margin-bottom:2.25rem; max-width:520px;
     }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
     .hero-meta {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
+      display:flex; gap:2.5rem; margin-top:2.75rem;
+      padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap;
     }
-    .hero-meta-item .meta-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.25rem;
+    .meta-item .meta-label {
+      font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:.25rem;
     }
-    .hero-meta-item .meta-val {
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text);
+    .meta-item .meta-val { font-size:.93rem; font-weight:500; color:var(--text); }
+
+    /* Profile */
+    .hero-profile {
+      flex-shrink:0;
+      display:flex; flex-direction:column; align-items:center; gap:1.5rem;
+    }
+    .profile-avatar {
+      width:180px; height:180px; border-radius:50%;
+      border:2px solid var(--border-hi);
+      background:var(--surface2);
+      display:flex; align-items:center; justify-content:center; overflow:hidden;
+    }
+    .profile-avatar img { width:100%; height:100%; object-fit:cover; }
+    .avatar-placeholder {
+      font-family:'Playfair Display',serif;
+      font-size:3.5rem; font-weight:700; color:var(--gold); opacity:.4;
+    }
+    .profile-card {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:1.25rem 1.5rem;
+      min-width:200px; text-align:center;
+    }
+    .pc-name {
+      font-family:'Playfair Display',serif;
+      font-size:1.05rem; font-weight:600; color:var(--white); margin-bottom:.25rem;
+    }
+    .pc-role {
+      font-family:'DM Mono',monospace; font-size:.7rem;
+      color:var(--gold); text-transform:uppercase; letter-spacing:.1em;
+    }
+    .status-dot {
+      display:inline-block; width:7px; height:7px;
+      border-radius:50%; background:var(--green); margin-right:.4rem;
+      box-shadow:0 0 0 2px rgba(63,185,80,.25);
+      animation:pulse 2s ease infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow:0 0 0 2px rgba(63,185,80,.25); }
+      50%      { box-shadow:0 0 0 5px rgba(63,185,80,.08); }
+    }
+    .pc-status {
+      font-size:.75rem; color:var(--muted); margin-top:.6rem;
+      display:flex; align-items:center; justify-content:center;
     }
 
-    /* ── Tech Stack Tags ── */
-    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-    .tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.3rem 0.7rem;
-      letter-spacing: 0.05em;
-      transition: border-color var(--transition), color var(--transition);
+    /* ── TIMELINE ── */
+    .timeline { position:relative; margin:1.5rem 0; }
+    .timeline::before {
+      content:''; position:absolute; left:20px; top:0; bottom:0;
+      width:1px; background:var(--border);
     }
-    .tag:hover { border-color: var(--border-hi); color: var(--gold); }
+    .tl-item { position:relative; padding:0 0 2rem 3.5rem; }
+    .tl-item:last-child { padding-bottom:0; }
+    .tl-dot {
+      position:absolute; left:13px; top:4px;
+      width:15px; height:15px; border-radius:50%;
+      background:var(--bg); border:2px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .tl-dot::after { content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); }
+    .tl-date {
+      font-family:'DM Mono',monospace; font-size:.68rem;
+      color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.4rem;
+    }
+    .tl-title { font-size:.97rem; font-weight:600; color:var(--white); margin-bottom:.3rem; }
+    .tl-desc { font-size:.87rem; color:var(--muted); line-height:1.7; }
 
-    /* ── Veille highlight ── */
-    .veille-topic {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem;
+    /* ── SKILL BARS ── */
+    .skill-group { margin-bottom:1.75rem; }
+    .skill-group:last-child { margin-bottom:0; }
+    .skill-group-title {
+      font-family:'DM Mono',monospace; font-size:.68rem;
+      letter-spacing:.12em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:1rem;
     }
-    .veille-topic h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--white);
-      margin-bottom: 1rem;
+    .skill-item { margin-bottom:1rem; }
+    .skill-row {
+      display:flex; justify-content:space-between;
+      align-items:center; margin-bottom:.4rem;
+    }
+    .skill-name { font-size:.88rem; color:var(--text); font-weight:500; }
+    .skill-level { font-family:'DM Mono',monospace; font-size:.7rem; color:var(--muted); }
+    .skill-bar { height:4px; background:var(--surface2); border-radius:99px; overflow:hidden; }
+    .skill-fill {
+      height:100%; border-radius:99px;
+      background:linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform-origin:left;
+      animation:barGrow .9s var(--ease) both;
+    }
+    @keyframes barGrow {
+      from { transform:scaleX(0); }
+      to   { transform:scaleX(1); }
     }
 
-    /* ── Footer ── */
+    /* ── COMPETENCES GRID ── */
+    .competence-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:1rem; margin-top:1.5rem;
+    }
+    .comp-card {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:8px; padding:1.25rem;
+      transition:border-color .3s var(--ease);
+      position:relative; overflow:hidden;
+    }
+    .comp-card:hover { border-color:var(--border-hi); }
+    .comp-card.validated { border-color:rgba(63,185,80,.25); }
+    .comp-card.validated::before {
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,var(--green),transparent);
+    }
+    .comp-card.in-progress::before {
+      content:''; position:absolute;
+      top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+    }
+    .comp-id {
+      font-family:'DM Mono',monospace; font-size:.65rem;
+      color:var(--muted); letter-spacing:.1em; margin-bottom:.5rem;
+    }
+    .comp-title { font-size:.88rem; font-weight:600; color:var(--white); margin-bottom:.4rem; }
+    .comp-desc { font-size:.78rem; color:var(--muted); line-height:1.6; }
+    .comp-status {
+      display:inline-flex; align-items:center; gap:.35rem;
+      font-size:.68rem; font-family:'DM Mono',monospace;
+      text-transform:uppercase; letter-spacing:.08em; margin-top:.75rem;
+    }
+    .comp-status.v { color:var(--green); }
+    .comp-status.p { color:var(--gold); }
+    .comp-status::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
+
+    /* ── SCREENSHOTS ── */
+    .screenshots {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+      gap:1rem; margin-top:1.25rem;
+    }
+    .screenshot-slot {
+      aspect-ratio:16/9;
+      background:var(--surface2); border:1px dashed var(--border-hi);
+      border-radius:8px; display:flex; flex-direction:column;
+      align-items:center; justify-content:center; gap:.6rem;
+      cursor:pointer; transition:border-color .3s,background .3s; overflow:hidden;
+    }
+    .screenshot-slot:hover { background:rgba(201,168,76,.04); }
+    .screenshot-slot img { width:100%; height:100%; object-fit:cover; }
+    .ss-icon {
+      width:36px; height:36px; border-radius:8px;
+      background:rgba(201,168,76,.1); display:flex; align-items:center; justify-content:center;
+    }
+    .ss-icon svg { width:18px; height:18px; stroke:var(--gold); }
+    .ss-label {
+      font-family:'DM Mono',monospace; font-size:.68rem;
+      color:var(--muted); text-align:center; letter-spacing:.05em; padding:0 1rem;
+    }
+    .screenshot-input { display:none; }
+
+    /* ── VEILLE ── */
+    .veille-card {
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:var(--radius); padding:2.5rem;
+    }
+    .veille-card h3 {
+      font-family:'Playfair Display',serif;
+      font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:1rem;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem; }
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label {
+      display:block; font-size:.75rem; font-weight:600;
+      letter-spacing:.07em; text-transform:uppercase;
+      color:var(--muted); margin-bottom:.45rem;
+    }
+    .form-group input, .form-group textarea {
+      width:100%; padding:.82rem 1rem;
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:7px; color:var(--text);
+      font-family:'DM Sans',sans-serif; font-size:.93rem;
+      transition:border-color .3s var(--ease);
+    }
+    .form-group input:focus, .form-group textarea:focus { outline:none; border-color:var(--border-hi); }
+    .form-group textarea { resize:vertical; min-height:130px; }
+    .form-msg {
+      font-size:.83rem; padding:.75rem 1rem;
+      border-radius:6px; margin-top:.75rem; display:none;
+    }
+    .form-msg.success {
+      display:block; background:rgba(63,185,80,.1);
+      border:1px solid rgba(63,185,80,.25); color:var(--green);
+    }
+    .ci-panel {
+      background:var(--surface); border:1px solid var(--border);
+      border-radius:var(--radius); padding:2rem;
+    }
+    .ci-panel h3 {
+      font-family:'Playfair Display',serif;
+      font-size:1.1rem; color:var(--white); margin-bottom:1.5rem;
+    }
+    .ci-row {
+      display:flex; align-items:flex-start; gap:1rem;
+      padding:.9rem 0; border-bottom:1px solid var(--border);
+    }
+    .ci-row:last-child { border-bottom:none; }
+    .ci-icon {
+      width:36px; height:36px; border-radius:7px;
+      background:rgba(201,168,76,.1); flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'DM Mono',monospace; font-size:.7rem; color:var(--gold); font-weight:500;
+    }
+    .ci-lbl { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.15rem; }
+    .ci-val { font-size:.88rem; color:var(--text); }
+    .ci-val a { color:var(--gold); transition:color .25s; }
+    .ci-val a:hover { color:var(--gold-light); }
+
+    /* FOOTER */
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--muted);
+      border-top:1px solid var(--border); padding:1.75rem 2rem;
+      text-align:center; font-size:.8rem; color:var(--muted);
     }
-    footer span { color: var(--gold); }
+    footer span { color:var(--gold); }
 
-    /* ── Responsive ── */
-    @media (max-width: 820px) {
-      .nav-links { display: none; }
-      .burger { display: flex; }
-      .contact-grid { grid-template-columns: 1fr; }
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .hero-layout { flex-direction:column-reverse; gap:2.5rem; padding-top:3rem; }
+      .hero-profile { flex-direction:row; gap:1.5rem; align-self:flex-start; }
+      .profile-avatar { width:100px; height:100px; }
     }
-    @media (max-width: 600px) {
-      .hero-meta { flex-direction: column; gap: 1.25rem; }
-      .btn-row { flex-direction: column; }
+    @media(max-width:768px) {
+      .nav-links { display:none; }
+      .burger { display:flex; }
+      .contact-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:560px) {
+      .hero-meta { flex-direction:column; gap:1rem; }
+      .btn-row { flex-direction:column; }
+      .hero-profile { display:none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-inner">
-      <div class="logo">Portfolio <span>BTS SIO</span></div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#accueil"   data-page="home">Accueil</a></li>
-        <li><a href="#apropos"   data-page="apropos">À propos</a></li>
-        <li><a href="#bts-sio"   data-page="bts">BTS SIO</a></li>
-        <li><a href="#epreuve-e5" data-page="e5">Épreuve E5</a></li>
-        <li><a href="#epreuve-e6" data-page="e6">Épreuve E6</a></li>
-        <li><a href="#veille"    data-page="veille">Veille</a></li>
-        <li><a href="#entreprise" data-page="entreprise">Entreprise</a></li>
-        <li><a href="#contact"   data-page="contact">Contact</a></li>
-      </ul>
-      <button class="burger" id="burger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Mobile Nav -->
-  <div class="mobile-nav" id="mobileNav">
-    <a data-page="home">Accueil</a>
-    <a data-page="apropos">À propos</a>
-    <a data-page="bts">BTS SIO</a>
-    <a data-page="e5">Épreuve E5</a>
-    <a data-page="e6">Épreuve E6</a>
-    <a data-page="veille">Veille Technologique</a>
-    <a data-page="entreprise">Mon Entreprise</a>
-    <a data-page="contact">Contact</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Younes <span>Fri</span></div>
+    <ul class="nav-links">
+      <li><a data-page="home">Accueil</a></li>
+      <li><a data-page="apropos">À propos</a></li>
+      <li><a data-page="bts">BTS SIO</a></li>
+      <li><a data-page="e5">Épreuve E5</a></li>
+      <li><a data-page="e6">Épreuve E6</a></li>
+      <li><a data-page="veille">Veille</a></li>
+      <li><a data-page="entreprise">Entreprise</a></li>
+      <li><a data-page="contact">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a data-page="home">Accueil</a>
+  <a data-page="apropos">À propos</a>
+  <a data-page="bts">BTS SIO</a>
+  <a data-page="e5">Épreuve E5</a>
+  <a data-page="e6">Épreuve E6</a>
+  <a data-page="veille">Veille Technologique</a>
+  <a data-page="entreprise">Mon Entreprise</a>
+  <a data-page="contact">Contact</a>
+</div>
 
-  <!-- ══════════════════════ PAGE : ACCUEIL ══════════════════════ -->
-  <div class="page" id="page-home">
-    <div class="hero">
+<!-- ═══════ PAGE : ACCUEIL ═══════ -->
+<div class="page" id="page-home">
+  <div class="hero">
+    <div class="hero-layout">
       <div class="hero-inner">
         <div class="hero-tag">Portfolio étudiant — BTS SIO</div>
         <h1>Bienvenue sur<br>mon <em>Portfolio</em></h1>
@@ -628,693 +564,810 @@
           dans les services informatiques aux organisations. Ce portfolio retrace
           mon parcours, mes projets et mes compétences.
         </p>
-        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <div class="hero-actions">
           <button class="btn" data-page="apropos">Découvrir mon parcours</button>
-          <button class="btn btn-outline" data-page="contact">Me contacter</button>
+          <a href="CV_Younes_Fri.pdf" target="_blank" class="btn btn-outline">Télécharger mon CV</a>
         </div>
         <div class="hero-meta">
-          <div class="hero-meta-item">
+          <div class="meta-item">
             <div class="meta-label">Formation</div>
             <div class="meta-val">BTS SIO — 1re Année</div>
           </div>
-          <div class="hero-meta-item">
+          <div class="meta-item">
             <div class="meta-label">École</div>
             <div class="meta-val">École Iris</div>
           </div>
-          <div class="hero-meta-item">
+          <div class="meta-item">
             <div class="meta-label">Entreprise</div>
             <div class="meta-val">Bernard Controls</div>
           </div>
+          <div class="meta-item">
+            <div class="meta-label">Option</div>
+            <div class="meta-val">SISR</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-profile">
+        <div class="profile-avatar">
+          <!-- Remplace par : <img src="photo.jpg" alt="Younes Fri"> -->
+          <span class="avatar-placeholder">YF</span>
+        </div>
+        <div class="profile-card">
+          <div class="pc-name">Younes Fri</div>
+          <div class="pc-role">Étudiant BTS SIO</div>
+          <div class="pc-status"><span class="status-dot"></span>Disponible en alternance</div>
         </div>
       </div>
     </div>
-    <footer>
-      <p>&copy; 2025 Portfolio BTS SIO — École Iris &nbsp;·&nbsp; <span>Younes Fri</span></p>
-    </footer>
   </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
 
-  <!-- ══════════════════════ PAGE : À PROPOS ══════════════════════ -->
-  <div class="page" id="page-apropos">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">01 — Présentation</div>
-        <h1>À propos de moi</h1>
-        <div class="divider"></div>
+<!-- ═══════ PAGE : À PROPOS ═══════ -->
+<div class="page" id="page-apropos">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">01 — Présentation</div>
+      <h1>À propos de moi</h1>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid-2" style="align-items:start;">
+      <div>
+        <div class="sub-heading" style="margin-top:0;">Parcours</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2024 — Aujourd'hui</div>
+            <div class="tl-title">BTS SIO — École Iris</div>
+            <div class="tl-desc">
+              Première année de BTS Services Informatiques aux Organisations, option SISR.
+              Formation aux infrastructures réseaux, cybersécurité et administration systèmes.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2024 — Aujourd'hui</div>
+            <div class="tl-title">Technicien IT — Bernard Controls</div>
+            <div class="tl-desc">
+              Période en entreprise à Gonesse (95). Déploiement de solutions de gestion de parc
+              (GLPI / OCS Inventory), support technique aux utilisateurs.
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2024</div>
+            <div class="tl-title">Baccalauréat</div>
+            <div class="tl-desc">
+              Obtention du baccalauréat, puis orientation vers le BTS SIO pour une
+              spécialisation en informatique et réseaux.
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-heading">Objectifs</div>
+        <div class="card" style="margin-top:0;">
+          <p>
+            Maîtriser les compétences techniques et professionnelles du secteur informatique.
+            Je souhaite approfondir mes connaissances en administration systèmes et réseaux,
+            cybersécurité et gestion de projets IT pour devenir un professionnel polyvalent
+            et autonome.
+          </p>
+        </div>
       </div>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Mon parcours</h3>
-          <p>
-            Actuellement en première année de BTS SIO à l'École Iris, je me forme
-            aux métiers de l'informatique et des services numériques. Passionné par
-            les technologies et le développement, je souhaite acquérir des
-            compétences solides pour évoluer dans le secteur informatique.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Mes objectifs</h3>
-          <p>
-            Mon objectif est de maîtriser les compétences techniques et
-            professionnelles nécessaires pour réussir dans le secteur informatique.
-            Je m'investis pleinement dans ma formation pour devenir un professionnel
-            compétent et polyvalent.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Compétences techniques</h3>
-          <div class="tags" style="margin-top:0.5rem;">
-            <span class="tag">Linux / Debian</span>
-            <span class="tag">Apache2</span>
-            <span class="tag">MariaDB</span>
-            <span class="tag">PHP</span>
-            <span class="tag">Python</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">HTML / CSS</span>
-            <span class="tag">SQL</span>
-            <span class="tag">GLPI</span>
-            <span class="tag">OCS Inventory</span>
-            <span class="tag">Virtualisation</span>
-            <span class="tag">Cybersécurité</span>
+
+      <div>
+        <div class="sub-heading" style="margin-top:0;">Compétences techniques</div>
+        <div class="card" style="margin-top:0;">
+          <div class="skill-group">
+            <div class="skill-group-title">Systèmes &amp; Réseaux</div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">Linux / Debian</span><span class="skill-level">Intermédiaire</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">Apache2 / VirtualHost</span><span class="skill-level">Intermédiaire</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">Virtualisation</span><span class="skill-level">Débutant+</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Bases de données</div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">MariaDB / MySQL</span><span class="skill-level">Intermédiaire</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:62%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">SQL</span><span class="skill-level">Intermédiaire</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Développement</div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">HTML / CSS</span><span class="skill-level">Intermédiaire</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-level">Débutant+</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-row"><span class="skill-name">Python</span><span class="skill-level">Débutant</span></div>
+              <div class="skill-bar"><div class="skill-fill" style="width:35%"></div></div>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Outils</div>
+            <div class="tags">
+              <span class="tag">GLPI</span>
+              <span class="tag">OCS Inventory</span>
+              <span class="tag">Git</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">Windows Server</span>
+              <span class="tag">Active Directory</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
-  </div>
 
-  <!-- ══════════════════════ PAGE : BTS SIO ══════════════════════ -->
-  <div class="page" id="page-bts">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">02 — Formation</div>
-        <h1>BTS SIO</h1>
-        <p class="subtitle">Services Informatiques aux Organisations</p>
-        <div class="divider"></div>
+    <!-- Référentiel compétences -->
+    <div class="mt-3">
+      <div class="sub-heading" style="margin-top:0;">Référentiel de compétences BTS SIO</div>
+      <div class="competence-grid">
+        <div class="comp-card validated">
+          <div class="comp-id">A1.1</div>
+          <div class="comp-title">Analyse du besoin</div>
+          <div class="comp-desc">Recueil et formalisation des besoins d'un utilisateur ou d'une organisation.</div>
+          <div class="comp-status v">Acquis</div>
+        </div>
+        <div class="comp-card validated">
+          <div class="comp-id">A1.2</div>
+          <div class="comp-title">Gestion de parc</div>
+          <div class="comp-desc">Inventaire et suivi des équipements et logiciels. Déployé via GLPI/OCS.</div>
+          <div class="comp-status v">Acquis</div>
+        </div>
+        <div class="comp-card validated">
+          <div class="comp-id">A1.3</div>
+          <div class="comp-title">Administration systèmes</div>
+          <div class="comp-desc">Installation, configuration et maintenance de serveurs Linux.</div>
+          <div class="comp-status v">Acquis</div>
+        </div>
+        <div class="comp-card in-progress">
+          <div class="comp-id">A2.1</div>
+          <div class="comp-title">Sécurité des accès</div>
+          <div class="comp-desc">Mise en place de politiques d'accès et de gestion des droits utilisateurs.</div>
+          <div class="comp-status p">En cours</div>
+        </div>
+        <div class="comp-card in-progress">
+          <div class="comp-id">A2.2</div>
+          <div class="comp-title">Analyse des risques</div>
+          <div class="comp-desc">Identification des vulnérabilités et proposition de contre-mesures.</div>
+          <div class="comp-status p">En cours</div>
+        </div>
+        <div class="comp-card in-progress">
+          <div class="comp-id">A3.1</div>
+          <div class="comp-title">Support utilisateurs</div>
+          <div class="comp-desc">Assistance technique et résolution d'incidents de niveau 1 et 2.</div>
+          <div class="comp-status p">En cours</div>
+        </div>
+        <div class="comp-card validated">
+          <div class="comp-id">A4.1</div>
+          <div class="comp-title">Veille technologique</div>
+          <div class="comp-desc">Suivi des évolutions technologiques et rédaction de synthèses.</div>
+          <div class="comp-status v">Acquis</div>
+        </div>
+        <div class="comp-card validated">
+          <div class="comp-id">A5.1</div>
+          <div class="comp-title">Documentation technique</div>
+          <div class="comp-desc">Rédaction de procédures, guides et documentations professionnelles.</div>
+          <div class="comp-status v">Acquis</div>
+        </div>
       </div>
+    </div>
+  </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
 
-      <div class="card" style="margin-bottom:2rem;">
-        <h3>Présentation du BTS SIO</h3>
+<!-- ═══════ PAGE : BTS SIO ═══════ -->
+<div class="page" id="page-bts">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">02 — Formation</div>
+      <h1>BTS SIO</h1>
+      <p class="subtitle">Services Informatiques aux Organisations — Présentation de la formation et de ses deux options.</p>
+      <div class="divider"></div>
+    </div>
+    <div class="card mt-2">
+      <h3>Présentation du diplôme</h3>
+      <p>
+        Le BTS SIO (Services Informatiques aux Organisations) est un diplôme de niveau Bac+2 qui
+        forme aux métiers de l'informatique. Il se divise en deux spécialités : SISR (Solutions
+        d'Infrastructure, Systèmes et Réseaux) et SLAM (Solutions Logicielles et Applications
+        Métiers). La formation combine enseignements généraux, matières professionnelles et
+        périodes en entreprise pour développer des compétences directement exploitables.
+      </p>
+    </div>
+    <div class="grid-2 mt-2">
+      <div class="card">
+        <div class="badge">Option SISR</div>
+        <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
         <p>
-          Le BTS SIO (Services Informatiques aux Organisations) est un diplôme de niveau Bac+2
-          qui forme les étudiants aux métiers de l'informatique. Il se divise en deux spécialités :
-          SISR (Solutions d'Infrastructure, Systèmes et Réseaux) et SLAM (Solutions Logicielles
-          et Applications Métiers). Les étudiants acquièrent des compétences en développement
-          d'applications, gestion de réseaux et maintenance des systèmes informatiques.
+          L'option SISR forme des professionnels spécialisés dans la gestion des infrastructures
+          informatiques : installation, configuration, sécurisation et maintenance des réseaux
+          et des systèmes d'une organisation.
         </p>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="badge">Option SLAM</div>
-          <h3>Solutions Logicielles et Applications Métiers</h3>
-          <p>
-            L'option SLAM forme des professionnels spécialisés dans le développement d'applications
-            et la programmation. Elle prépare à la conception, au développement, au test et à la
-            maintenance de solutions logicielles adaptées aux besoins des entreprises.
-          </p>
-          <p style="margin-top:1rem;">
-            Durant la formation, vous travaillez sur différents langages (Java, PHP, Python, JavaScript),
-            la gestion de bases de données SQL, ainsi que sur les notions de cybersécurité et de gestion
-            de projet informatique.
-          </p>
-          <div class="sub-heading">Débouchés professionnels</div>
-          <ul class="slist">
-            <li>Développeur Web</li>
-            <li>Développeur d'Applications</li>
-            <li>Programmeur Informatique</li>
-            <li>Analyste Programmeur</li>
-            <li>Développeur Mobile</li>
-            <li>Technicien Support Applicatif</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="badge">Option SISR</div>
-          <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
-          <p>
-            L'option SISR forme des professionnels spécialisés dans la gestion des infrastructures
-            informatiques. Elle prépare à l'installation, la configuration, la sécurisation et la
-            maintenance des réseaux et des systèmes.
-          </p>
-          <p style="margin-top:1rem;">
-            Vous apprendrez à installer et configurer des serveurs, gérer des réseaux locaux et
-            étendus, mettre en place des solutions de cybersécurité, virtualiser des environnements
-            et superviser les équipements.
-          </p>
-          <div class="sub-heading">Débouchés professionnels</div>
-          <ul class="slist">
-            <li>Technicien Systèmes et Réseaux</li>
-            <li>Technicien d'Infrastructure</li>
-            <li>Technicien Réseau / Télécoms</li>
-            <li>Technicien d'Exploitation Informatique</li>
-            <li>Administrateur Systèmes et Réseaux</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
-  </div>
-
-  <!-- ══════════════════════ PAGE : ÉPREUVE E5 ══════════════════════ -->
-  <div class="page" id="page-e5">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">03 — Épreuve E5</div>
-        <h1>Support et Mise à Disposition<br>de Services Informatiques</h1>
-        <div class="divider"></div>
-      </div>
-
-      <!-- Présentation épreuve -->
-      <div class="card" style="margin-bottom:2rem;">
-        <div class="epreuve-header">
-          <div class="epreuve-num">E5</div>
-          <div>
-            <h2 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);">Présentation de l'épreuve</h2>
-            <p style="font-size:0.85rem;color:var(--muted);margin-top:0.2rem;">Support, administration et mise à disposition de services</p>
-          </div>
-        </div>
-
-        <div class="sub-heading">Objectif</div>
-        <p class="body-text">
-          Cette épreuve vise à évaluer l'acquisition des compétences liées au support, à l'administration
-          et à la mise à disposition de services informatiques au sein d'une organisation. Elle vérifie
-          la maîtrise technique, la rigueur méthodologique ainsi que la capacité à intervenir dans un
-          contexte professionnel réel ou simulé.
+        <p style="margin-top:.9rem;">
+          Vous apprenez à configurer des serveurs, gérer des réseaux locaux, mettre en place
+          des solutions de cybersécurité, virtualiser des environnements et superviser les
+          équipements.
         </p>
-        <ul class="slist" style="margin-top:1rem;">
-          <li>Analyser un besoin exprimé par une organisation</li>
-          <li>Concevoir et proposer une solution informatique adaptée</li>
-          <li>Installer, configurer et tester un service</li>
-          <li>Mettre en production une solution</li>
-          <li>Assurer le support aux utilisateurs</li>
-          <li>Maintenir la continuité et la sécurité des services informatiques</li>
+        <div class="sub-heading">Débouchés</div>
+        <ul class="slist">
+          <li>Technicien Systèmes et Réseaux</li>
+          <li>Technicien d'Infrastructure</li>
+          <li>Technicien Réseau / Télécoms</li>
+          <li>Administrateur Systèmes et Réseaux</li>
+          <li>Technicien d'Exploitation Informatique</li>
         </ul>
-
-        <div class="sub-heading">Modalités d'évaluation</div>
-        <p class="body-text">
-          L'épreuve prend appui sur deux réalisations professionnelles présentées dans un dossier fourni
-          par le candidat. Ces réalisations illustrent des situations concrètes rencontrées en stage,
-          en alternance ou en atelier de professionnalisation.
-        </p>
-        <ul class="slist" style="margin-top:1rem;">
-          <li>Présentation du contexte professionnel</li>
-          <li>Expression du besoin</li>
-          <li>Solutions proposées et choix techniques effectués</li>
-          <li>Étapes de mise en œuvre</li>
-          <li>Tests et validations</li>
-          <li>Documentation technique structurée</li>
-        </ul>
-
-        <div class="sub-heading">Forme ponctuelle — 40 min + 1h30 de préparation</div>
-        <p class="body-text">
-          À partir d'un scénario professionnel, le candidat analyse la situation, propose une solution
-          adaptée, justifie ses choix techniques et présente son travail devant le jury.
-          Une phase pratique autonome (configuration, développement, résolution d'incident) précède
-          un entretien de 20 minutes maximum.
-        </p>
       </div>
-
-      <!-- Projet GLPI / OCS -->
       <div class="card">
-        <div class="badge">Réalisation professionnelle</div>
-        <h3>Déploiement OCS-NG Inventory &amp; GLPI</h3>
-
-        <div class="info-block">
-          <h4>Objectif du projet</h4>
-          <p>
-            Mise en place d'une solution complète de gestion de parc informatique en déployant
-            OCS-NG Inventory Server et GLPI sur un serveur Debian GNU/Linux.
-          </p>
-        </div>
-
-        <p class="body-text">
-          GLPI (Gestionnaire Libre de Parc Informatique) et OCS Inventory (Open Computer and Software
-          Inventory) sont deux logiciels open source utilisés pour la gestion de parc informatique.
-          Ce projet vise à automatiser l'inventaire et à centraliser la gestion des incidents, demandes,
-          contrats et licences logicielles.
+        <div class="badge">Option SLAM</div>
+        <h3>Solutions Logicielles et Applications Métiers</h3>
+        <p>
+          L'option SLAM forme des développeurs spécialisés dans la conception, le développement,
+          le test et la maintenance de solutions logicielles adaptées aux besoins des entreprises.
         </p>
-
-        <div class="sub-heading">Environnement technique</div>
+        <p style="margin-top:.9rem;">
+          Durant la formation, vous travaillez sur des langages variés (Java, PHP, Python,
+          JavaScript), la gestion de bases de données SQL et les notions de gestion de projet.
+        </p>
+        <div class="sub-heading">Débouchés</div>
         <ul class="slist">
-          <li><strong>Système :</strong> Debian GNU/Linux</li>
-          <li><strong>OCS-NG Server :</strong> Version 2.12.3</li>
-          <li><strong>GLPI :</strong> Version 11.0.1</li>
-          <li><strong>Base de données :</strong> MariaDB 11.8.3</li>
-          <li><strong>Serveur Web :</strong> Apache2</li>
-          <li><strong>Agents déployés :</strong> 3 machines (1 Windows + 2 Unix/Linux)</li>
-        </ul>
-
-        <div class="sub-heading">Compétences développées</div>
-        <ul class="slist">
-          <li>Installation et configuration d'un serveur Linux</li>
-          <li>Administration de bases de données MariaDB</li>
-          <li>Configuration Apache et VirtualHost</li>
-          <li>Déploiement d'agents sur Windows et Unix/Linux</li>
-          <li>Sécurisation des services (mots de passe, fichiers sensibles)</li>
-          <li>Documentation technique professionnelle</li>
-        </ul>
-
-        <div class="btn-row">
-          <a href="ocs-glpi-documentation.pdf" target="_blank" class="btn">Documentation complète (PDF)</a>
-          <a href="E5_Tableau_de_synthese.pdf" target="_blank" class="btn btn-outline">Tableau de synthèse E5 (PDF)</a>
-        </div>
-      </div>
-    </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
-  </div>
-
-  <!-- ══════════════════════ PAGE : ÉPREUVE E6 ══════════════════════ -->
-  <div class="page" id="page-e6">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">04 — Épreuve E6</div>
-        <h1>Cybersécurité des<br>Services Informatiques</h1>
-        <div class="divider"></div>
-      </div>
-
-      <div class="card" style="margin-bottom:2rem;">
-        <div class="epreuve-header">
-          <div class="epreuve-num">E6</div>
-          <div>
-            <h2 style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);">Présentation de l'épreuve</h2>
-            <p style="font-size:0.85rem;color:var(--muted);margin-top:0.2rem;">Sécurisation des services et des systèmes d'information</p>
-          </div>
-        </div>
-
-        <div class="sub-heading">Objectif</div>
-        <p class="body-text">
-          Cette épreuve évalue l'acquisition des compétences liées à la sécurisation des services
-          informatiques. Elle vérifie la capacité à identifier les vulnérabilités, analyser les risques
-          et intégrer la cybersécurité dans toute activité informatique.
-        </p>
-        <ul class="slist" style="margin-top:1rem;">
-          <li>Identifier les vulnérabilités d'un système d'information</li>
-          <li>Analyser les risques liés à la sécurité</li>
-          <li>Mettre en place des mesures de protection adaptées</li>
-          <li>Sécuriser les accès et les données</li>
-          <li>Assurer la surveillance et la protection des services informatiques</li>
-        </ul>
-
-        <div class="sub-heading">Modalités d'évaluation</div>
-        <p class="body-text">
-          L'épreuve s'appuie sur un dossier professionnel réalisé par le candidat. Ce dossier présente
-          une situation réelle rencontrée en stage, en alternance ou en atelier de professionnalisation.
-        </p>
-        <ul class="slist" style="margin-top:1rem;">
-          <li>Présentation du contexte professionnel</li>
-          <li>Identification des risques de sécurité</li>
-          <li>Solutions proposées et choix techniques effectués</li>
-          <li>Tests réalisés</li>
-          <li>Documentation technique structurée</li>
-        </ul>
-
-        <div class="sub-heading">Forme ponctuelle orale — 40 minutes</div>
-        <p class="body-text">
-          Entretien avec le jury au cours duquel le candidat présente le contexte de la mission,
-          la problématique de sécurité, les solutions mises en œuvre et les résultats obtenus.
-          Le jury évalue la capacité d'analyse, la maîtrise technique, la justification des choix
-          et la qualité de la communication professionnelle.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="badge">En cours de réalisation</div>
-        <h3>Réalisation professionnelle E6</h3>
-        <p class="body-text">
-          Le dossier de réalisation professionnelle pour l'épreuve E6 est en cours de constitution.
-          Il présentera une analyse de sécurité conduite dans le cadre de la période en entreprise
-          chez Bernard Controls.
-        </p>
-        <div class="info-block" style="margin-top:1.5rem;">
-          <h4>Thématiques envisagées</h4>
-          <p>
-            Analyse de risques, sécurisation des accès, mise en place de politiques de sécurité,
-            protection des données sensibles, conformité RGPD.
-          </p>
-        </div>
-      </div>
-    </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
-  </div>
-
-  <!-- ══════════════════════ PAGE : VEILLE ══════════════════════ -->
-  <div class="page" id="page-veille">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">05 — Veille Technologique</div>
-        <h1>Veille Technologique</h1>
-        <p class="subtitle">
-          Suivre les évolutions du secteur informatique est indispensable pour anticiper
-          les risques et adopter les meilleures pratiques.
-        </p>
-        <div class="divider"></div>
-      </div>
-
-      <div class="grid-2" style="margin-bottom:2rem;">
-        <div class="card">
-          <h3>Démarche de veille</h3>
-          <p>
-            J'organise ma veille de manière régulière : je sélectionne des sources fiables,
-            je lis des articles (sécurité, développement, systèmes), je note les informations
-            importantes et j'en fais une synthèse pour pouvoir les réutiliser dans mes projets
-            et en contexte professionnel.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Sources utilisées</h3>
-          <ul class="slist">
-            <li>Documentation officielle (Microsoft, Google, Mozilla, OWASP)</li>
-            <li>Sites spécialisés (Developpez.com, JDN, blogs techniques)</li>
-            <li>Réseaux professionnels (LinkedIn) et comptes cybersécurité</li>
-            <li>Vidéos et conférences (YouTube, replays d'événements tech)</li>
-            <li>Newsletters et résumés hebdomadaires</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card" style="margin-bottom:2rem;">
-        <h3>Thématiques suivies</h3>
-        <div class="grid-3" style="margin-top:1.25rem;">
-          <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
-            <div class="sub-heading" style="margin-top:0;">Cybersécurité</div>
-            <p style="font-size:0.87rem;color:var(--muted);line-height:1.7;">Authentification, phishing, protection des comptes</p>
-          </div>
-          <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
-            <div class="sub-heading" style="margin-top:0;">Développement Web</div>
-            <p style="font-size:0.87rem;color:var(--muted);line-height:1.7;">Bonnes pratiques, frameworks, performances</p>
-          </div>
-          <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
-            <div class="sub-heading" style="margin-top:0;">Cloud &amp; Virtualisation</div>
-            <p style="font-size:0.87rem;color:var(--muted);line-height:1.7;">Déploiement, services, sauvegardes</p>
-          </div>
-          <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
-            <div class="sub-heading" style="margin-top:0;">DevOps</div>
-            <p style="font-size:0.87rem;color:var(--muted);line-height:1.7;">Automatisation, CI/CD, monitoring</p>
-          </div>
-          <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
-            <div class="sub-heading" style="margin-top:0;">RGPD &amp; Sécurité Applicative</div>
-            <p style="font-size:0.87rem;color:var(--muted);line-height:1.7;">Gestion des données, OWASP</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sujet principal -->
-      <div class="veille-topic">
-        <div class="badge">Sujet de veille approfondie</div>
-        <h3>Passkeys — Connexion sans mot de passe</h3>
-        <p class="body-text">
-          Les passkeys sont une méthode d'authentification permettant de se connecter à un service
-          sans utiliser de mot de passe. La validation s'effectue via une authentification locale
-          sur l'appareil (empreinte digitale, Face ID ou code PIN). L'objectif principal est de
-          réduire les attaques liées aux mots de passe (phishing, fuites de bases de données,
-          réutilisation de mots de passe).
-        </p>
-
-        <div class="sub-heading">Pourquoi c'est une évolution importante</div>
-        <ul class="slist">
-          <li>Les mots de passe sont souvent faibles ou réutilisés sur plusieurs sites</li>
-          <li>Le phishing fonctionne car l'utilisateur peut fournir son mot de passe sans le savoir</li>
-          <li>Avec une passkey, il n'y a pas de mot de passe à voler ou à saisir sur un faux site</li>
-          <li>Connexion plus simple : moins d'oubli, moins de réinitialisations de compte</li>
-        </ul>
-
-        <div class="sub-heading">Fonctionnement (principe cryptographique)</div>
-        <div class="info-block">
-          <h4>Mécanisme clé publique / clé privée</h4>
-          <p>
-            Le service enregistre une clé publique, tandis que l'appareil conserve une clé privée
-            (elle ne quitte jamais l'appareil). Lors d'une connexion, le service envoie un défi ;
-            l'appareil signe ce défi avec la clé privée, et le service vérifie la signature avec
-            la clé publique. L'utilisateur prouve ainsi son identité sans transmettre de secret réutilisable.
-          </p>
-        </div>
-
-        <div class="sub-heading">Avantages identifiés</div>
-        <ul class="slist">
-          <li>Réduction du risque de compromission (phishing beaucoup moins efficace)</li>
-          <li>Meilleure expérience utilisateur (connexion rapide et fluide)</li>
-          <li>Réduction de la charge support liée aux mots de passe oubliés</li>
-          <li>Intérêt en entreprise : améliore la sécurité sans compliquer l'usage</li>
-        </ul>
-
-        <div class="sub-heading">Limites et points d'attention</div>
-        <ul class="slist">
-          <li>Gestion multi-appareils : synchronisation à bien appréhender</li>
-          <li>Adoption progressive en entreprise : politiques internes, compatibilité, formation</li>
-          <li>Nécessité d'un plan de récupération de compte en cas de perte de l'appareil</li>
-        </ul>
-
-        <div class="sub-heading">Conclusion</div>
-        <p class="body-text">
-          Les passkeys représentent une amélioration concrète de la sécurité car elles limitent
-          les attaques liées aux mots de passe tout en rendant la connexion plus simple. C'est
-          une technologie en adoption croissante dans les services en ligne, avec un réel intérêt
-          en contexte professionnel.
-        </p>
-      </div>
-    </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
-  </div>
-
-  <!-- ══════════════════════ PAGE : ENTREPRISE ══════════════════════ -->
-  <div class="page" id="page-entreprise">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">06 — Entreprise</div>
-        <h1>Mon Entreprise</h1>
-        <p class="subtitle">
-          Dans le cadre de ma formation en BTS SIO, j'effectue mes périodes en entreprise
-          chez Bernard Controls, ce qui me permet de mettre en pratique mes compétences
-          et d'acquérir une expérience professionnelle concrète.
-        </p>
-        <div class="divider"></div>
-      </div>
-
-      <div class="grid-2" style="margin-bottom:2rem;">
-        <div class="card">
-          <h3>Présentation</h3>
-          <ul class="slist">
-            <li><strong>Nom :</strong> Bernard Controls</li>
-            <li><strong>Localisation :</strong> Gonesse (Val-d'Oise)</li>
-            <li><strong>Effectif :</strong> Environ 500 employés dans le monde</li>
-            <li><strong>Secteur :</strong> Industrie — Actionneurs industriels</li>
-          </ul>
-          <p class="body-text" style="margin-top:1.25rem;">
-            Bernard Controls est un groupe industriel spécialisé dans la conception
-            et la fabrication d'actionneurs pour les secteurs de l'énergie, du pétrole
-            et du gaz, ainsi que de l'eau.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Compétences développées</h3>
-          <ul class="slist">
-            <li>Travail en équipe et communication professionnelle</li>
-            <li>Gestion de projet et méthodologies structurées</li>
-            <li>Résolution de problèmes techniques en environnement réel</li>
-            <li>Utilisation d'outils professionnels de l'entreprise</li>
-            <li>Adaptabilité et autonomie en contexte professionnel</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>Mes missions</h3>
-        <div class="info-block">
-          <h4>Missions en cours</h4>
-          <p>
-            Les missions effectuées au sein de l'entreprise seront détaillées au fur et à mesure
-            de l'avancement du stage. Elles couvrent le support technique, la gestion de parc
-            informatique et la participation aux projets de l'équipe IT.
-          </p>
-        </div>
-        <ul class="slist">
-          <li>Mission principale 1 — En cours de documentation</li>
-          <li>Mission principale 2 — En cours de documentation</li>
-          <li>Mission principale 3 — En cours de documentation</li>
-          <li>Participation aux projets de l'équipe informatique</li>
-          <li>Support technique aux utilisateurs</li>
+          <li>Développeur Web / Mobile</li>
+          <li>Développeur d'Applications</li>
+          <li>Programmeur / Analyste Programmeur</li>
+          <li>Technicien Support Applicatif</li>
         </ul>
       </div>
     </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
   </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
 
-  <!-- ══════════════════════ PAGE : CONTACT ══════════════════════ -->
-  <div class="page" id="page-contact">
-    <div class="container">
-      <div class="page-header">
-        <div class="label">07 — Contact</div>
-        <h1>Me Contacter</h1>
-        <div class="divider"></div>
-      </div>
+<!-- ═══════ PAGE : ÉPREUVE E5 ═══════ -->
+<div class="page" id="page-e5">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">03 — Épreuve E5</div>
+      <h1>Support et Mise à Disposition<br>de Services Informatiques</h1>
+      <div class="divider"></div>
+    </div>
 
-      <div class="contact-grid">
+    <div class="card mt-2">
+      <div class="epreuve-header">
+        <div class="epreuve-num">E5</div>
         <div>
-          <form id="contactForm">
-            <div class="form-group">
-              <label>Nom complet</label>
-              <input type="text" placeholder="Votre nom" required />
-            </div>
-            <div class="form-group">
-              <label>Adresse email</label>
-              <input type="email" placeholder="votre.email@exemple.com" required />
-            </div>
-            <div class="form-group">
-              <label>Sujet</label>
-              <input type="text" placeholder="Objet de votre message" required />
-            </div>
-            <div class="form-group">
-              <label>Message</label>
-              <textarea placeholder="Votre message..." required></textarea>
-            </div>
-            <button type="submit" class="btn">Envoyer le message</button>
-          </form>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--white);">Présentation de l'épreuve</h2>
+          <p style="font-size:.82rem;color:var(--muted);margin-top:.2rem;">Support, administration et mise à disposition de services</p>
         </div>
+      </div>
+      <div class="sub-heading" style="margin-top:0;">Objectif</div>
+      <p class="body-text">
+        Cette épreuve évalue l'acquisition des compétences liées au support, à l'administration
+        et à la mise à disposition de services informatiques. Elle vérifie la maîtrise technique,
+        la rigueur méthodologique et la capacité à intervenir dans un contexte professionnel réel.
+      </p>
+      <ul class="slist" style="margin-top:.8rem;">
+        <li>Analyser un besoin exprimé par une organisation</li>
+        <li>Concevoir et proposer une solution informatique adaptée</li>
+        <li>Installer, configurer et tester un service</li>
+        <li>Mettre en production une solution</li>
+        <li>Assurer le support aux utilisateurs</li>
+        <li>Maintenir la continuité et la sécurité des services</li>
+      </ul>
+      <div class="sub-heading">Modalités</div>
+      <p class="body-text">
+        L'épreuve s'appuie sur deux réalisations professionnelles présentées dans un dossier.
+        La forme ponctuelle comprend 1h30 de préparation suivie de 40 minutes d'oral devant
+        le jury, dont 20 minutes d'entretien après une activité technique en autonomie.
+      </p>
+    </div>
 
-        <div class="contact-info-panel">
-          <h3>Informations de contact</h3>
-          <div class="contact-row">
-            <div class="contact-icon-box">@</div>
-            <div>
-              <div class="cr-label">Email</div>
-              <div class="cr-val">
-                <a href="mailto:fri.younesfri95@gmail.com">fri.younesfri95@gmail.com</a>
-              </div>
+    <div class="card mt-2">
+      <div class="badge">Réalisation professionnelle</div>
+      <h3>Déploiement OCS-NG Inventory &amp; GLPI</h3>
+
+      <div class="info-block">
+        <h4>Objectif du projet</h4>
+        <p>
+          Mise en place d'une solution complète de gestion de parc informatique en déployant
+          OCS-NG Inventory Server et GLPI sur un serveur Debian GNU/Linux, afin d'automatiser
+          l'inventaire et centraliser la gestion des incidents et des actifs.
+        </p>
+      </div>
+
+      <p class="body-text">
+        OCS Inventory collecte automatiquement les informations matérielles et logicielles des
+        postes du réseau. GLPI les exploite pour gérer les incidents, demandes, contrats et
+        licences. Ensemble, ils constituent une solution ITSM complète et open source.
+      </p>
+
+      <div class="sub-heading">Environnement technique</div>
+      <ul class="slist">
+        <li><strong>Système :</strong> Debian GNU/Linux</li>
+        <li><strong>OCS-NG Server :</strong> Version 2.12.3</li>
+        <li><strong>GLPI :</strong> Version 11.0.1</li>
+        <li><strong>Base de données :</strong> MariaDB 11.8.3</li>
+        <li><strong>Serveur Web :</strong> Apache2</li>
+        <li><strong>Agents déployés :</strong> 3 machines (1 Windows + 2 Unix/Linux)</li>
+      </ul>
+
+      <div class="sub-heading">Captures d'écran du projet</div>
+      <p class="body-text" style="margin-bottom:1rem;">
+        Cliquez sur un emplacement pour ajouter une capture, ou remplacez les slots par
+        des balises <code style="color:var(--gold);font-size:.8rem;">&lt;img src="..."&gt;</code> dans le HTML.
+      </p>
+      <div class="screenshots">
+        <label class="screenshot-slot" title="Ajouter une capture">
+          <input type="file" class="screenshot-input" accept="image/*" onchange="previewShot(this)">
+          <div class="ss-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5A1.5 1.5 0 003.75 21z"/>
+            </svg>
+          </div>
+          <span class="ss-label">Interface GLPI — Tableau de bord</span>
+        </label>
+        <label class="screenshot-slot" title="Ajouter une capture">
+          <input type="file" class="screenshot-input" accept="image/*" onchange="previewShot(this)">
+          <div class="ss-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5A1.5 1.5 0 003.75 21z"/>
+            </svg>
+          </div>
+          <span class="ss-label">OCS Inventory — Inventaire machines</span>
+        </label>
+        <label class="screenshot-slot" title="Ajouter une capture">
+          <input type="file" class="screenshot-input" accept="image/*" onchange="previewShot(this)">
+          <div class="ss-icon">
+            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v13.5A1.5 1.5 0 003.75 21z"/>
+            </svg>
+          </div>
+          <span class="ss-label">Schéma d'architecture réseau</span>
+        </label>
+      </div>
+
+      <div class="sub-heading">Compétences développées</div>
+      <ul class="slist">
+        <li>Installation et configuration d'un serveur Linux</li>
+        <li>Administration de bases de données MariaDB</li>
+        <li>Configuration Apache et VirtualHost</li>
+        <li>Déploiement d'agents sur Windows et Unix/Linux</li>
+        <li>Sécurisation des services (mots de passe, fichiers sensibles)</li>
+        <li>Rédaction de documentation technique professionnelle</li>
+      </ul>
+
+      <div class="btn-row">
+        <a href="ocs-glpi-documentation.pdf" target="_blank" class="btn">Documentation complète (PDF)</a>
+        <a href="E5_Tableau_de_synthese.pdf" target="_blank" class="btn btn-outline">Tableau de synthèse E5 (PDF)</a>
+      </div>
+    </div>
+  </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
+
+<!-- ═══════ PAGE : ÉPREUVE E6 ═══════ -->
+<div class="page" id="page-e6">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">04 — Épreuve E6</div>
+      <h1>Cybersécurité des<br>Services Informatiques</h1>
+      <div class="divider"></div>
+    </div>
+
+    <div class="card mt-2">
+      <div class="epreuve-header">
+        <div class="epreuve-num">E6</div>
+        <div>
+          <h2 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--white);">Présentation de l'épreuve</h2>
+          <p style="font-size:.82rem;color:var(--muted);margin-top:.2rem;">Sécurisation des services et systèmes d'information</p>
+        </div>
+      </div>
+      <div class="sub-heading" style="margin-top:0;">Objectif</div>
+      <p class="body-text">
+        Cette épreuve évalue la capacité à sécuriser les services informatiques d'une organisation :
+        identifier les vulnérabilités, analyser les risques et intégrer la cybersécurité dans
+        toute activité informatique.
+      </p>
+      <ul class="slist" style="margin-top:.8rem;">
+        <li>Identifier les vulnérabilités d'un système d'information</li>
+        <li>Analyser les risques liés à la sécurité</li>
+        <li>Mettre en place des mesures de protection adaptées</li>
+        <li>Sécuriser les accès et les données</li>
+        <li>Assurer la surveillance et la protection des services</li>
+      </ul>
+      <div class="sub-heading">Forme ponctuelle orale — 40 minutes</div>
+      <p class="body-text">
+        Entretien avec le jury au cours duquel le candidat présente le contexte de la mission,
+        la problématique de sécurité, les solutions mises en œuvre et les résultats obtenus.
+      </p>
+    </div>
+
+    <div class="card mt-2">
+      <div class="badge">Dossier en constitution</div>
+      <h3>Analyse de cybersécurité — Bernard Controls</h3>
+      <p class="body-text">
+        Le dossier de réalisation professionnelle pour l'épreuve E6 est en cours de constitution
+        dans le cadre de la période en entreprise chez Bernard Controls. Il documentera une
+        analyse de sécurité conduite sur l'infrastructure existante du site de Gonesse.
+      </p>
+      <div class="info-block" style="margin-top:1.5rem;">
+        <h4>Périmètre envisagé</h4>
+        <p>
+          Analyse des risques sur le parc informatique, sécurisation des accès réseau,
+          mise en conformité avec les bonnes pratiques ANSSI, et étude des journaux
+          système pour la détection d'anomalies.
+        </p>
+      </div>
+      <div class="sub-heading">Thématiques prévues</div>
+      <ul class="slist">
+        <li>Analyse de risques et cartographie des vulnérabilités</li>
+        <li>Sécurisation des accès et gestion des droits utilisateurs</li>
+        <li>Politique de mots de passe et authentification renforcée</li>
+        <li>Protection des données sensibles et conformité RGPD</li>
+        <li>Journalisation et supervision des événements de sécurité</li>
+      </ul>
+      <div class="sub-heading">Outils et méthodes</div>
+      <div class="tags">
+        <span class="tag">ANSSI — Guides bonnes pratiques</span>
+        <span class="tag">OWASP</span>
+        <span class="tag">Analyse EBIOS</span>
+        <span class="tag">Wireshark</span>
+        <span class="tag">Nmap</span>
+        <span class="tag">Pare-feu</span>
+        <span class="tag">Active Directory</span>
+      </div>
+    </div>
+  </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
+
+<!-- ═══════ PAGE : VEILLE ═══════ -->
+<div class="page" id="page-veille">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">05 — Veille Technologique</div>
+      <h1>Veille Technologique</h1>
+      <p class="subtitle">Suivre les évolutions du secteur pour anticiper les risques et adopter les meilleures pratiques.</p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid-2 mt-2">
+      <div class="card">
+        <h3>Démarche de veille</h3>
+        <p>
+          J'organise ma veille de manière régulière : sélection de sources fiables, lecture
+          d'articles (sécurité, systèmes, développement), prise de notes structurées et
+          synthèse pour réutiliser ces informations dans mes projets et en contexte professionnel.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Sources utilisées</h3>
+        <ul class="slist">
+          <li>Documentation officielle (ANSSI, Microsoft, Mozilla, OWASP)</li>
+          <li>Sites spécialisés (Developpez.com, JDN, blogs techniques)</li>
+          <li>Réseaux professionnels (LinkedIn, comptes cybersécurité)</li>
+          <li>Vidéos et conférences (YouTube, replays d'événements tech)</li>
+          <li>Newsletters et résumés hebdomadaires</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mt-2">
+      <h3>Thématiques suivies</h3>
+      <div class="grid-3" style="margin-top:1.2rem;">
+        <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div class="sub-heading" style="margin-top:0;">Cybersécurité</div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">Authentification, phishing, protection des comptes et des réseaux</p>
+        </div>
+        <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div class="sub-heading" style="margin-top:0;">Développement Web</div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">Bonnes pratiques, frameworks modernes, performances</p>
+        </div>
+        <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div class="sub-heading" style="margin-top:0;">Cloud &amp; Virtualisation</div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">Déploiement, services managés, sauvegardes</p>
+        </div>
+        <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div class="sub-heading" style="margin-top:0;">DevOps</div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">Automatisation, CI/CD, monitoring applicatif</p>
+        </div>
+        <div style="padding:1rem;background:var(--surface2);border-radius:8px;border:1px solid var(--border);">
+          <div class="sub-heading" style="margin-top:0;">RGPD &amp; Conformité</div>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7;">Gestion des données personnelles, OWASP Top 10</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="veille-card mt-2">
+      <div class="badge">Analyse approfondie</div>
+      <h3>Passkeys — L'authentification sans mot de passe</h3>
+      <p class="body-text">
+        Les passkeys sont une méthode d'authentification permettant de se connecter à un service
+        sans mot de passe. La validation s'effectue via une authentification locale sur l'appareil
+        (empreinte digitale, Face ID ou code PIN). L'objectif est de réduire les attaques liées
+        aux mots de passe : phishing, fuites de bases de données, réutilisation.
+      </p>
+      <div class="sub-heading">Pourquoi c'est une évolution majeure</div>
+      <ul class="slist">
+        <li>Les mots de passe sont souvent faibles ou réutilisés sur plusieurs services</li>
+        <li>Le phishing exploite la saisie sur des sites frauduleux — les passkeys l'éliminent</li>
+        <li>Aucun secret réutilisable n'est transmis sur le réseau lors de la connexion</li>
+        <li>Connexion plus fluide : suppression des oublis et des réinitialisations</li>
+      </ul>
+      <div class="sub-heading">Principe cryptographique</div>
+      <div class="info-block">
+        <h4>Mécanisme clé publique / clé privée</h4>
+        <p>
+          Le service enregistre une clé publique. L'appareil conserve la clé privée (elle ne
+          quitte jamais l'appareil). Lors d'une connexion, le service envoie un défi ; l'appareil
+          le signe avec la clé privée et le service vérifie la signature. L'identité est prouvée
+          sans transmettre de secret réutilisable.
+        </p>
+      </div>
+      <div class="sub-heading">Avantages identifiés</div>
+      <ul class="slist">
+        <li>Réduction du risque de compromission — le phishing devient inefficace</li>
+        <li>Meilleure expérience utilisateur — connexion rapide et sans friction</li>
+        <li>Réduction de la charge support liée aux mots de passe oubliés</li>
+        <li>Sécurité renforcée en entreprise sans complexité supplémentaire</li>
+      </ul>
+      <div class="sub-heading">Limites et points d'attention</div>
+      <ul class="slist">
+        <li>Synchronisation multi-appareils à bien anticiper (perte de téléphone)</li>
+        <li>Adoption progressive en entreprise : politique interne, formation, compatibilité</li>
+        <li>Nécessité d'un mécanisme de récupération de compte solide</li>
+      </ul>
+      <div class="sub-heading">Conclusion</div>
+      <p class="body-text">
+        Les passkeys représentent une amélioration concrète : elles éliminent la surface
+        d'attaque liée aux mots de passe tout en simplifiant l'expérience utilisateur.
+        Leur adoption chez Google, Apple et Microsoft en fait un sujet à fort enjeu professionnel.
+      </p>
+    </div>
+  </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
+
+<!-- ═══════ PAGE : ENTREPRISE ═══════ -->
+<div class="page" id="page-entreprise">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">06 — Entreprise</div>
+      <h1>Bernard Controls</h1>
+      <p class="subtitle">
+        Groupe industriel international spécialisé dans la conception d'actionneurs,
+        au sein duquel j'effectue mes périodes en entreprise dans le cadre du BTS SIO.
+      </p>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grid-2 mt-2">
+      <div class="card">
+        <h3>Présentation</h3>
+        <ul class="slist">
+          <li><strong>Nom :</strong> Bernard Controls</li>
+          <li><strong>Localisation :</strong> Gonesse, Val-d'Oise (95)</li>
+          <li><strong>Effectif :</strong> Environ 500 employés dans le monde</li>
+          <li><strong>Secteur :</strong> Industrie — Actionneurs pour énergie, pétrole et eau</li>
+          <li><strong>Présence :</strong> Filiales en Europe, Asie et Amérique</li>
+        </ul>
+        <p class="body-text" style="margin-top:1.25rem;">
+          Bernard Controls conçoit et fabrique des actionneurs électriques et hydrauliques
+          pour les secteurs critiques de l'énergie, du pétrole, du gaz et du traitement de
+          l'eau. Le groupe dispose d'une DSI internalisée gérant l'ensemble de l'infrastructure
+          IT mondiale.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Compétences développées</h3>
+        <ul class="slist">
+          <li>Travail en équipe dans un environnement professionnel international</li>
+          <li>Gestion de projet IT et communication avec les utilisateurs</li>
+          <li>Administration de serveurs Linux en production</li>
+          <li>Déploiement et configuration de solutions open source</li>
+          <li>Rédaction de documentations techniques structurées</li>
+          <li>Adaptabilité et autonomie en contexte réel</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mt-2">
+      <h3>Missions réalisées</h3>
+      <div class="info-block">
+        <h4>Mission principale documentée</h4>
+        <p>
+          Déploiement d'OCS-NG Inventory et GLPI sur serveur Debian pour la gestion
+          du parc informatique — voir le détail complet dans la page Épreuve E5.
+        </p>
+      </div>
+      <div class="sub-heading">Autres missions</div>
+      <ul class="slist">
+        <li>Support technique de niveau 1 et 2 auprès des utilisateurs du site de Gonesse</li>
+        <li>Participation aux interventions de maintenance sur le parc informatique</li>
+        <li>Contribution à la documentation interne du service IT</li>
+        <li>Observation et participation aux réunions d'équipe DSI</li>
+      </ul>
+      <p class="body-text" style="margin-top:1.25rem;">
+        Les missions seront complétées et détaillées au fil de l'avancement de la période
+        en entreprise.
+      </p>
+    </div>
+  </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
+
+<!-- ═══════ PAGE : CONTACT ═══════ -->
+<div class="page" id="page-contact">
+  <div class="container">
+    <div class="page-header">
+      <div class="label">07 — Contact</div>
+      <h1>Me Contacter</h1>
+      <div class="divider"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <!--
+          FORMSPREE : Créer un compte sur formspree.io (gratuit),
+          créer un formulaire, et remplacer VOTRE_ID par l'identifiant fourni.
+        -->
+        <form id="contactForm" action="https://formspree.io/f/VOTRE_ID" method="POST">
+          <div class="form-group">
+            <label>Nom complet</label>
+            <input type="text" name="name" placeholder="Votre nom" required />
+          </div>
+          <div class="form-group">
+            <label>Adresse email</label>
+            <input type="email" name="email" placeholder="votre.email@exemple.com" required />
+          </div>
+          <div class="form-group">
+            <label>Sujet</label>
+            <input type="text" name="subject" placeholder="Objet de votre message" required />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" placeholder="Votre message..." required></textarea>
+          </div>
+          <button type="submit" class="btn" id="submitBtn">Envoyer le message</button>
+          <div class="form-msg" id="formMsg">
+            Message envoyé — Je vous répondrai dans les plus brefs délais.
+          </div>
+        </form>
+        <p style="font-size:.75rem;color:var(--muted);margin-top:1rem;line-height:1.6;">
+          Pour activer le formulaire, créez un compte sur
+          <a href="https://formspree.io" target="_blank" style="color:var(--gold);">formspree.io</a>
+          et remplacez <code style="color:var(--gold);font-size:.72rem;">VOTRE_ID</code>
+          par votre identifiant de formulaire.
+        </p>
+      </div>
+
+      <div class="ci-panel">
+        <h3>Informations de contact</h3>
+        <div class="ci-row">
+          <div class="ci-icon">@</div>
+          <div>
+            <div class="ci-lbl">Email</div>
+            <div class="ci-val">
+              <a href="mailto:fri.younesfri95@gmail.com">fri.younesfri95@gmail.com</a>
             </div>
           </div>
-          <div class="contact-row">
-            <div class="contact-icon-box">In</div>
-            <div>
-              <div class="cr-label">LinkedIn</div>
-              <div class="cr-val">
-                <a href="https://www.linkedin.com/in/younes-fri-54a6773b1/" target="_blank" rel="noopener">
-                  linkedin.com/in/younes-fri-54a6773b1
-                </a>
-              </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">in</div>
+          <div>
+            <div class="ci-lbl">LinkedIn</div>
+            <div class="ci-val">
+              <a href="https://www.linkedin.com/in/younes-fri-54a6773b1/" target="_blank" rel="noopener">
+                younes-fri-54a6773b1
+              </a>
             </div>
           </div>
-          <div class="contact-row">
-            <div class="contact-icon-box">Loc</div>
-            <div>
-              <div class="cr-label">Localisation</div>
-              <div class="cr-val">École Iris, France</div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">CV</div>
+          <div>
+            <div class="ci-lbl">Curriculum Vitae</div>
+            <div class="ci-val">
+              <a href="CV_Younes_Fri.pdf" target="_blank">Télécharger mon CV (PDF)</a>
             </div>
           </div>
-          <div class="contact-row">
-            <div class="contact-icon-box">BTS</div>
-            <div>
-              <div class="cr-label">Formation</div>
-              <div class="cr-val">BTS SIO — Première Année</div>
-            </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">loc</div>
+          <div>
+            <div class="ci-lbl">Localisation</div>
+            <div class="ci-val">École Iris, Île-de-France</div>
+          </div>
+        </div>
+        <div class="ci-row">
+          <div class="ci-icon">BTS</div>
+          <div>
+            <div class="ci-lbl">Formation</div>
+            <div class="ci-val">BTS SIO — 1re Année — Option SISR</div>
           </div>
         </div>
       </div>
     </div>
-    <footer><p>&copy; 2025 Portfolio BTS SIO — École Iris</p></footer>
   </div>
+  <footer><p>&copy; 2025 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+</div>
 
-  <script>
-    /* ──────────────────────────────────────────
-       Routing : hash-based page navigation
-    ────────────────────────────────────────── */
-    const PAGES = {
-      home:       'page-home',
-      apropos:    'page-apropos',
-      bts:        'page-bts',
-      e5:         'page-e5',
-      e6:         'page-e6',
-      veille:     'page-veille',
-      entreprise: 'page-entreprise',
-      contact:    'page-contact',
-    };
+<script>
+  /* ── Routing ── */
+  const PAGE_MAP  = { home:'page-home', apropos:'page-apropos', bts:'page-bts', e5:'page-e5', e6:'page-e6', veille:'page-veille', entreprise:'page-entreprise', contact:'page-contact' };
+  const HASH_MAP  = { '#accueil':'home','#apropos':'apropos','#bts-sio':'bts','#epreuve-e5':'e5','#epreuve-e6':'e6','#veille':'veille','#entreprise':'entreprise','#contact':'contact' };
+  const PAGE_HASH = { home:'#accueil', apropos:'#apropos', bts:'#bts-sio', e5:'#epreuve-e5', e6:'#epreuve-e6', veille:'#veille', entreprise:'#entreprise', contact:'#contact' };
 
-    const HASH_MAP = {
-      '#accueil':    'home',
-      '#apropos':    'apropos',
-      '#bts-sio':    'bts',
-      '#epreuve-e5': 'e5',
-      '#epreuve-e6': 'e6',
-      '#veille':     'veille',
-      '#entreprise': 'entreprise',
-      '#contact':    'contact',
-    };
+  function showPage(key) {
+    if(!PAGE_MAP[key]) key='home';
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(PAGE_MAP[key]).classList.add('active');
+    document.querySelectorAll('[data-page]').forEach(el=>{
+      el.classList.toggle('active', el.dataset.page===key);
+    });
+    history.replaceState(null,'',PAGE_HASH[key]);
+    window.scrollTo(0,0);
+  }
 
-    const PAGE_HASH = {
-      home:       '#accueil',
-      apropos:    '#apropos',
-      bts:        '#bts-sio',
-      e5:         '#epreuve-e5',
-      e6:         '#epreuve-e6',
-      veille:     '#veille',
-      entreprise: '#entreprise',
-      contact:    '#contact',
-    };
+  document.addEventListener('click', e=>{
+    const el = e.target.closest('[data-page]');
+    if(!el) return;
+    e.preventDefault();
+    showPage(el.dataset.page);
+    document.getElementById('mobileNav').classList.remove('open');
+  });
 
-    function showPage(pageKey) {
-      const key = PAGES[pageKey] ? pageKey : 'home';
-      // hide all
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      // show target
-      document.getElementById(PAGES[key]).classList.add('active');
-      // update nav active
-      document.querySelectorAll('[data-page]').forEach(el => {
-        el.classList.toggle('active', el.dataset.page === key);
+  window.addEventListener('hashchange',()=> showPage(HASH_MAP[window.location.hash]||'home'));
+  showPage(HASH_MAP[window.location.hash]||'home');
+
+  /* ── Burger ── */
+  document.getElementById('burger').addEventListener('click',()=>{
+    document.getElementById('mobileNav').classList.toggle('open');
+  });
+
+  /* ── Formspree async ── */
+  document.getElementById('contactForm').addEventListener('submit', async e=>{
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    btn.textContent='Envoi en cours...'; btn.disabled=true;
+    try {
+      const res = await fetch(e.target.action,{
+        method:'POST', body:new FormData(e.target),
+        headers:{ Accept:'application/json' }
       });
-      // update hash silently
-      history.replaceState(null, '', PAGE_HASH[key]);
-      window.scrollTo(0, 0);
-    }
+      if(res.ok){ msg.classList.add('success'); e.target.reset(); btn.textContent='Message envoyé'; }
+      else { btn.textContent='Envoyer le message'; btn.disabled=false; alert('Erreur — Veuillez réessayer.'); }
+    } catch { btn.textContent='Envoyer le message'; btn.disabled=false; }
+  });
 
-    function routeFromHash() {
-      const hash = window.location.hash || '#accueil';
-      const pageKey = HASH_MAP[hash] || 'home';
-      showPage(pageKey);
-    }
-
-    /* Clicks on [data-page] elements */
-    document.addEventListener('click', e => {
-      const el = e.target.closest('[data-page]');
-      if (!el) return;
-      e.preventDefault();
-      const key = el.dataset.page;
-      showPage(key);
-      // close mobile nav
-      mobileNav.classList.remove('open');
-    });
-
-    /* Hash change (browser back/forward) */
-    window.addEventListener('hashchange', routeFromHash);
-
-    /* Initial route */
-    routeFromHash();
-
-    /* ──────────────────────────────────────────
-       Mobile burger menu
-    ────────────────────────────────────────── */
-    const burger    = document.getElementById('burger');
-    const mobileNav = document.getElementById('mobileNav');
-
-    burger.addEventListener('click', () => {
-      mobileNav.classList.toggle('open');
-    });
-
-    /* ──────────────────────────────────────────
-       Contact form (basic)
-    ────────────────────────────────────────── */
-    document.getElementById('contactForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'Message envoyé';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
-      setTimeout(() => {
-        btn.textContent = 'Envoyer le message';
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        e.target.reset();
-      }, 3000);
-    });
-  </script>
+  /* ── Screenshot preview ── */
+  function previewShot(input) {
+    const slot = input.closest('.screenshot-slot');
+    const file = input.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e=>{
+      slot.innerHTML = `<img src="${e.target.result}" alt="Capture">`;
+    };
+    reader.readAsDataURL(file);
+  }
+</script>
 </body>
 </html>
