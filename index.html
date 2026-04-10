@@ -238,6 +238,23 @@
     .mt-2 { margin-top:2rem; }
     .mt-3 { margin-top:3rem; }
 
+    /* ── TP ACCORDION ── */
+    .tp-accordion { margin-top:1rem; }
+    .tp-toggle {
+      display:flex; align-items:center; gap:.6rem;
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:7px; padding:.7rem 1.2rem;
+      color:var(--gold); font-family:'DM Mono',monospace;
+      font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+      cursor:pointer; width:100%; justify-content:space-between;
+      transition:border-color .25s var(--ease), background .25s var(--ease);
+    }
+    .tp-toggle:hover { border-color:var(--border-hi); background:rgba(201,168,76,.05); }
+    .tp-toggle svg { flex-shrink:0; stroke:var(--gold); transition:transform .3s var(--ease); }
+    .tp-toggle.open svg { transform:rotate(180deg); }
+    .tp-steps { overflow:hidden; }
+    .tp-steps .timeline { padding-left:.25rem; }
+
     /* ── HOME ── */
     #page-home {
       background:
@@ -411,31 +428,6 @@
     .comp-status.p { color:var(--gold); }
     .comp-status::before { content:''; width:6px; height:6px; border-radius:50%; background:currentColor; }
 
-    /* ── SCREENSHOTS ── */
-    .screenshots {
-      display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:1rem; margin-top:1.25rem;
-    }
-    .screenshot-slot {
-      aspect-ratio:16/9;
-      background:var(--surface2); border:1px dashed var(--border-hi);
-      border-radius:8px; display:flex; flex-direction:column;
-      align-items:center; justify-content:center; gap:.6rem;
-      cursor:pointer; transition:border-color .3s,background .3s; overflow:hidden;
-    }
-    .screenshot-slot:hover { background:rgba(201,168,76,.04); }
-    .screenshot-slot img { width:100%; height:100%; object-fit:cover; }
-    .ss-icon {
-      width:36px; height:36px; border-radius:8px;
-      background:rgba(201,168,76,.1); display:flex; align-items:center; justify-content:center;
-    }
-    .ss-icon svg { width:18px; height:18px; stroke:var(--gold); }
-    .ss-label {
-      font-family:'DM Mono',monospace; font-size:.68rem;
-      color:var(--muted); text-align:center; letter-spacing:.05em; padding:0 1rem;
-    }
-    .screenshot-input { display:none; }
-
     /* ── VEILLE ── */
     .veille-card {
       background:var(--surface2); border:1px solid var(--border);
@@ -589,7 +581,6 @@
       </div>
       <div class="hero-profile">
         <div class="profile-avatar">
-          <!-- Remplace par : <img src="photo.jpg" alt="Younes Fri"> -->
           <span class="avatar-placeholder">YF</span>
         </div>
         <div class="profile-card">
@@ -655,7 +646,6 @@
           </p>
         </div>
       </div>
-
     </div>
   </div>
   <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
@@ -736,6 +726,7 @@
       <div class="divider"></div>
     </div>
 
+    <!-- Présentation E5 -->
     <div class="card mt-2">
       <div class="epreuve-header">
         <div class="epreuve-num">E5</div>
@@ -766,10 +757,10 @@
       </p>
     </div>
 
+    <!-- RP : OCS / GLPI -->
     <div class="card mt-2">
       <div class="badge">Réalisation professionnelle</div>
       <h3>Déploiement OCS-NG Inventory &amp; GLPI</h3>
-
       <div class="info-block">
         <h4>Objectif du projet</h4>
         <p>
@@ -778,13 +769,11 @@
           l'inventaire et centraliser la gestion des incidents et des actifs.
         </p>
       </div>
-
       <p class="body-text">
         OCS Inventory collecte automatiquement les informations matérielles et logicielles des
         postes du réseau. GLPI les exploite pour gérer les incidents, demandes, contrats et
         licences. Ensemble, ils constituent une solution ITSM complète et open source.
       </p>
-
       <div class="sub-heading">Environnement technique</div>
       <ul class="slist">
         <li><strong>Système :</strong> Debian GNU/Linux</li>
@@ -794,7 +783,6 @@
         <li><strong>Serveur Web :</strong> Apache2</li>
         <li><strong>Agents déployés :</strong> 3 machines (1 Windows + 2 Unix/Linux)</li>
       </ul>
-
       <div class="sub-heading">Compétences développées</div>
       <ul class="slist">
         <li>Installation et configuration d'un serveur Linux</li>
@@ -804,12 +792,168 @@
         <li>Sécurisation des services (mots de passe, fichiers sensibles)</li>
         <li>Rédaction de documentation technique professionnelle</li>
       </ul>
-
       <div class="btn-row">
         <a href="ocs-glpi-documentation.pdf" target="_blank" class="btn">Documentation complète (PDF)</a>
         <a href="E5_Tableau_de_synthese.pdf" target="_blank" class="btn btn-outline">Tableau de synthèse E5 (PDF)</a>
       </div>
     </div>
+
+    <!-- TP RADIUS -->
+    <div class="card mt-2">
+      <div class="badge">Travaux Pratiques — Réseau</div>
+      <h3>TP — Configuration WPA2-Enterprise avec RADIUS / NPS</h3>
+
+      <div class="info-block">
+        <h4>Objectif du TP</h4>
+        <p>
+          Configuration d'un réseau Wi-Fi sécurisé avec authentification WPA2-Enterprise
+          basée sur un serveur RADIUS (NPS sous Windows Server) et simulation sous Cisco Packet Tracer.
+        </p>
+      </div>
+
+      <div class="sub-heading">Environnement technique</div>
+      <ul class="slist">
+        <li><strong>Serveur :</strong> Windows Server — Rôle NPS (Network Policy Server)</li>
+        <li><strong>Simulateur :</strong> Cisco Packet Tracer</li>
+        <li><strong>Équipements :</strong> Routeur WRT300N, Switch 2960-24TT, Laptop0, Server0</li>
+        <li><strong>Authentification :</strong> WPA2-EAP / AES</li>
+        <li><strong>Adressage :</strong> 192.168.1.0/24 — Serveur : 192.168.1.1 — Routeur : 192.168.1.2</li>
+      </ul>
+
+      <div class="sub-heading">Étapes réalisées</div>
+      <div class="tp-accordion">
+        <button class="tp-toggle" id="btn-radius" onclick="toggleTP('radius')">
+          <span>Afficher les 15 étapes</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tp-steps" id="steps-radius" style="display:none;">
+          <div class="timeline" style="margin-top:1rem;">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 1</div><div class="tl-title">Installation du rôle NPS</div><div class="tl-desc">Installation du rôle « Services de stratégie et d'accès réseau » via le Gestionnaire de serveur sur la machine DC. Le serveur NPS sert de serveur RADIUS pour gérer l'authentification des connexions réseau.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 2</div><div class="tl-title">Ouverture de la console NPS</div><div class="tl-desc">Sélection du scénario « Serveur RADIUS pour les connexions d'accès à distance ou VPN » — permet au serveur NPS d'authentifier et d'autoriser les connexions depuis des clients RADIUS (point d'accès Wi-Fi).</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 3</div><div class="tl-title">Ajout d'un client RADIUS</div><div class="tl-desc">Création du client RADIUS « WiFi_AP » avec l'adresse IP 192.168.1.2 et définition d'un secret partagé — ce secret devra être identique côté routeur.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 4</div><div class="tl-title">Validation du client RADIUS</div><div class="tl-desc">Le client « WiFi_AP » apparaît dans la liste avec l'IP 192.168.1.2, le fabricant « RADIUS Standard » et le statut Activé. Le serveur NPS est prêt à accepter les demandes d'authentification.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 5</div><div class="tl-title">Création de la topologie Cisco Packet Tracer</div><div class="tl-desc">Mise en place des équipements : routeur sans-fil WRT300N, Laptop0, switch 2960-24TT et Server0 pour simuler l'infrastructure réseau WPA2-Enterprise.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 6</div><div class="tl-title">Câblage des équipements</div><div class="tl-desc">Connexion du Server0 et du routeur WRT300N au Switch0. Le laptop restera connecté en Wi-Fi. Ce câblage permet au routeur de transmettre les requêtes d'authentification au serveur RADIUS.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 7</div><div class="tl-title">Configuration IP du Server0</div><div class="tl-desc">Attribution d'une adresse IP statique au Server0 : 192.168.1.1 / 255.255.255.0 sur FastEthernet0. Cette adresse fixe sera renseignée côté routeur pour localiser le serveur RADIUS.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 8</div><div class="tl-title">Configuration IP du routeur WRT300N</div><div class="tl-desc">Configuration de l'interface Internet avec l'IP statique 192.168.1.2 / 255.255.255.0 — correspond à l'adresse déclarée comme client RADIUS dans NPS, plaçant le routeur sur le même réseau que le serveur.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 9</div><div class="tl-title">Configuration du service AAA (Packet Tracer)</div><div class="tl-desc">Dans les Services du Server0, ajout du client RADIUS : nom « WiFi_AP », IP 192.168.1.2, type Radius, clé « secretRadius ». Reflète la configuration NPS côté serveur.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 10</div><div class="tl-title">Création d'un utilisateur AAA</div><div class="tl-desc">Création du compte utilisateur « user1 » avec le mot de passe « password1 » dans la section User Setup du service AAA. Cet utilisateur pourra s'authentifier sur le réseau Wi-Fi WPA2-Enterprise.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 11</div><div class="tl-title">Configuration Wi-Fi WPA2 avec RADIUS sur le routeur</div><div class="tl-desc">Paramétrage sans-fil du WRT300N : authentification WPA2, chiffrement AES, IP serveur RADIUS 192.168.1.1 et secret partagé « secretRadius ». Le routeur est lié au serveur — chaque connexion Wi-Fi sera transmise pour vérification.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 12</div><div class="tl-title">Ajout d'une carte Wi-Fi sur le Laptop</div><div class="tl-desc">Dans la vue physique du Laptop0, installation du module sans-fil PT-LAPTOP-NM-1W-AC (5 GHz) après extinction préalable du laptop.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 13</div><div class="tl-title">Module Wi-Fi WPC300N installé</div><div class="tl-desc">Le module Linksys WPC300N (Wi-Fi 2.4 GHz, 802.11b/g/n) est installé sur le Laptop0. Le laptop peut désormais détecter et se connecter à des réseaux sans-fil.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 14</div><div class="tl-title">Détection du réseau WPA2-EAP</div><div class="tl-desc">Depuis le Laptop0, l'onglet « Connect » du Wireless Network Monitor détecte le réseau « Default » en WPA2-EAP. Un profil doit être créé dans l'onglet Profiles pour finaliser la connexion avec les identifiants RADIUS.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 15 ⚠️</div><div class="tl-title">Profil configuré — Blocage identifié</div><div class="tl-desc">Le profil a été créé avec succès (message de confirmation Packet Tracer) mais la connexion au réseau ne s'est pas finalisée. L'authentification WPA2-EAP via le serveur RADIUS n'a pas abouti — point de blocage identifié et documenté.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub-heading">Compétences mobilisées</div>
+      <div class="tags">
+        <span class="tag">Windows Server — NPS / RADIUS</span>
+        <span class="tag">WPA2-Enterprise</span>
+        <span class="tag">Cisco Packet Tracer</span>
+        <span class="tag">AAA — Authentification</span>
+        <span class="tag">Protocole EAP</span>
+        <span class="tag">Adressage IP statique</span>
+      </div>
+    </div>
+
+    <!-- TP ACTIVE DIRECTORY -->
+    <div class="card mt-2">
+      <div class="badge">Travaux Pratiques — Administration système</div>
+      <h3>TP — Active Directory Domain Services sur Windows Server 2019</h3>
+
+      <div class="info-block">
+        <h4>Objectif du TP</h4>
+        <p>
+          Installation et configuration complète d'un contrôleur de domaine Active Directory
+          sur Windows Server 2019 : déploiement du rôle AD DS, gestion des utilisateurs,
+          configuration du DNS et mise en place des stratégies de groupe (GPO).
+        </p>
+      </div>
+
+      <div class="sub-heading">Environnement technique</div>
+      <ul class="slist">
+        <li><strong>Système :</strong> Windows Server 2019</li>
+        <li><strong>Serveur :</strong> DC — 192.168.114.142</li>
+        <li><strong>Domaine :</strong> subdomain.yourdomaine.org</li>
+        <li><strong>Niveau fonctionnel :</strong> Windows Server 2016</li>
+        <li><strong>Services :</strong> AD DS + DNS intégré + GPO</li>
+      </ul>
+
+      <div class="sub-heading">30 étapes réparties en 5 parties</div>
+      <div class="tp-accordion">
+        <button class="tp-toggle" id="btn-ad" onclick="toggleTP('ad')">
+          <span>Afficher les 30 étapes</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="tp-steps" id="steps-ad" style="display:none;">
+
+          <p class="sub-heading" style="margin-top:1.2rem;">Partie 1 — Installation du rôle AD DS</p>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 1</div><div class="tl-title">Tableau de bord du Gestionnaire de serveur</div><div class="tl-desc">Point d'entrée pour l'ajout de nouveaux rôles. Rôles déjà présents : Services de fichiers et de stockage, et Services de stratégie et d'accès réseau.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 2</div><div class="tl-title">Sélection du type d'installation</div><div class="tl-desc">Choix de l'option « Installation basée sur un rôle ou une fonctionnalité » pour ajouter des rôles sur un serveur physique ou virtuel en fonctionnement.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 3</div><div class="tl-title">Sélection du serveur de destination</div><div class="tl-desc">Sélection du serveur DC (192.168.114.142) — Windows Server 2019 qui accueillera le rôle AD DS.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 4</div><div class="tl-title">Ajout du rôle AD DS et fonctionnalités requises</div><div class="tl-desc">Installation automatique des fonctionnalités associées : outils RSAT, module Active Directory pour PowerShell, Gestion de stratégie de groupe. Option « Inclure les outils de gestion » cochée.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 5</div><div class="tl-title">Description du rôle AD DS</div><div class="tl-desc">AD DS stocke les informations sur les utilisateurs, ordinateurs et périphériques du réseau. Un serveur DNS est requis (installé automatiquement si absent).</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 6</div><div class="tl-title">Confirmation des sélections d'installation</div><div class="tl-desc">Récapitulatif : .NET Framework 3.5, outils AD DS et AD LDS, module PowerShell Active Directory, Centre d'administration AD. Redémarrage automatique désactivé pour un contrôle manuel.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 7</div><div class="tl-title">Progression de l'installation</div><div class="tl-desc">Installation lancée avec barre de progression et liste des composants. L'assistant peut être fermé sans interrompre l'installation en arrière-plan.</div></div>
+          </div>
+
+          <p class="sub-heading" style="margin-top:1.5rem;">Partie 2 — Configuration du contrôleur de domaine</p>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 8</div><div class="tl-title">Déploiement : Nouvelle forêt</div><div class="tl-desc">Ajout d'une nouvelle forêt avec le nom de domaine racine subdomain.yourdomaine.org — crée un tout nouveau domaine AD indépendant de toute infrastructure existante.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 9</div><div class="tl-title">Options du contrôleur de domaine</div><div class="tl-desc">Niveau fonctionnel Windows Server 2016, DNS intégré activé, Catalogue global (GC) activé (copie partielle de tous les objets de la forêt), mot de passe DSRM défini pour la récupération d'urgence.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 10</div><div class="tl-title">Chemins d'accès AD DS</div><div class="tl-desc">Chemins par défaut conservés : base NTDS → C:\Windows\NTDS, fichiers journaux → C:\Windows\NTDS, dossier SYSVOL → C:\Windows\SYSVOL (contient les GPO et scripts de connexion).</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 11</div><div class="tl-title">Redémarrage du serveur</div><div class="tl-desc">Redémarrage automatique après configuration. Le serveur devient officiellement contrôleur de domaine au redémarrage.</div></div>
+          </div>
+
+          <p class="sub-heading" style="margin-top:1.5rem;">Partie 3 — Gestion des utilisateurs Active Directory</p>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 12</div><div class="tl-title">Vue AD DS dans le Gestionnaire de serveur</div><div class="tl-desc">Le rôle AD DS est visible. Accès depuis le menu Outils à toutes les consoles : Utilisateurs et ordinateurs, DNS, Sites et services, Stratégie de groupe.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 13</div><div class="tl-title">Console Utilisateurs et ordinateurs AD</div><div class="tl-desc">Structure du domaine subdomain.yourdomainname.org avec les conteneurs par défaut créés automatiquement lors de la promotion du contrôleur.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 14</div><div class="tl-title">Exploration des OUs et groupes par défaut</div><div class="tl-desc">Conteneurs présents : Builtin (groupes intégrés), Computers, Domain Controllers, ForeignSecurityPrincipals, Managed Service Accounts, Users.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 15</div><div class="tl-title">Création d'un nouvel utilisateur</div><div class="tl-desc">Lancement de la création d'un objet utilisateur dans le conteneur Users : renseignement du prénom, nom, et UPN (utilisateur@domaine).</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 16</div><div class="tl-title">Saisie : Younes Fri</div><div class="tl-desc">Création du compte Younes Fri avec le nom d'ouverture de session Younes@subdomain.yourdomainname.org. Identifiant pré-Windows 2000 : SUBDOMAIN\Younes.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 17</div><div class="tl-title">Confirmation de la création du compte</div><div class="tl-desc">Résumé : nom complet Younes Fri, identifiant Younes@subdomain.yourdomainname.org. Options : l'utilisateur ne peut pas changer son mot de passe, mot de passe sans expiration.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 18</div><div class="tl-title">Ajout au groupe Administrateurs</div><div class="tl-desc">Younes Fri est ajouté au groupe Administrateurs, accordant des droits d'administration complets sur le domaine.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 19</div><div class="tl-title">Renommage du compte Administrateur</div><div class="tl-desc">Bonne pratique de sécurité : renommage du compte Administrateur par défaut en « Veronica Smith » pour complexifier les attaques ciblant le compte admin connu de tous.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 20</div><div class="tl-title">Configuration de Veronica Smith</div><div class="tl-desc">Nom d'ouverture de session défini à « versmi », option mot de passe sans expiration cochée, pas de date d'expiration du compte configurée.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 21</div><div class="tl-title">Vérification dans la liste Users</div><div class="tl-desc">Le compte Veronica Smith apparaît dans la liste des utilisateurs du domaine avec le type « Utilisateur » et la description « Compte d'utilisateur d'administration ».</div></div>
+          </div>
+
+          <p class="sub-heading" style="margin-top:1.5rem;">Partie 4 — Configuration du DNS</p>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 22</div><div class="tl-title">Assistant Nouvelle zone DNS</div><div class="tl-desc">Lancement de l'assistant depuis le Gestionnaire DNS pour créer une nouvelle zone de recherche (directe ou inversée).</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 23</div><div class="tl-title">Zone de recherche inversée</div><div class="tl-desc">Création de la zone 50.168.192.in-addr.arpa (type : Serveur principal intégré à AD). Permet de résoudre les IP 192.168.50.x en noms de domaine — utile pour les outils de diagnostic réseau.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 24</div><div class="tl-title">Redirecteur conditionnel vers Google</div><div class="tl-desc">Redirecteur conditionnel pour www.google.com pointant vers 8.8.8.8 et 8.8.4.4. Envoie les requêtes DNS vers un serveur spécifique selon le domaine demandé.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 25</div><div class="tl-title">Vue des redirecteurs conditionnels</div><div class="tl-desc">Deux redirecteurs vérifiés : www.google.com et microsoft.com. Permettent la résolution de noms externes sans que le serveur AD DNS les connaisse directement.</div></div>
+          </div>
+
+          <p class="sub-heading" style="margin-top:1.5rem;">Partie 5 — Stratégies de groupe (GPO)</p>
+          <div class="timeline">
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 26</div><div class="tl-title">Accès à la Default Domain Policy</div><div class="tl-desc">Ouverture de la console « Gestion de stratégie de groupe » puis modification de la Default Domain Policy s'appliquant à l'ensemble du domaine.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 27</div><div class="tl-title">Stratégie de mot de passe</div><div class="tl-desc">Règles configurées : historique 24 mots de passe mémorisés, durée de vie max 42 jours, durée minimale 1 jour, complexité activée (majuscule + minuscule + chiffre + caractère spécial), longueur minimale 7 caractères.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 28</div><div class="tl-title">Stratégie de verrouillage — état initial</div><div class="tl-desc">Aucun verrouillage automatique défini initialement — risque de sécurité identifié (attaques brute-force possibles sans limite de tentatives).</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 29</div><div class="tl-title">Configuration du seuil de verrouillage</div><div class="tl-desc">Seuil défini à 5 tentatives échouées. Après 5 mauvaises saisies de mot de passe, le compte utilisateur est automatiquement verrouillé.</div></div>
+            <div class="tl-item"><div class="tl-dot"></div><div class="tl-date">Étape 30 ✅</div><div class="tl-title">Résultat final — Stratégie de verrouillage</div><div class="tl-desc">Configuration complète : seuil 5 tentatives, durée de verrouillage 30 minutes (déverrouillage automatique), réinitialisation du compteur après 30 minutes. Protection brute-force opérationnelle sans intervention administrateur.</div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="sub-heading">Compétences mobilisées</div>
+      <div class="tags">
+        <span class="tag">Active Directory DS</span>
+        <span class="tag">Windows Server 2019</span>
+        <span class="tag">Gestion des utilisateurs</span>
+        <span class="tag">DNS — Zones et redirecteurs</span>
+        <span class="tag">GPO — Stratégies de groupe</span>
+        <span class="tag">Sécurité des comptes</span>
+        <span class="tag">PowerShell RSAT</span>
+      </div>
+    </div>
+
   </div>
   <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
 </div>
@@ -1086,7 +1230,7 @@
   <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   /* ── Routing ── */
   const PAGE_MAP  = { home:'page-home', apropos:'page-apropos', bts:'page-bts', e5:'page-e5', e6:'page-e6', veille:'page-veille', entreprise:'page-entreprise', contact:'page-contact' };
   const HASH_MAP  = { '#accueil':'home','#apropos':'apropos','#bts-sio':'bts','#epreuve-e5':'e5','#epreuve-e6':'e6','#veille':'veille','#entreprise':'entreprise','#contact':'contact' };
@@ -1119,32 +1263,21 @@
     document.getElementById('mobileNav').classList.toggle('open');
   });
 
-  /* ── Formspree async ── */
-  document.getElementById('contactForm').addEventListener('submit', async e=>{
-    e.preventDefault();
-    const btn = document.getElementById('submitBtn');
-    const msg = document.getElementById('formMsg');
-    btn.textContent='Envoi en cours...'; btn.disabled=true;
-    try {
-      const res = await fetch(e.target.action,{
-        method:'POST', body:new FormData(e.target),
-        headers:{ Accept:'application/json' }
-      });
-      if(res.ok){ msg.classList.add('success'); e.target.reset(); btn.textContent='Message envoyé'; }
-      else { btn.textContent='Envoyer le message'; btn.disabled=false; alert('Erreur — Veuillez réessayer.'); }
-    } catch { btn.textContent='Envoyer le message'; btn.disabled=false; }
-  });
+  /* ── TP Accordion ── */
+  function toggleTP(id) {
+    const steps = document.getElementById('steps-' + id);
+    const btn   = document.getElementById('btn-' + id);
+    const span  = btn.querySelector('span');
+    const isOpen = steps.style.display !== 'none';
 
-  /* ── Screenshot preview ── */
-  function previewShot(input) {
-    const slot = input.closest('.screenshot-slot');
-    const file = input.files[0];
-    if(!file) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-      slot.innerHTML = `<img src="${e.target.result}" alt="Capture">`;
-    };
-    reader.readAsDataURL(file);
+    steps.style.display = isOpen ? 'none' : 'block';
+    btn.classList.toggle('open', !isOpen);
+
+    if (id === 'radius') {
+      span.textContent = isOpen ? 'Afficher les 15 étapes' : 'Masquer les étapes';
+    } else {
+      span.textContent = isOpen ? 'Afficher les 30 étapes' : 'Masquer les étapes';
+    }
   }
 </script>
 </body>
