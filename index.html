@@ -792,6 +792,67 @@
       </div>
     </div>
 
+
+    <!-- RP : HAPROXY + HEARTBEAT -->
+    <div class="card mt-2">
+      <div class="badge">Projet de synthèse — Binôme</div>
+      <h3>Infrastructure Haute Disponibilité — HAProxy &amp; Heartbeat</h3>
+      <div class="info-block">
+        <h4>Objectif du projet</h4>
+        <p>
+          Mise en place d'une infrastructure web hautement disponible combinant HAProxy
+          (répartition de charge) et Heartbeat (adresse IP virtuelle flottante) sur cinq
+          machines virtuelles VMware, garantissant la continuité du service même en cas de
+          panne d'un nœud. Projet réalisé en binôme avec Saidou Dia.
+        </p>
+      </div>
+      <p class="body-text">
+        Un client (CLI-01) accède toujours au service via une VIP unique (192.168.0.10), quelle
+        que soit la situation. HAProxy distribue les requêtes en round-robin entre deux serveurs
+        Apache2 backend, tandis que Heartbeat fait basculer automatiquement la VIP du nœud
+        primaire vers le nœud secondaire en cas de défaillance.
+      </p>
+      <div class="sub-heading">Environnement technique</div>
+      <ul class="slist">
+        <li><strong>Virtualisation :</strong> VMware Workstation — 5 VMs Debian/Linux + 1 client Windows</li>
+        <li><strong>Réseau WAN :</strong> 192.168.0.0/24 — VIP flottante : 192.168.0.10</li>
+        <li><strong>Réseau LAN :</strong> 172.20.0.0/24 — réseau interne des backends</li>
+        <li><strong>Load balancers :</strong> HAProxy1 (primaire .11) &amp; HAProxy2 (secondaire .12)</li>
+        <li><strong>Serveurs web :</strong> SERV-WEB1 (.21) &amp; SERV-WEB2 (.22) — Apache2 + PHP</li>
+        <li><strong>Haute disponibilité :</strong> Heartbeat — fichiers ha.cf, haresources, authkeys</li>
+      </ul>
+      <div class="sub-heading">Étapes réalisées</div>
+      <ul class="slist">
+        <li><strong>Étape 1 — Préparation VMware :</strong> création des segments WAN/LAN, configuration des IP statiques sur chaque VM, vérification complète de la matrice de connectivité réseau</li>
+        <li><strong>Étape 2 — Serveurs web :</strong> installation d'Apache2 et PHP, pages d'accueil distinctes (OK WEB 1 / OK WEB 2) pour visualiser le round-robin</li>
+        <li><strong>Étape 3 — HAProxy :</strong> configuration des blocs frontend, backend (round-robin), page de statistiques en temps réel et health-checks automatiques</li>
+        <li><strong>Étape 4 — Heartbeat :</strong> configuration du cluster actif/passif, définition de la VIP flottante, authentification entre nœuds</li>
+        <li><strong>Étape 5 — Tests :</strong> validation du round-robin, test de bascule HAProxy1 → HAProxy2, panne d'un backend, retour automatique à la normale (auto_failback)</li>
+      </ul>
+      <div class="sub-heading">Compétences développées</div>
+      <ul class="slist">
+        <li>Conception et déploiement d'une architecture n-tiers hautement disponible</li>
+        <li>Configuration d'un cluster actif/passif avec VIP flottante</li>
+        <li>Administration de load balancer HAProxy (frontend, backend, stats)</li>
+        <li>Gestion des réseaux virtuels VMware (segmentation WAN/LAN)</li>
+        <li>Tests de bascule et validation de la continuité de service</li>
+        <li>Travail en binôme et rédaction de documentation technique</li>
+      </ul>
+      <div class="tags" style="margin-top:1.2rem;">
+        <span class="tag">HAProxy</span>
+        <span class="tag">Heartbeat — HA Cluster</span>
+        <span class="tag">Load Balancing</span>
+        <span class="tag">VIP Flottante</span>
+        <span class="tag">Apache2 + PHP</span>
+        <span class="tag">VMware Workstation</span>
+        <span class="tag">Debian Linux</span>
+        <span class="tag">Réseau WAN / LAN</span>
+      </div>
+      <div class="btn-row">
+        <a href="Haproxy_projet_avec_saidou.docx" target="_blank" class="btn">Voir la documentation (DOCX)</a>
+      </div>
+    </div>
+
   </div>
   <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
 </div>
