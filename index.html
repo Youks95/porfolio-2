@@ -1,450 +1,259 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Younes Fri — Portfolio BTS SIO</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Younes Fri — Portfolio BTS SIO SISR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg:         #0D1117;
-      --surface:    #161B22;
-      --surface2:   #1C2333;
-      --border:     rgba(255,255,255,0.07);
-      --border-hi:  rgba(201,168,76,0.35);
-      --gold:       #C9A84C;
-      --gold-light: #E2C47A;
-      --text:       #E6E1D6;
-      --muted:      #7D8590;
-      --white:      #F0EDE8;
-      --green:      #3FB950;
-      --nav-h:      68px;
-      --radius:     10px;
-      --ease:       cubic-bezier(0.4,0,0.2,1);
+      --bg:       #0b0f19;
+      --surface:  #111827;
+      --surface2: #1a2235;
+      --card:     #141d2e;
+      --border:   rgba(255,255,255,0.07);
+      --border-h: rgba(99,179,237,0.35);
+      --blue:     #3b82f6;
+      --blue-l:   #60a5fa;
+      --blue-d:   #1d4ed8;
+      --teal:     #14b8a6;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --white:    #f8fafc;
+      --green:    #22c55e;
+      --orange:   #f59e0b;
+      --nav-h:    64px;
+      --radius:   12px;
+      --ease:     cubic-bezier(.4,0,.2,1);
     }
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { font-size:16px; }
-    body {
-      font-family:'DM Sans',sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      min-height:100vh;
-      overflow-x:hidden;
-    }
-    a { color:inherit; text-decoration:none; }
-    ul { list-style:none; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{font-size:16px;scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    ul{list-style:none}
 
-    /* NAV */
-    nav {
-      position:fixed; inset:0 0 auto 0;
+    /* ── NAV ── */
+    nav{
+      position:fixed;inset:0 0 auto 0;
       height:var(--nav-h);
-      background:rgba(13,17,23,0.93);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
+      background:rgba(11,15,25,0.92);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
       border-bottom:1px solid var(--border);
-      z-index:999;
-      display:flex; align-items:center;
+      z-index:999;display:flex;align-items:center;
     }
-    .nav-inner {
-      width:100%; max-width:1280px;
-      margin:0 auto; padding:0 2rem;
-      display:flex; align-items:center; justify-content:space-between;
+    .nav-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:.02em}
+    .logo span{color:var(--blue-l)}
+    .nav-links{display:flex;gap:.25rem}
+    .nav-links a{
+      font-size:.78rem;font-weight:500;color:var(--muted);
+      padding:.45rem .9rem;border-radius:8px;letter-spacing:.04em;
+      text-transform:uppercase;cursor:pointer;
+      transition:color .25s,background .25s;
     }
-    .logo {
-      font-family:'Playfair Display',serif;
-      font-size:1.1rem; font-weight:600;
-      color:var(--white); letter-spacing:0.02em;
-    }
-    .logo span { color:var(--gold); }
-    .nav-links { display:flex; gap:0.2rem; }
-    .nav-links a {
-      font-size:0.78rem; font-weight:500;
-      color:var(--muted); padding:0.4rem 0.8rem;
-      border-radius:6px; letter-spacing:0.05em;
-      text-transform:uppercase;
-      transition:color .3s var(--ease),background .3s var(--ease);
-      cursor:pointer;
-    }
-    .nav-links a:hover,
-    .nav-links a.active { color:var(--gold); background:rgba(201,168,76,0.08); }
-    .burger {
-      display:none; flex-direction:column; gap:5px;
-      background:none; border:none; cursor:pointer; padding:4px;
-    }
-    .burger span {
-      display:block; width:22px; height:2px;
-      background:var(--muted); border-radius:2px;
-    }
-    .mobile-nav {
-      display:none; position:fixed;
-      inset:var(--nav-h) 0 0 0;
-      background:rgba(13,17,23,0.98);
-      z-index:998; flex-direction:column;
-      padding:1.5rem; gap:0.4rem; overflow-y:auto;
-    }
-    .mobile-nav.open { display:flex; }
-    .mobile-nav a {
-      font-size:0.95rem; font-weight:500; color:var(--muted);
-      padding:0.75rem 1rem; border-radius:8px;
-      text-transform:uppercase; letter-spacing:0.05em;
-      transition:.25s var(--ease); cursor:pointer;
-    }
-    .mobile-nav a:hover,
-    .mobile-nav a.active { color:var(--gold); background:rgba(201,168,76,0.07); }
+    .nav-links a:hover,.nav-links a.active{color:var(--blue-l);background:rgba(59,130,246,.1)}
+    .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+    .burger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px}
+    .mobile-nav{display:none;position:fixed;inset:var(--nav-h) 0 0 0;background:rgba(11,15,25,.98);z-index:998;flex-direction:column;padding:1.5rem;gap:.3rem;overflow-y:auto}
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{font-size:.95rem;font-weight:500;color:var(--muted);padding:.8rem 1rem;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;transition:.2s;cursor:pointer}
+    .mobile-nav a:hover,.mobile-nav a.active{color:var(--blue-l);background:rgba(59,130,246,.08)}
 
-    /* PAGES */
-    .page {
-      display:none; min-height:100vh;
-      padding-top:var(--nav-h);
-      animation:pageFade .4s ease both;
-    }
-    .page.active { display:block; }
-    @keyframes pageFade {
-      from { opacity:0; transform:translateY(16px); }
-      to   { opacity:1; transform:translateY(0); }
-    }
+    /* ── PAGES ── */
+    .page{display:none;min-height:100vh;padding-top:var(--nav-h);animation:pageFade .35s ease both}
+    .page.active{display:block}
+    @keyframes pageFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-    /* LAYOUT */
-    .container {
-      max-width:1100px; margin:0 auto;
-      padding:4.5rem 2rem 6rem;
+    /* ── LAYOUT ── */
+    .container{max-width:1100px;margin:0 auto;padding:3.5rem 2rem 6rem}
+    .section-label{
+      display:inline-flex;align-items:center;gap:.6rem;
+      font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--blue-l);margin-bottom:.9rem;
     }
-    .page-header { margin-bottom:3rem; }
-    .page-header .label {
-      font-family:'DM Mono',monospace; font-size:0.72rem;
-      color:var(--gold); letter-spacing:0.14em;
-      text-transform:uppercase; margin-bottom:0.8rem;
-    }
-    .page-header h1 {
-      font-family:'Playfair Display',serif;
-      font-size:clamp(1.9rem,4vw,2.9rem);
-      font-weight:600; color:var(--white); line-height:1.2;
-    }
-    .page-header .subtitle {
-      margin-top:.9rem; font-size:.95rem;
-      color:var(--muted); max-width:600px; line-height:1.75;
-    }
-    .divider { width:44px; height:2px; background:var(--gold); margin-top:1.4rem; }
+    .section-label::before{content:'';width:24px;height:2px;background:var(--blue-l);border-radius:2px}
+    .page-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:.8rem}
+    .page-subtitle{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:620px;margin-bottom:2.5rem}
+    .page-header{margin-bottom:2.5rem}
 
-    /* CARDS */
-    .card {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:var(--radius); padding:2rem;
-      transition:border-color .3s var(--ease),transform .3s var(--ease);
+    /* ── HERO ── */
+    #page-home{background:radial-gradient(ellipse 75% 60% at 70% 0%,rgba(59,130,246,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 5% 90%,rgba(20,184,166,.05) 0%,transparent 55%)}
+    .hero{max-width:1100px;margin:0 auto;padding:0 2rem;min-height:calc(100vh - var(--nav-h));display:flex;align-items:center}
+    .hero-layout{display:flex;align-items:center;justify-content:space-between;gap:4rem;width:100%}
+    .hero-text{flex:1;max-width:580px}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:.7rem;
+      font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--blue-l);margin-bottom:1.4rem;
     }
-    .card:hover { border-color:var(--border-hi); transform:translateY(-3px); }
-    .card h3 {
-      font-family:'Playfair Display',serif;
-      font-size:1.15rem; font-weight:600;
-      color:var(--white); margin-bottom:.9rem;
-    }
-    .card p { font-size:.93rem; color:var(--muted); line-height:1.8; }
+    .hero-eyebrow::before{content:'';width:28px;height:1.5px;background:var(--blue-l)}
+    .hero-text h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem}
+    .hero-text h1 em{font-style:normal;color:var(--blue-l)}
+    .hero-text p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:2rem;max-width:500px}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+    .hero-stats{display:flex;gap:2rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
+    .stat-item .stat-val{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white)}
+    .stat-item .stat-lbl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
 
-    /* GRIDS */
-    .grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem; }
-    .grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
+    /* profile card */
+    .hero-profile{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
+    .avatar-ring{width:180px;height:180px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--blue),var(--teal))}
+    .avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .avatar-inner img{width:100%;height:100%;object-fit:cover}
+    .avatar-initials{font-family:'Syne',sans-serif;font-size:3rem;font-weight:700;color:var(--blue-l);opacity:.5}
+    .profile-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.6rem;min-width:200px;text-align:center}
+    .pc-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
+    .pc-role{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l)}
+    .pc-status{font-size:.75rem;color:var(--muted);margin-top:.6rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
+    .dot-green{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px rgba(34,197,94,.2);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(34,197,94,.2)}50%{box-shadow:0 0 0 5px rgba(34,197,94,.06)}}
 
-    /* SLIST */
-    .slist { margin-top:.5rem; }
-    .slist li {
-      position:relative; padding:.55rem 0 .55rem 1.4rem;
-      font-size:.9rem; color:var(--muted);
-      border-bottom:1px solid var(--border);
-    }
-    .slist li:last-child { border-bottom:none; }
-    .slist li::before {
-      content:''; position:absolute; left:0; top:50%;
-      transform:translateY(-50%); width:5px; height:5px;
-      border-radius:50%; background:var(--gold);
-    }
-    .slist li strong { color:var(--text); }
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.6rem;background:var(--blue);color:#fff;border-radius:8px;font-weight:600;font-size:.85rem;letter-spacing:.03em;border:none;cursor:pointer;transition:background .25s,transform .25s}
+    .btn:hover{background:var(--blue-l);transform:translateY(-2px)}
+    .btn-ghost{background:transparent;color:var(--blue-l);border:1px solid rgba(59,130,246,.4)}
+    .btn-ghost:hover{background:rgba(59,130,246,.08);color:var(--blue-l)}
 
-    /* BADGE */
-    .badge {
-      display:inline-block; font-family:'DM Mono',monospace;
-      font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
-      color:var(--gold); background:rgba(201,168,76,.1);
-      border:1px solid rgba(201,168,76,.25);
-      border-radius:4px; padding:.28rem .7rem; margin-bottom:.9rem;
-    }
+    /* ── CARDS ── */
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:border-color .25s,transform .25s}
+    .card:hover{border-color:rgba(59,130,246,.3);transform:translateY(-3px)}
+    .card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.75rem}
+    .card p{font-size:.9rem;color:var(--muted);line-height:1.8}
+    .mt-2{margin-top:2rem}
+    .mt-3{margin-top:3rem}
 
-    /* INFO BLOCK */
-    .info-block {
-      background:rgba(201,168,76,.05);
-      border-left:3px solid var(--gold);
-      border-radius:0 var(--radius) var(--radius) 0;
-      padding:1.2rem 1.5rem; margin:1.5rem 0;
-    }
-    .info-block h4 {
-      font-size:.78rem; font-weight:600; color:var(--gold);
-      text-transform:uppercase; letter-spacing:.08em; margin-bottom:.5rem;
-    }
-    .info-block p { font-size:.9rem; color:var(--muted); line-height:1.75; }
+    /* ── GRID ── */
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
 
-    /* SUB HEADING */
-    .sub-heading {
-      font-family:'DM Mono',monospace; font-size:.7rem;
-      letter-spacing:.12em; text-transform:uppercase;
-      color:var(--gold); margin:1.75rem 0 .7rem;
-    }
-    .body-text { font-size:.93rem; color:var(--muted); line-height:1.8; }
+    /* ── SLIST ── */
+    .slist{margin-top:.5rem}
+    .slist li{position:relative;padding:.5rem 0 .5rem 1.3rem;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
+    .slist li:last-child{border-bottom:none}
+    .slist li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--blue)}
+    .slist li strong{color:var(--text)}
 
-    /* BUTTONS */
-    .btn {
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.72rem 1.6rem;
-      background:var(--gold); color:var(--bg);
-      border-radius:6px; font-weight:600; font-size:.85rem;
-      letter-spacing:.04em; border:none; cursor:pointer;
-      transition:background .3s var(--ease),transform .3s var(--ease);
-    }
-    .btn:hover { background:var(--gold-light); transform:translateY(-2px); }
-    .btn-outline {
-      background:transparent; color:var(--gold);
-      border:1px solid var(--border-hi);
-    }
-    .btn-outline:hover { background:rgba(201,168,76,.08); color:var(--gold-light); }
-    .btn-row { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.75rem; }
+    /* ── BADGE ── */
+    .badge{display:inline-block;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);border-radius:5px;padding:.25rem .65rem;margin-bottom:.85rem}
+    .badge-orange{color:var(--orange);background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25)}
+    .badge-green{color:var(--green);background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25)}
 
-    /* EPREUVE NUM */
-    .epreuve-num {
-      display:inline-flex; align-items:center; justify-content:center;
-      width:50px; height:50px;
-      border:2px solid var(--gold); border-radius:8px;
-      font-family:'Playfair Display',serif;
-      font-size:1.3rem; font-weight:700; color:var(--gold); flex-shrink:0;
-    }
-    .epreuve-header { display:flex; align-items:center; gap:1.2rem; margin-bottom:1.75rem; }
-    .epreuve-header h2 {
-      font-family:'Playfair Display',serif;
-      font-size:1.15rem; font-weight:600; color:var(--white);
-    }
-    .epreuve-header p { font-size:.82rem; color:var(--muted); margin-top:.2rem; }
+    /* ── INFO BLOCK ── */
+    .info-block{background:rgba(59,130,246,.05);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:1.1rem 1.4rem;margin:1.3rem 0}
+    .info-block h4{font-size:.72rem;font-weight:700;color:var(--blue-l);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.45rem}
+    .info-block p{font-size:.88rem;color:var(--muted);line-height:1.75}
 
-    /* TAGS */
-    .tags { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.75rem; }
-    .tag {
-      font-family:'DM Mono',monospace; font-size:.68rem;
-      color:var(--muted); background:var(--surface2);
-      border:1px solid var(--border); border-radius:4px;
-      padding:.28rem .65rem; letter-spacing:.04em;
-      transition:border-color .25s,color .25s;
-    }
-    .tag:hover { border-color:var(--border-hi); color:var(--gold); }
+    /* ── SUB HEADING ── */
+    .sub-h{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-l);margin:1.6rem 0 .65rem}
 
-    /* SPACING */
-    .mt-2 { margin-top:2rem; }
-    .mt-3 { margin-top:3rem; }
-
-    /* ── HOME ── */
-    #page-home {
-      background:
-        radial-gradient(ellipse 80% 55% at 65% 5%, rgba(201,168,76,.06) 0%, transparent 65%),
-        radial-gradient(ellipse 45% 40% at 8% 85%, rgba(201,168,76,.04) 0%, transparent 60%);
-    }
-    .hero {
-      max-width:1100px; margin:0 auto; padding:0 2rem;
-      min-height:calc(100vh - var(--nav-h));
-      display:flex; align-items:center;
-    }
-    .hero-layout { display:flex; align-items:center; gap:5rem; width:100%; }
-    .hero-inner { flex:1; max-width:620px; }
-    .hero-tag {
-      font-family:'DM Mono',monospace; font-size:.72rem;
-      letter-spacing:.16em; text-transform:uppercase; color:var(--gold);
-      margin-bottom:1.5rem; display:flex; align-items:center; gap:.75rem;
-    }
-    .hero-tag::before { content:''; display:block; width:28px; height:1px; background:var(--gold); }
-    .hero-inner h1 {
-      font-family:'Playfair Display',serif;
-      font-size:clamp(2.6rem,5vw,4rem);
-      font-weight:700; color:var(--white);
-      line-height:1.1; letter-spacing:-.01em; margin-bottom:1.4rem;
-    }
-    .hero-inner h1 em { font-style:normal; color:var(--gold); }
-    .hero-inner p {
-      font-size:1rem; color:var(--muted); line-height:1.85;
-      margin-bottom:2.25rem; max-width:520px;
-    }
-    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
-    .hero-meta {
-      display:flex; gap:2.5rem; margin-top:2.75rem;
-      padding-top:2rem; border-top:1px solid var(--border); flex-wrap:wrap;
-    }
-    .meta-item .meta-label {
-      font-size:.7rem; letter-spacing:.1em; text-transform:uppercase;
-      color:var(--muted); margin-bottom:.25rem;
-    }
-    .meta-item .meta-val { font-size:.93rem; font-weight:500; color:var(--text); }
-
-    /* Profile */
-    .hero-profile {
-      flex-shrink:0;
-      display:flex; flex-direction:column; align-items:center; gap:1.5rem;
-    }
-    .profile-avatar {
-      width:180px; height:180px; border-radius:50%;
-      border:2px solid var(--border-hi);
-      background:var(--surface2);
-      display:flex; align-items:center; justify-content:center; overflow:hidden;
-    }
-    .profile-avatar img { width:100%; height:100%; object-fit:cover; }
-    .avatar-placeholder {
-      font-family:'Playfair Display',serif;
-      font-size:3.5rem; font-weight:700; color:var(--gold); opacity:.4;
-    }
-    .profile-card {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:var(--radius); padding:1.25rem 1.5rem;
-      min-width:200px; text-align:center;
-    }
-    .pc-name {
-      font-family:'Playfair Display',serif;
-      font-size:1.05rem; font-weight:600; color:var(--white); margin-bottom:.25rem;
-    }
-    .pc-role {
-      font-family:'DM Mono',monospace; font-size:.7rem;
-      color:var(--gold); text-transform:uppercase; letter-spacing:.1em;
-    }
-    .status-dot {
-      display:inline-block; width:7px; height:7px;
-      border-radius:50%; background:var(--green); margin-right:.4rem;
-      box-shadow:0 0 0 2px rgba(63,185,80,.25);
-      animation:pulse 2s ease infinite;
-    }
-    @keyframes pulse {
-      0%,100% { box-shadow:0 0 0 2px rgba(63,185,80,.25); }
-      50%      { box-shadow:0 0 0 5px rgba(63,185,80,.08); }
-    }
-    .pc-status {
-      font-size:.75rem; color:var(--muted); margin-top:.6rem;
-      display:flex; align-items:center; justify-content:center;
-    }
+    /* ── TAGS ── */
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+    .tag{font-size:.68rem;font-weight:500;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.25rem .6rem;transition:border-color .2s,color .2s}
+    .tag:hover{border-color:rgba(59,130,246,.4);color:var(--blue-l)}
 
     /* ── TIMELINE ── */
-    .timeline { position:relative; margin:1.5rem 0; }
-    .timeline::before {
-      content:''; position:absolute; left:20px; top:0; bottom:0;
-      width:1px; background:var(--border);
-    }
-    .tl-item { position:relative; padding:0 0 2rem 3.5rem; }
-    .tl-item:last-child { padding-bottom:0; }
-    .tl-dot {
-      position:absolute; left:13px; top:4px;
-      width:15px; height:15px; border-radius:50%;
-      background:var(--bg); border:2px solid var(--gold);
-      display:flex; align-items:center; justify-content:center;
-    }
-    .tl-dot::after { content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); }
-    .tl-date {
-      font-family:'DM Mono',monospace; font-size:.68rem;
-      color:var(--gold); letter-spacing:.1em; text-transform:uppercase; margin-bottom:.4rem;
-    }
-    .tl-title { font-size:.97rem; font-weight:600; color:var(--white); margin-bottom:.3rem; }
-    .tl-desc { font-size:.87rem; color:var(--muted); line-height:1.7; }
+    .timeline{position:relative;margin:1.25rem 0}
+    .timeline::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:1px;background:var(--border)}
+    .tl-item{position:relative;padding:0 0 2rem 3.2rem}
+    .tl-item:last-child{padding-bottom:0}
+    .tl-dot{position:absolute;left:11px;top:4px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center}
+    .tl-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--blue)}
+    .tl-date{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l);margin-bottom:.35rem}
+    .tl-title{font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.25rem}
+    .tl-desc{font-size:.85rem;color:var(--muted);line-height:1.7}
 
-    /* ── SKILL BARS ── */
-    .skill-group { margin-bottom:1.75rem; }
-    .skill-group:last-child { margin-bottom:0; }
-    .skill-group-title {
-      font-family:'DM Mono',monospace; font-size:.68rem;
-      letter-spacing:.12em; text-transform:uppercase;
-      color:var(--muted); margin-bottom:1rem;
-    }
-    .skill-item { margin-bottom:1rem; }
-    .skill-row {
-      display:flex; justify-content:space-between;
-      align-items:center; margin-bottom:.4rem;
-    }
-    .skill-name { font-size:.88rem; color:var(--text); font-weight:500; }
-    .skill-level { font-family:'DM Mono',monospace; font-size:.7rem; color:var(--muted); }
-    .skill-bar { height:4px; background:var(--surface2); border-radius:99px; overflow:hidden; }
-    .skill-fill {
-      height:100%; border-radius:99px;
-      background:linear-gradient(90deg, var(--gold), var(--gold-light));
-      transform-origin:left;
-      animation:barGrow .9s var(--ease) both;
-    }
-    @keyframes barGrow {
-      from { transform:scaleX(0); }
-      to   { transform:scaleX(1); }
-    }
+    /* ── EPREUVE NUM ── */
+    .ep-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border:2px solid var(--blue);border-radius:10px;font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--blue-l);flex-shrink:0}
+    .ep-header{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.5rem}
 
-    /* ── VEILLE ── */
-    .veille-card {
-      background:var(--surface2); border:1px solid var(--border);
-      border-radius:var(--radius); padding:2.5rem;
+    /* ── BTN ROW ── */
+    .btn-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
+
+    /* ─────────────────────────────────────────
+       PROJECT CARDS (Ajay-inspired style)
+    ───────────────────────────────────────── */
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.5rem;margin-top:1.5rem}
+    .proj-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:var(--radius);overflow:hidden;
+      display:flex;flex-direction:column;
+      transition:border-color .25s,transform .25s,box-shadow .25s;
+      cursor:pointer;
     }
-    .veille-card h3 {
-      font-family:'Playfair Display',serif;
-      font-size:1.4rem; font-weight:600; color:var(--white); margin-bottom:1rem;
+    .proj-card:hover{border-color:rgba(59,130,246,.4);transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+    .proj-card-wip{border-color:rgba(245,158,11,.25)}
+    .proj-thumb{
+      height:140px;display:flex;align-items:center;justify-content:center;
+      border-bottom:1px solid var(--border);position:relative;overflow:hidden;
     }
+    .proj-thumb-bg{position:absolute;inset:0;opacity:.6}
+    .proj-thumb svg,.proj-thumb img.thumb-logo{position:relative;z-index:1}
+    .proj-thumb img.thumb-logo{width:80px;height:80px;object-fit:contain;filter:brightness(1.1)}
+    .proj-cat-pill{
+      position:absolute;top:.75rem;left:.85rem;z-index:2;
+      font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--blue-l);background:rgba(11,15,25,.85);
+      border:1px solid rgba(59,130,246,.3);border-radius:5px;padding:.2rem .55rem;
+    }
+    .proj-wip-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),transparent)}
+    .proj-cat-pill-orange{color:var(--orange);border-color:rgba(245,158,11,.3)}
+    .proj-body{padding:1.4rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+    .proj-title{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:var(--white);line-height:1.3}
+    .proj-desc{font-size:.83rem;color:var(--muted);line-height:1.7;flex:1}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.3rem}
+    .proj-tag{font-size:.63rem;font-weight:500;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.18rem .5rem}
+    .proj-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:.85rem;font-size:.8rem;font-weight:600;color:var(--blue-l);transition:gap .2s}
+    .proj-card:hover .proj-link{gap:.6rem}
+    .proj-wip-badge{display:inline-flex;align-items:center;gap:.5rem;margin-top:.85rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:5px;padding:.38rem .75rem}
+    .wip-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse-o 2s infinite}
+    @keyframes pulse-o{0%,100%{box-shadow:0 0 0 2px rgba(245,158,11,.2)}50%{box-shadow:0 0 0 5px rgba(245,158,11,.06)}}
+
+    /* ── VEILLE ARTICLES ── */
+    .veille-article{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:220px 1fr;transition:border-color .25s,transform .25s}
+    .veille-article:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px)}
+    .v-img{background:var(--surface2);display:flex;align-items:center;justify-content:center;min-height:160px}
+    .v-img svg{opacity:.7}
+    .v-body{padding:1.6rem 1.8rem}
+    .v-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.7rem;flex-wrap:wrap}
+    .v-tag{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:4px;padding:.2rem .55rem}
+    .v-date{font-size:.75rem;color:var(--muted)}
+    .v-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.6rem;line-height:1.3}
+    .v-text{font-size:.87rem;color:var(--muted);line-height:1.75}
 
     /* ── CONTACT ── */
-    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem; }
-    .form-group { margin-bottom:1.2rem; }
-    .form-group label {
-      display:block; font-size:.75rem; font-weight:600;
-      letter-spacing:.07em; text-transform:uppercase;
-      color:var(--muted); margin-bottom:.45rem;
-    }
-    .form-group input, .form-group textarea {
-      width:100%; padding:.82rem 1rem;
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:7px; color:var(--text);
-      font-family:'DM Sans',sans-serif; font-size:.93rem;
-      transition:border-color .3s var(--ease);
-    }
-    .form-group input:focus, .form-group textarea:focus { outline:none; border-color:var(--border-hi); }
-    .form-group textarea { resize:vertical; min-height:130px; }
-    .ci-panel {
-      background:var(--surface); border:1px solid var(--border);
-      border-radius:var(--radius); padding:2rem;
-    }
-    .ci-panel h3 {
-      font-family:'Playfair Display',serif;
-      font-size:1.1rem; color:var(--white); margin-bottom:1.5rem;
-    }
-    .ci-row {
-      display:flex; align-items:flex-start; gap:1rem;
-      padding:.9rem 0; border-bottom:1px solid var(--border);
-    }
-    .ci-row:last-child { border-bottom:none; }
-    .ci-icon {
-      width:36px; height:36px; border-radius:7px;
-      background:rgba(201,168,76,.1); flex-shrink:0;
-      display:flex; align-items:center; justify-content:center;
-      font-family:'DM Mono',monospace; font-size:.7rem; color:var(--gold); font-weight:500;
-    }
-    .ci-lbl { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.15rem; }
-    .ci-val { font-size:.88rem; color:var(--text); }
-    .ci-val a { color:var(--gold); transition:color .25s; }
-    .ci-val a:hover { color:var(--gold-light); }
+    .ci-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem}
+    .ci-panel h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:1.4rem}
+    .ci-row{display:flex;align-items:flex-start;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
+    .ci-row:last-child{border-bottom:none}
+    .ci-icon{width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,.1);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--blue-l);font-weight:700}
+    .ci-lbl{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.12rem}
+    .ci-val{font-size:.88rem;color:var(--text)}
+    .ci-val a{color:var(--blue-l);transition:color .2s}
+    .ci-val a:hover{color:var(--blue-l);text-decoration:underline}
 
-    /* FOOTER */
-    footer {
-      border-top:1px solid var(--border); padding:1.75rem 2rem;
-      text-align:center; font-size:.8rem; color:var(--muted);
-    }
-    footer span { color:var(--gold); }
+    /* ── FOOTER ── */
+    footer{border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:.78rem;color:var(--muted)}
+    footer span{color:var(--blue-l)}
 
-    /* RESPONSIVE */
-    @media(max-width:900px) {
-      .hero-layout { flex-direction:column-reverse; gap:2.5rem; padding-top:3rem; }
-      .hero-profile { flex-direction:row; gap:1.5rem; align-self:flex-start; }
-      .profile-avatar { width:100px; height:100px; }
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      .hero-layout{flex-direction:column-reverse;gap:2rem;padding-top:3rem}
+      .hero-profile{flex-direction:row;gap:1.5rem;align-self:flex-start}
+      .avatar-ring{width:90px;height:90px}
+      .veille-article{grid-template-columns:1fr}
+      .v-img{min-height:120px}
     }
-    @media(max-width:768px) {
-      .nav-links { display:none; }
-      .burger { display:flex; }
-      .contact-grid { grid-template-columns:1fr; }
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .burger{display:flex}
     }
-    @media(max-width:560px) {
-      .hero-meta { flex-direction:column; gap:1rem; }
-      .btn-row { flex-direction:column; }
-      .hero-profile { display:none; }
+    @media(max-width:560px){
+      .hero-profile{display:none}
+      .hero-stats{flex-direction:column;gap:1rem}
+      .btn-row,.hero-btns{flex-direction:column}
+      .proj-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -464,9 +273,7 @@
       <li><a data-page="entreprise">Entreprise</a></li>
       <li><a data-page="contact">Contact</a></li>
     </ul>
-    <button class="burger" id="burger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-nav" id="mobileNav">
@@ -480,167 +287,142 @@
   <a data-page="contact">Contact</a>
 </div>
 
-<!-- ═══════ PAGE : ACCUEIL ═══════ -->
+<!-- ═══════════════ ACCUEIL ═══════════════ -->
 <div class="page" id="page-home">
   <div class="hero">
     <div class="hero-layout">
-      <div class="hero-inner">
-        <div class="hero-tag">Portfolio étudiant — BTS SIO</div>
-        <h1>Bienvenue sur<br>mon <em>Portfolio</em></h1>
-        <p>
-          Étudiant en première année de BTS SIO à l'École Iris, je me spécialise
-          dans les services informatiques aux organisations. Ce portfolio retrace
-          mon parcours, mes projets et mes compétences.
-        </p>
-        <div class="hero-actions">
-          <button class="btn" data-page="apropos">Découvrir mon parcours</button>
-          <a href="CV_Younes_Fri.pdf" target="_blank" class="btn btn-outline">Télécharger mon CV</a>
+      <div class="hero-text">
+        <div class="hero-eyebrow">Portfolio BTS SIO SISR</div>
+        <h1>Younes <em>Fri</em></h1>
+        <p>Étudiant en BTS SIO option SISR à l'École Iris. Passionné par les infrastructures réseaux, l'administration systèmes et la cybersécurité. Actuellement en alternance chez Bernard Controls à Gonesse.</p>
+        <div class="hero-btns">
+          <button class="btn" data-page="e5">Voir mes projets</button>
+          <a href="CV_Younes_Fri.pdf" target="_blank" class="btn btn-ghost">Télécharger mon CV</a>
         </div>
-        <div class="hero-meta">
-          <div class="meta-item">
-            <div class="meta-label">Formation</div>
-            <div class="meta-val">BTS SIO — 1re Année</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">École</div>
-            <div class="meta-val">École Iris</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Entreprise</div>
-            <div class="meta-val">Bernard Controls</div>
-          </div>
-          <div class="meta-item">
-            <div class="meta-label">Option</div>
-            <div class="meta-val">SISR</div>
-          </div>
+        <div class="hero-stats">
+          <div class="stat-item"><div class="stat-val">BTS SIO</div><div class="stat-lbl">1re Année</div></div>
+          <div class="stat-item"><div class="stat-val">SISR</div><div class="stat-lbl">Option</div></div>
+          <div class="stat-item"><div class="stat-val">Iris</div><div class="stat-lbl">École</div></div>
+          <div class="stat-item"><div class="stat-val">Bernard Controls</div><div class="stat-lbl">Entreprise</div></div>
         </div>
       </div>
       <div class="hero-profile">
-        <div class="profile-avatar">
-          <span class="avatar-placeholder">YF</span>
+        <div class="avatar-ring">
+          <div class="avatar-inner"><span class="avatar-initials">YF</span></div>
         </div>
         <div class="profile-card">
           <div class="pc-name">Younes Fri</div>
-          <div class="pc-role">Étudiant BTS SIO</div>
-          <div class="pc-status"><span class="status-dot"></span>Disponible en alternance</div>
+          <div class="pc-role">BTS SIO SISR</div>
+          <div class="pc-status"><span class="dot-green"></span>Disponible en alternance</div>
         </div>
       </div>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : À PROPOS ═══════ -->
+<!-- ═══════════════ À PROPOS ═══════════════ -->
 <div class="page" id="page-apropos">
   <div class="container">
     <div class="page-header">
-      <div class="label">01 — Présentation</div>
-      <h1>À propos de moi</h1>
-      <div class="divider"></div>
+      <div class="section-label">01 — Présentation</div>
+      <h1 class="page-title">À propos de moi</h1>
+      <p class="page-subtitle">Étudiant passionné par les systèmes et réseaux, actuellement en formation BTS SIO à l'École Iris et en alternance chez Bernard Controls.</p>
     </div>
 
-    <div class="grid-2" style="align-items:start;">
+    <div class="grid-2" style="align-items:start">
       <div>
-        <div class="sub-heading" style="margin-top:0;">Parcours</div>
+        <div class="sub-h" style="margin-top:0">Parcours</div>
         <div class="timeline">
           <div class="tl-item">
             <div class="tl-dot"></div>
             <div class="tl-date">2026 — Aujourd'hui</div>
             <div class="tl-title">BTS SIO — École Iris</div>
-            <div class="tl-desc">
-              Première année de BTS Services Informatiques aux Organisations, option SISR.
-              Formation aux infrastructures réseaux, cybersécurité et administration systèmes.
-            </div>
+            <div class="tl-desc">Première année de BTS SIO option SISR. Formation aux infrastructures réseaux, cybersécurité et administration systèmes.</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot"></div>
             <div class="tl-date">2026 — Aujourd'hui</div>
             <div class="tl-title">Technicien IT — Bernard Controls</div>
-            <div class="tl-desc">
-              Période en entreprise à Gonesse (95). Déploiement de solutions de gestion de parc
-              (GLPI / OCS Inventory), support technique aux utilisateurs.
-            </div>
+            <div class="tl-desc">Alternance à Gonesse (95). Déploiement de solutions de gestion de parc (GLPI / OCS Inventory), support technique aux utilisateurs.</div>
           </div>
           <div class="tl-item">
             <div class="tl-dot"></div>
             <div class="tl-date">2025</div>
-            <div class="tl-title">Baccalauréat Scientifique — Physique Chimie, SVT</div>
-            <div class="tl-desc">
-              Obtention du baccalauréat scientifique avec spécialités Physique-Chimie et SVT,
-              puis orientation vers le BTS SIO pour une spécialisation en informatique et réseaux.
-            </div>
+            <div class="tl-title">Baccalauréat Scientifique</div>
+            <div class="tl-desc">Spécialités Physique-Chimie et SVT, puis orientation vers le BTS SIO pour une spécialisation en informatique et réseaux.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sub-h" style="margin-top:0">Centres d'intérêt</div>
+        <div class="grid-2" style="gap:1rem">
+          <div class="card" style="padding:1.25rem">
+            <div style="font-size:1.5rem;margin-bottom:.5rem">🌐</div>
+            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Réseaux</div>
+            <div style="font-size:.78rem;color:var(--muted)">Infrastructure et protocoles</div>
+          </div>
+          <div class="card" style="padding:1.25rem">
+            <div style="font-size:1.5rem;margin-bottom:.5rem">🔒</div>
+            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Cybersécurité</div>
+            <div style="font-size:.78rem;color:var(--muted)">Sécurité des systèmes</div>
+          </div>
+          <div class="card" style="padding:1.25rem">
+            <div style="font-size:1.5rem;margin-bottom:.5rem">🖥️</div>
+            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Administration</div>
+            <div style="font-size:.78rem;color:var(--muted)">Systèmes Linux & Windows</div>
+          </div>
+          <div class="card" style="padding:1.25rem">
+            <div style="font-size:1.5rem;margin-bottom:.5rem">💻</div>
+            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Développement</div>
+            <div style="font-size:.78rem;color:var(--muted)">Web & scripting</div>
           </div>
         </div>
 
-        <div class="sub-heading">Objectifs</div>
-        <div class="card" style="margin-top:0;">
-          <p>
-            Maîtriser les compétences techniques et professionnelles du secteur informatique.
-            Je souhaite approfondir mes connaissances en administration systèmes et réseaux,
-            cybersécurité et gestion de projets IT pour devenir un professionnel polyvalent
-            et autonome.
-          </p>
+        <div class="sub-h">Objectifs</div>
+        <div class="card" style="margin-top:0">
+          <p>Maîtriser les compétences techniques et professionnelles du secteur informatique. Approfondir mes connaissances en administration systèmes et réseaux, cybersécurité et gestion de projets IT pour devenir un professionnel polyvalent et autonome.</p>
         </div>
       </div>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : BTS SIO ═══════ -->
+<!-- ═══════════════ BTS SIO ═══════════════ -->
 <div class="page" id="page-bts">
   <div class="container">
     <div class="page-header">
-      <div class="label">02 — Formation</div>
-      <h1>BTS SIO</h1>
-      <p class="subtitle">Services Informatiques aux Organisations — Présentation de la formation et de ses deux options.</p>
-      <div class="divider"></div>
+      <div class="section-label">02 — Formation</div>
+      <h1 class="page-title">BTS SIO</h1>
+      <p class="page-subtitle">Services Informatiques aux Organisations — Présentation de la formation et de ses deux options.</p>
     </div>
-    <div class="card mt-2">
+
+    <div class="card">
       <h3>Présentation du diplôme</h3>
-      <p>
-        Le BTS SIO (Services Informatiques aux Organisations) est un diplôme de niveau Bac+2 qui
-        forme aux métiers de l'informatique. Il se divise en deux spécialités : SISR (Solutions
-        d'Infrastructure, Systèmes et Réseaux) et SLAM (Solutions Logicielles et Applications
-        Métiers). La formation combine enseignements généraux, matières professionnelles et
-        périodes en entreprise pour développer des compétences directement exploitables.
-      </p>
+      <p>Le BTS SIO est un diplôme de niveau Bac+2 formant aux métiers de l'informatique. Il se divise en deux spécialités : SISR (Solutions d'Infrastructure, Systèmes et Réseaux) et SLAM (Solutions Logicielles et Applications Métiers). La formation combine enseignements généraux, matières professionnelles et périodes en entreprise.</p>
     </div>
+
     <div class="grid-2 mt-2">
-      <div class="card">
-        <div class="badge">Option SISR</div>
+      <div class="card" style="border-top:3px solid var(--blue)">
+        <div class="badge">Option SISR — Mon option</div>
         <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
-        <p>
-          L'option SISR forme des professionnels spécialisés dans la gestion des infrastructures
-          informatiques : installation, configuration, sécurisation et maintenance des réseaux
-          et des systèmes d'une organisation.
-        </p>
-        <p style="margin-top:.9rem;">
-          Vous apprenez à configurer des serveurs, gérer des réseaux locaux, mettre en place
-          des solutions de cybersécurité, virtualiser des environnements et superviser les
-          équipements.
-        </p>
-        <div class="sub-heading">Débouchés</div>
+        <p>Spécialisation dans la gestion des infrastructures informatiques : installation, configuration, sécurisation et maintenance des réseaux et systèmes d'une organisation.</p>
+        <div class="sub-h">Débouchés</div>
         <ul class="slist">
           <li>Technicien Systèmes et Réseaux</li>
           <li>Technicien d'Infrastructure</li>
-          <li>Technicien Réseau / Télécoms</li>
           <li>Administrateur Systèmes et Réseaux</li>
+          <li>Technicien Réseau / Télécoms</li>
           <li>Technicien d'Exploitation Informatique</li>
         </ul>
       </div>
       <div class="card">
-        <div class="badge">Option SLAM</div>
+        <div class="badge" style="color:var(--teal);background:rgba(20,184,166,.1);border-color:rgba(20,184,166,.25)">Option SLAM</div>
         <h3>Solutions Logicielles et Applications Métiers</h3>
-        <p>
-          L'option SLAM forme des développeurs spécialisés dans la conception, le développement,
-          le test et la maintenance de solutions logicielles adaptées aux besoins des entreprises.
-        </p>
-        <p style="margin-top:.9rem;">
-          Durant la formation, vous travaillez sur des langages variés (Java, PHP, Python,
-          JavaScript), la gestion de bases de données SQL et les notions de gestion de projet.
-        </p>
-        <div class="sub-heading">Débouchés</div>
+        <p>Spécialisation dans la conception, le développement, le test et la maintenance de solutions logicielles adaptées aux besoins des entreprises.</p>
+        <div class="sub-h">Débouchés</div>
         <ul class="slist">
           <li>Développeur Web / Mobile</li>
           <li>Développeur d'Applications</li>
@@ -650,183 +432,57 @@
       </div>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : ÉPREUVE E5 ═══════ -->
+<!-- ═══════════════ ÉPREUVE E5 ═══════════════ -->
 <div class="page" id="page-e5">
   <div class="container">
     <div class="page-header">
-      <div class="label">03 — Épreuve E5</div>
-      <h1>Support et Mise à Disposition<br>de Services Informatiques</h1>
-      <div class="divider"></div>
+      <div class="section-label">03 — Épreuve E5</div>
+      <h1 class="page-title">Support et Mise à Disposition<br>de Services Informatiques</h1>
+      <p class="page-subtitle">L'épreuve E5 évalue la maîtrise des compétences liées au support, à l'administration et à la mise à disposition de services informatiques en contexte professionnel réel.</p>
     </div>
 
-    <!-- Présentation E5 -->
-    <div class="card mt-2">
-      <div class="epreuve-header">
-        <div class="epreuve-num">E5</div>
+    <!-- Présentation -->
+    <div class="card">
+      <div class="ep-header">
+        <div class="ep-num">E5</div>
         <div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--white);">Présentation de l'épreuve</h2>
-          <p style="font-size:.82rem;color:var(--muted);margin-top:.2rem;">Support, administration et mise à disposition de services</p>
+          <h3 style="margin-bottom:.2rem">Présentation de l'épreuve</h3>
+          <p style="font-size:.82rem;color:var(--muted)">Support, administration et mise à disposition de services</p>
         </div>
       </div>
-      <div class="sub-heading" style="margin-top:0;">Objectif</div>
-      <p class="body-text">
-        Cette épreuve évalue l'acquisition des compétences liées au support, à l'administration
-        et à la mise à disposition de services informatiques. Elle vérifie la maîtrise technique,
-        la rigueur méthodologique et la capacité à intervenir dans un contexte professionnel réel.
-      </p>
-      <ul class="slist" style="margin-top:.8rem;">
+      <ul class="slist" style="margin-top:0">
         <li>Analyser un besoin exprimé par une organisation</li>
         <li>Concevoir et proposer une solution informatique adaptée</li>
         <li>Installer, configurer et tester un service</li>
-        <li>Mettre en production une solution</li>
-        <li>Assurer le support aux utilisateurs</li>
+        <li>Mettre en production une solution et assurer le support</li>
         <li>Maintenir la continuité et la sécurité des services</li>
       </ul>
-      <div class="sub-heading">Modalités</div>
-      <p class="body-text">
-        L'épreuve s'appuie sur deux réalisations professionnelles présentées dans un dossier.
-        La forme ponctuelle comprend 1h30 de préparation suivie de 40 minutes d'oral devant
-        le jury, dont 20 minutes d'entretien après une activité technique en autonomie.
-      </p>
       <div class="btn-row">
-        <a href="E5_Tableau_de_synthese.pdf" target="_blank" class="btn btn-outline">Tableau de synthèse E5 (PDF)</a>
+        <a href="E5_Tableau_de_synthese.pdf" target="_blank" class="btn btn-ghost">Tableau de synthèse E5 (PDF)</a>
       </div>
     </div>
 
-    <!-- GRILLE PROJETS E5 -->
-    <style>
-      .proj-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 2rem;
-      }
-      .proj-card {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        transition: border-color .3s var(--ease), transform .3s var(--ease);
-        text-decoration: none;
-        color: inherit;
-      }
-      .proj-card:hover {
-        border-color: var(--border-hi);
-        transform: translateY(-4px);
-      }
-      .proj-card-wip {
-        border-color: rgba(201,168,76,0.3);
-      }
-      .proj-thumb {
-        height: 130px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--surface2);
-        border-bottom: 1px solid var(--border);
-        position: relative;
-        overflow: hidden;
-      }
-      .proj-thumb svg { opacity: .85; }
-      .proj-thumb-label {
-        position: absolute;
-        top: .7rem; left: .8rem;
-        font-family: 'DM Mono', monospace;
-        font-size: .62rem; letter-spacing: .1em;
-        text-transform: uppercase;
-        color: var(--gold);
-        background: rgba(13,17,23,.75);
-        border: 1px solid rgba(201,168,76,.25);
-        border-radius: 4px;
-        padding: .2rem .55rem;
-      }
-      .proj-wip-bar {
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--gold), transparent);
-      }
-      .proj-body {
-        padding: 1.4rem 1.5rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: .55rem;
-      }
-      .proj-title {
-        font-family: 'Playfair Display', serif;
-        font-size: 1rem; font-weight: 600;
-        color: var(--white); line-height: 1.3;
-      }
-      .proj-desc {
-        font-size: .85rem;
-        color: var(--muted);
-        line-height: 1.7;
-        flex: 1;
-      }
-      .proj-tags {
-        display: flex; flex-wrap: wrap; gap: .35rem;
-        margin-top: .2rem;
-      }
-      .proj-tag {
-        font-family: 'DM Mono', monospace;
-        font-size: .62rem; letter-spacing: .04em;
-        color: var(--muted);
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 3px;
-        padding: .2rem .55rem;
-      }
-      .proj-link {
-        display: inline-flex; align-items: center; gap: .4rem;
-        margin-top: .9rem;
-        font-size: .82rem; font-weight: 600;
-        color: var(--gold);
-        font-family: 'DM Mono', monospace;
-        letter-spacing: .03em;
-        transition: gap .25s var(--ease);
-      }
-      .proj-card:hover .proj-link { gap: .7rem; }
-      .proj-wip-badge {
-        display: inline-flex; align-items: center; gap: .5rem;
-        margin-top: .9rem;
-        font-family: 'DM Mono', monospace;
-        font-size: .68rem; letter-spacing: .08em;
-        text-transform: uppercase;
-        color: var(--gold);
-        background: rgba(201,168,76,.07);
-        border: 1px solid rgba(201,168,76,.2);
-        border-radius: 5px;
-        padding: .4rem .8rem;
-      }
-      .proj-wip-dot {
-        width: 6px; height: 6px; border-radius: 50%;
-        background: var(--gold);
-        animation: pulse 2s ease infinite;
-      }
-    </style>
-
+    <!-- Réalisations en cours de formation -->
+    <div class="sub-h mt-3" style="font-size:.8rem">Réalisations en cours de formation</div>
     <div class="proj-grid">
 
       <!-- OCS / GLPI -->
       <a class="proj-card" href="ocs-glpi-documentation.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a2535,#0f1923);">
-          <div class="proj-thumb-label">Gestion de parc</div>
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-            <rect x="10" y="18" width="52" height="36" rx="4" stroke="#C9A84C" stroke-width="2"/>
-            <path d="M22 30h28M22 38h18" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="52" cy="38" r="5" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M36 54v6M26 60h20" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
+          <div class="proj-cat-pill">Gestion de parc</div>
+          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+            <rect x="8" y="16" width="52" height="36" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M18 28h32M18 36h20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="50" cy="36" r="5" stroke="#3b82f6" stroke-width="1.5"/>
+            <path d="M34 52v6M24 58h20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="proj-body">
-          <div class="proj-title">Administration OCS / GLPI</div>
-          <div class="proj-desc">Déploiement d'une solution complète de gestion de parc sur Debian — inventaire automatisé avec OCS-NG et helpdesk avec GLPI.</div>
+          <div class="proj-title">Administration OCS-NG Inventory &amp; GLPI</div>
+          <div class="proj-desc">Déploiement d'une solution ITSM complète sur Debian — inventaire automatisé avec OCS-NG et helpdesk avec GLPI.</div>
           <div class="proj-tags">
             <span class="proj-tag">Debian Linux</span>
             <span class="proj-tag">OCS-NG 2.12</span>
@@ -840,18 +496,18 @@
 
       <!-- WINDOWS SERVER / AD -->
       <a class="proj-card" href="Projet_AD_Final.docx" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a2030,#0d1520);">
-          <div class="proj-thumb-label">Administration système</div>
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-            <circle cx="36" cy="28" r="10" stroke="#C9A84C" stroke-width="2"/>
-            <circle cx="18" cy="50" r="7" stroke="#C9A84C" stroke-width="1.5"/>
-            <circle cx="54" cy="50" r="7" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M36 38v6M36 44l-12 6M36 44l12 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1730,#0a1020)">
+          <div class="proj-cat-pill">Administration système</div>
+          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+            <circle cx="34" cy="26" r="10" stroke="#3b82f6" stroke-width="1.8"/>
+            <circle cx="16" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
+            <circle cx="52" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
+            <path d="M34 36v8M34 44l-12 6M34 44l12 6" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="proj-body">
           <div class="proj-title">Windows Server 2019 — Active Directory, PowerShell &amp; GPO</div>
-          <div class="proj-desc">Déploiement complet d'un contrôleur de domaine AD DS, politique d'audit, automatisation PowerShell et stratégies de groupe.</div>
+          <div class="proj-desc">Déploiement complet d'un contrôleur de domaine AD DS, politique d'audit avancée, automatisation PowerShell et stratégies de groupe.</div>
           <div class="proj-tags">
             <span class="proj-tag">Windows Server 2019</span>
             <span class="proj-tag">Active Directory</span>
@@ -863,16 +519,16 @@
         </div>
       </a>
 
-      <!-- HAPROXY + HEARTBEAT -->
+      <!-- HAPROXY -->
       <a class="proj-card" href="Haproxy_projet.docx" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a1f2e,#0e1420);">
-          <div class="proj-thumb-label">Haute disponibilité</div>
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-            <rect x="8" y="28" width="18" height="16" rx="3" stroke="#C9A84C" stroke-width="1.5"/>
-            <rect x="46" y="28" width="18" height="16" rx="3" stroke="#C9A84C" stroke-width="1.5"/>
-            <rect x="27" y="42" width="18" height="14" rx="3" stroke="#C9A84C" stroke-width="1.5"/>
-            <rect x="27" y="16" width="18" height="14" rx="3" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M26 36H17M46 36H55M36 42v-12" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a20,#0a1318)">
+          <div class="proj-cat-pill">Haute disponibilité</div>
+          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+            <rect x="6" y="26" width="18" height="16" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="44" y="26" width="18" height="16" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="25" y="40" width="18" height="14" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
+            <rect x="25" y="14" width="18" height="14" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
+            <path d="M24 34H15M44 34H53M34 40V28" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="proj-body">
@@ -881,7 +537,7 @@
           <div class="proj-tags">
             <span class="proj-tag">HAProxy</span>
             <span class="proj-tag">Heartbeat</span>
-            <span class="proj-tag">Load Balancing</span>
+            <span class="proj-tag">VIP Flottante</span>
             <span class="proj-tag">VMware</span>
             <span class="proj-tag">Debian</span>
           </div>
@@ -891,13 +547,13 @@
 
       <!-- TP LINUX ROUTAGE -->
       <a class="proj-card" href="TP_Linux__Topologie_Routage.docx" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#182018,#0f1a0f);">
-          <div class="proj-thumb-label">Réseau</div>
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-            <circle cx="36" cy="36" r="14" stroke="#C9A84C" stroke-width="2"/>
-            <path d="M14 36h8M50 36h8M36 14v8M36 50v8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M20 20l6 6M46 46l6 6M46 20l6-6M20 52l-6 6" stroke="#C9A84C" stroke-width="1" stroke-linecap="round" opacity=".5"/>
-            <circle cx="36" cy="36" r="4" fill="#C9A84C" opacity=".6"/>
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1f0d,#0a1508)">
+          <div class="proj-cat-pill">Réseau</div>
+          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+            <circle cx="34" cy="34" r="13" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M12 34h9M47 34h9M34 12v9M34 47v9" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="34" cy="34" r="4" fill="#3b82f6" opacity=".5"/>
+            <path d="M19 19l5.5 5.5M43.5 43.5L49 49M49 19l-5.5 5.5M24.5 43.5L19 49" stroke="#3b82f6" stroke-width="1" stroke-linecap="round" opacity=".4"/>
           </svg>
         </div>
         <div class="proj-body">
@@ -916,19 +572,19 @@
 
       <!-- ANNONCE EXPRESS EN COURS -->
       <div class="proj-card proj-card-wip">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#1e1a10,#15120a);">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#1a150a,#12100a)">
           <div class="proj-wip-bar"></div>
-          <div class="proj-thumb-label">En cours</div>
-          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
-            <rect x="12" y="16" width="48" height="40" rx="4" stroke="#C9A84C" stroke-width="2"/>
-            <path d="M20 28h32M20 36h20M20 44h14" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="52" cy="42" r="8" fill="#0D1117" stroke="#C9A84C" stroke-width="1.5"/>
-            <path d="M52 39v3.5l2 2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          <div class="proj-cat-pill proj-cat-pill-orange">En cours</div>
+          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+            <rect x="10" y="14" width="48" height="40" rx="5" stroke="#f59e0b" stroke-width="1.8"/>
+            <path d="M20 26h28M20 34h18M20 42h12" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="50" cy="44" r="9" fill="#0b0f19" stroke="#f59e0b" stroke-width="1.5"/>
+            <path d="M50 40.5v4l2.5 2.5" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div class="proj-body">
           <div class="proj-title">AnnonceExpress — Site de Petites Annonces</div>
-          <div class="proj-desc">Site web de petites annonces en PHP / MySQL avec les 4 opérations CRUD (selectAll, insert, update, delete) via requêtes préparées MySQLi.</div>
+          <div class="proj-desc">Site web PHP / MySQL de petites annonces avec les 4 opérations CRUD via requêtes préparées MySQLi. Hébergé sous XAMPP.</div>
           <div class="proj-tags">
             <span class="proj-tag">PHP</span>
             <span class="proj-tag">MySQL</span>
@@ -936,70 +592,54 @@
             <span class="proj-tag">CRUD</span>
             <span class="proj-tag">GitHub</span>
           </div>
-          <span class="proj-wip-badge"><span class="proj-wip-dot"></span>En cours — Rendu juin 2026</span>
+          <span class="proj-wip-badge"><span class="wip-dot"></span>En cours — Rendu juin 2026</span>
         </div>
       </div>
 
     </div>
-
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : ÉPREUVE E6 ═══════ -->
+<!-- ═══════════════ ÉPREUVE E6 ═══════════════ -->
 <div class="page" id="page-e6">
   <div class="container">
     <div class="page-header">
-      <div class="label">04 — Épreuve E6</div>
-      <h1>Cybersécurité des<br>Services Informatiques</h1>
-      <div class="divider"></div>
+      <div class="section-label">04 — Épreuve E6</div>
+      <h1 class="page-title">Cybersécurité des Services Informatiques</h1>
+      <p class="page-subtitle">Évaluation de la capacité à identifier les vulnérabilités, analyser les risques et intégrer la cybersécurité dans toute activité informatique.</p>
     </div>
 
-    <div class="card mt-2">
-      <div class="epreuve-header">
-        <div class="epreuve-num">E6</div>
+    <div class="card">
+      <div class="ep-header">
+        <div class="ep-num">E6</div>
         <div>
-          <h2 style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--white);">Présentation de l'épreuve</h2>
-          <p style="font-size:.82rem;color:var(--muted);margin-top:.2rem;">Sécurisation des services et systèmes d'information</p>
+          <h3 style="margin-bottom:.2rem">Présentation de l'épreuve</h3>
+          <p style="font-size:.82rem;color:var(--muted)">Sécurisation des services et systèmes d'information</p>
         </div>
       </div>
-      <div class="sub-heading" style="margin-top:0;">Objectif</div>
-      <p class="body-text">
-        Cette épreuve évalue la capacité à sécuriser les services informatiques d'une organisation :
-        identifier les vulnérabilités, analyser les risques et intégrer la cybersécurité dans
-        toute activité informatique.
-      </p>
-      <ul class="slist" style="margin-top:.8rem;">
+      <ul class="slist" style="margin-top:0">
         <li>Identifier les vulnérabilités d'un système d'information</li>
         <li>Analyser les risques liés à la sécurité</li>
         <li>Mettre en place des mesures de protection adaptées</li>
         <li>Sécuriser les accès et les données</li>
         <li>Assurer la surveillance et la protection des services</li>
       </ul>
-      <div class="sub-heading">Forme ponctuelle orale — 40 minutes</div>
-      <p class="body-text">
-        Entretien avec le jury au cours duquel le candidat présente le contexte de la mission,
-        la problématique de sécurité, les solutions mises en œuvre et les résultats obtenus.
-      </p>
+      <div class="info-block" style="margin-top:1.3rem">
+        <h4>Forme ponctuelle orale — 40 minutes</h4>
+        <p>Entretien avec le jury au cours duquel le candidat présente le contexte de la mission, la problématique de sécurité, les solutions mises en œuvre et les résultats obtenus.</p>
+      </div>
     </div>
 
-    <div class="card mt-2">
-      <div class="badge">Dossier en constitution</div>
+    <div class="card mt-2" style="border-left:3px solid var(--orange)">
+      <div class="badge badge-orange">Dossier en constitution</div>
       <h3>Analyse de cybersécurité — Bernard Controls</h3>
-      <p class="body-text">
-        Le dossier de réalisation professionnelle pour l'épreuve E6 est en cours de constitution
-        dans le cadre de la période en entreprise chez Bernard Controls. Il documentera une
-        analyse de sécurité conduite sur l'infrastructure existante du site de Gonesse.
-      </p>
-      <div class="info-block" style="margin-top:1.5rem;">
+      <p>Le dossier de réalisation professionnelle pour l'épreuve E6 est en cours de constitution dans le cadre de la période en entreprise chez Bernard Controls. Il documentera une analyse de sécurité conduite sur l'infrastructure existante du site de Gonesse.</p>
+      <div class="info-block">
         <h4>Périmètre envisagé</h4>
-        <p>
-          Analyse des risques sur le parc informatique, sécurisation des accès réseau,
-          mise en conformité avec les bonnes pratiques ANSSI, et étude des journaux
-          système pour la détection d'anomalies.
-        </p>
+        <p>Analyse des risques sur le parc informatique, sécurisation des accès réseau, mise en conformité avec les bonnes pratiques ANSSI, et étude des journaux système pour la détection d'anomalies.</p>
       </div>
-      <div class="sub-heading">Thématiques prévues</div>
+      <div class="sub-h">Thématiques prévues</div>
       <ul class="slist">
         <li>Analyse de risques et cartographie des vulnérabilités</li>
         <li>Sécurisation des accès et gestion des droits utilisateurs</li>
@@ -1007,9 +647,8 @@
         <li>Protection des données sensibles et conformité RGPD</li>
         <li>Journalisation et supervision des événements de sécurité</li>
       </ul>
-      <div class="sub-heading">Outils et méthodes</div>
-      <div class="tags">
-        <span class="tag">ANSSI — Guides bonnes pratiques</span>
+      <div class="tags" style="margin-top:1rem">
+        <span class="tag">ANSSI</span>
         <span class="tag">OWASP</span>
         <span class="tag">Analyse EBIOS</span>
         <span class="tag">Wireshark</span>
@@ -1019,105 +658,87 @@
       </div>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : VEILLE ═══════ -->
+<!-- ═══════════════ VEILLE ═══════════════ -->
 <div class="page" id="page-veille">
   <div class="container">
     <div class="page-header">
-      <div class="label">05 — Veille Technologique</div>
-      <h1>Veille Technologique</h1>
-      <p class="subtitle">Sujet étudié : les passkeys, une nouvelle méthode d'authentification qui remplace les mots de passe.</p>
-      <div class="divider"></div>
+      <div class="section-label">05 — Veille Technologique</div>
+      <h1 class="page-title">Veille Technologique</h1>
+      <p class="page-subtitle">Sujet étudié : les passkeys, une nouvelle méthode d'authentification qui remplace les mots de passe traditionnels.</p>
     </div>
 
-    <div class="veille-card mt-2">
-      <div class="badge">Sujet de veille</div>
-      <h3>Les Passkeys — Se connecter sans mot de passe</h3>
-      <p class="body-text">
-        Les passkeys sont une méthode d'authentification permettant de se connecter à un service
-        sans mot de passe. La validation se fait directement sur l'appareil via une empreinte
-        digitale, Face ID ou un code PIN. L'objectif est de supprimer les problèmes liés aux
-        mots de passe : vol, phishing, oubli, réutilisation sur plusieurs sites.
-      </p>
+    <div class="card mt-2">
+      <div class="sub-h" style="margin-top:0">Qu'est-ce que la veille technologique ?</div>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.8">La veille technologique regroupe tous les moyens déployés pour collecter et analyser des informations techniques afin de rester à jour sur les évolutions du secteur informatique. Elle permet d'anticiper les changements et d'adapter ses pratiques professionnelles.</p>
+    </div>
 
-      <div class="sub-heading">Pourquoi c'est important</div>
-      <ul class="slist">
-        <li>Les mots de passe sont souvent faibles ou réutilisés sur plusieurs services</li>
-        <li>Le phishing exploite la saisie sur des faux sites — les passkeys rendent ça impossible</li>
-        <li>Aucun secret n'est transmis sur le réseau lors de la connexion</li>
-        <li>Connexion plus rapide et plus simple pour l'utilisateur</li>
-      </ul>
-
-      <div class="sub-heading">Comment ça fonctionne</div>
-      <div class="info-block">
-        <h4>Clé publique / clé privée</h4>
-        <p>
-          Quand on crée une passkey, deux clés sont générées : une clé publique envoyée au site,
-          et une clé privée qui reste sur l'appareil et ne le quitte jamais. Pour se connecter,
-          le site envoie un défi que l'appareil signe avec la clé privée. Le site vérifie cette
-          signature avec la clé publique. Si c'est correct, la connexion est validée — sans jamais
-          envoyer de mot de passe.
-        </p>
+    <!-- Article Passkeys -->
+    <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem">
+      <div class="veille-article">
+        <div class="v-img" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
+          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+            <rect x="12" y="28" width="46" height="32" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M26 28v-8a9 9 0 0 1 18 0v8" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="35" cy="44" r="5" fill="#3b82f6" opacity=".6"/>
+            <path d="M35 49v5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="v-body">
+          <div class="v-meta">
+            <span class="v-tag">Authentification</span>
+            <span class="v-date">2025 — 2026</span>
+          </div>
+          <div class="v-title">Les Passkeys — Se connecter sans mot de passe</div>
+          <div class="v-text" style="margin-bottom:1rem">Les passkeys permettent de s'authentifier via empreinte digitale, Face ID ou code PIN, sans aucun mot de passe. Elles reposent sur la cryptographie à clé publique/privée : la clé privée reste sur l'appareil, la clé publique est envoyée au service. Résultat : le phishing ne fonctionne plus, rien ne peut être volé.</div>
+          <div class="sub-h" style="margin-top:.5rem">Pourquoi c'est important</div>
+          <ul class="slist">
+            <li>Les mots de passe sont souvent faibles ou réutilisés — les passkeys suppriment ce risque</li>
+            <li>Résistant au phishing : aucun secret ne transite sur le réseau</li>
+            <li>Connexion plus rapide et plus simple pour l'utilisateur</li>
+            <li>Déjà adopté par Google, Apple et Microsoft</li>
+          </ul>
+          <div class="sub-h">Limites</div>
+          <ul class="slist">
+            <li>Perte d'appareil : nécessite un mécanisme de récupération de compte</li>
+            <li>Pas encore universel : certains services ne le proposent pas</li>
+            <li>Nécessite une explication aux utilisateurs non-initiés</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">FIDO2 / WebAuthn</span>
+            <span class="tag">Cryptographie asymétrique</span>
+            <span class="tag">Anti-phishing</span>
+            <span class="tag">Google / Apple / Microsoft</span>
+          </div>
+        </div>
       </div>
-
-      <div class="sub-heading">Avantages</div>
-      <ul class="slist">
-        <li>Le phishing ne fonctionne plus — il n'y a rien à voler</li>
-        <li>Connexion rapide sans avoir à retenir ou taper un mot de passe</li>
-        <li>Moins de réinitialisations de compte pour les équipes support</li>
-        <li>Déjà utilisé par Google, Apple et Microsoft dans leurs services</li>
-      </ul>
-
-      <div class="sub-heading">Limites</div>
-      <ul class="slist">
-        <li>Si on perd son appareil, il faut un mécanisme de récupération de compte</li>
-        <li>Pas encore compatible partout — certains services ne le proposent pas encore</li>
-        <li>Nécessite une explication aux utilisateurs qui ne connaissent pas le principe</li>
-      </ul>
-
-      <div class="sub-heading">Conclusion</div>
-      <p class="body-text">
-        Les passkeys sont une vraie avancée en matière de sécurité. Elles suppriment le risque
-        lié aux mots de passe tout en rendant la connexion plus simple. C'est une technologie
-        qui se déploie de plus en plus et qui sera incontournable dans les entreprises dans les
-        prochaines années.
-      </p>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : ENTREPRISE ═══════ -->
+<!-- ═══════════════ ENTREPRISE ═══════════════ -->
 <div class="page" id="page-entreprise">
   <div class="container">
     <div class="page-header">
-      <div class="label">06 — Entreprise</div>
-      <h1>Bernard Controls</h1>
-      <p class="subtitle">
-        Groupe industriel international spécialisé dans la conception d'actionneurs,
-        au sein duquel j'effectue mes périodes en entreprise dans le cadre du BTS SIO.
-      </p>
-      <div class="divider"></div>
+      <div class="section-label">06 — Entreprise</div>
+      <h1 class="page-title">Bernard Controls</h1>
+      <p class="page-subtitle">Groupe industriel international spécialisé dans la conception d'actionneurs, au sein duquel j'effectue mon alternance dans le cadre du BTS SIO.</p>
     </div>
 
-    <div class="grid-2 mt-2">
+    <div class="grid-2">
       <div class="card">
         <h3>Présentation</h3>
         <ul class="slist">
           <li><strong>Nom :</strong> Bernard Controls</li>
           <li><strong>Localisation :</strong> Gonesse, Val-d'Oise (95)</li>
-          <li><strong>Effectif :</strong> Environ 500 employés dans le monde</li>
-          <li><strong>Secteur :</strong> Industrie — Actionneurs pour énergie, pétrole et eau</li>
+          <li><strong>Effectif :</strong> ~500 employés dans le monde</li>
+          <li><strong>Secteur :</strong> Industrie — Actionneurs énergie, pétrole, eau</li>
           <li><strong>Présence :</strong> Filiales en Europe, Asie et Amérique</li>
         </ul>
-        <p class="body-text" style="margin-top:1.25rem;">
-          Bernard Controls conçoit et fabrique des actionneurs électriques et hydrauliques
-          pour les secteurs critiques de l'énergie, du pétrole, du gaz et du traitement de
-          l'eau. Le groupe dispose d'une DSI internalisée gérant l'ensemble de l'infrastructure
-          IT mondiale.
-        </p>
+        <p style="margin-top:1.1rem;font-size:.88rem;color:var(--muted);line-height:1.8">Bernard Controls conçoit et fabrique des actionneurs électriques et hydrauliques pour les secteurs critiques. Le groupe dispose d'une DSI internalisée gérant l'ensemble de l'infrastructure IT mondiale.</p>
       </div>
       <div class="card">
         <h3>Compétences développées</h3>
@@ -1136,77 +757,62 @@
       <h3>Missions réalisées</h3>
       <div class="info-block">
         <h4>Mission principale documentée</h4>
-        <p>
-          Déploiement d'OCS-NG Inventory et GLPI sur serveur Debian pour la gestion
-          du parc informatique — voir le détail complet dans la page Épreuve E5.
-        </p>
+        <p>Déploiement d'OCS-NG Inventory et GLPI sur serveur Debian pour la gestion du parc informatique — voir le détail complet dans la page Épreuve E5.</p>
       </div>
-      <div class="sub-heading">Autres missions</div>
+      <div class="sub-h">Autres missions</div>
       <ul class="slist">
-        <li>Support technique de niveau 1 et 2 auprès des utilisateurs du site de Gonesse</li>
+        <li>Support technique niveaux 1 et 2 auprès des utilisateurs du site de Gonesse</li>
         <li>Participation aux interventions de maintenance sur le parc informatique</li>
         <li>Contribution à la documentation interne du service IT</li>
         <li>Observation et participation aux réunions d'équipe DSI</li>
       </ul>
-      <p class="body-text" style="margin-top:1.25rem;">
-        Les missions seront complétées et détaillées au fil de l'avancement de la période
-        en entreprise.
-      </p>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
-<!-- ═══════ PAGE : CONTACT ═══════ -->
+<!-- ═══════════════ CONTACT ═══════════════ -->
 <div class="page" id="page-contact">
   <div class="container">
     <div class="page-header">
-      <div class="label">07 — Contact</div>
-      <h1>Me Contacter</h1>
-      <div class="divider"></div>
+      <div class="section-label">07 — Contact</div>
+      <h1 class="page-title">Restons en contact</h1>
+      <p class="page-subtitle">N'hésitez pas à me contacter pour discuter de projets, d'opportunités ou simplement échanger autour des technologies.</p>
     </div>
 
-    <div style="max-width:520px;">
+    <div style="max-width:520px">
       <div class="ci-panel">
         <h3>Informations de contact</h3>
         <div class="ci-row">
           <div class="ci-icon">@</div>
           <div>
             <div class="ci-lbl">Email</div>
-            <div class="ci-val">
-              <a href="mailto:fri.younesfri95@gmail.com">fri.younesfri95@gmail.com</a>
-            </div>
+            <div class="ci-val"><a href="mailto:fri.younesfri95@gmail.com">fri.younesfri95@gmail.com</a></div>
           </div>
         </div>
         <div class="ci-row">
           <div class="ci-icon">in</div>
           <div>
             <div class="ci-lbl">LinkedIn</div>
-            <div class="ci-val">
-              <a href="https://www.linkedin.com/in/younes-fri-54a6773b1/" target="_blank" rel="noopener">
-                younes-fri-54a6773b1
-              </a>
-            </div>
+            <div class="ci-val"><a href="https://www.linkedin.com/in/younes-fri-54a6773b1/" target="_blank">younes-fri-54a6773b1</a></div>
           </div>
         </div>
         <div class="ci-row">
           <div class="ci-icon">CV</div>
           <div>
             <div class="ci-lbl">Curriculum Vitae</div>
-            <div class="ci-val">
-              <a href="CV_Younes_Fri.pdf" target="_blank">Télécharger mon CV (PDF)</a>
-            </div>
+            <div class="ci-val"><a href="CV_Younes_Fri.pdf" target="_blank">Télécharger mon CV (PDF)</a></div>
           </div>
         </div>
         <div class="ci-row">
-          <div class="ci-icon">loc</div>
+          <div class="ci-icon">📍</div>
           <div>
             <div class="ci-lbl">Localisation</div>
             <div class="ci-val">École Iris, Île-de-France</div>
           </div>
         </div>
         <div class="ci-row">
-          <div class="ci-icon">BTS</div>
+          <div class="ci-icon">🎓</div>
           <div>
             <div class="ci-lbl">Formation</div>
             <div class="ci-val">BTS SIO — 1re Année — Option SISR</div>
@@ -1215,41 +821,35 @@
       </div>
     </div>
   </div>
-  <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
+  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
 </div>
 
 <script>
-  /* ── Routing ── */
-  const PAGE_MAP  = { home:'page-home', apropos:'page-apropos', bts:'page-bts', e5:'page-e5', e6:'page-e6', veille:'page-veille', entreprise:'page-entreprise', contact:'page-contact' };
-  const HASH_MAP  = { '#accueil':'home','#apropos':'apropos','#bts-sio':'bts','#epreuve-e5':'e5','#epreuve-e6':'e6','#veille':'veille','#entreprise':'entreprise','#contact':'contact' };
-  const PAGE_HASH = { home:'#accueil', apropos:'#apropos', bts:'#bts-sio', e5:'#epreuve-e5', e6:'#epreuve-e6', veille:'#veille', entreprise:'#entreprise', contact:'#contact' };
+  const PAGE_MAP  = {home:'page-home',apropos:'page-apropos',bts:'page-bts',e5:'page-e5',e6:'page-e6',veille:'page-veille',entreprise:'page-entreprise',contact:'page-contact'};
+  const HASH_MAP  = {'#accueil':'home','#apropos':'apropos','#bts-sio':'bts','#epreuve-e5':'e5','#epreuve-e6':'e6','#veille':'veille','#entreprise':'entreprise','#contact':'contact'};
+  const PAGE_HASH = {home:'#accueil',apropos:'#apropos',bts:'#bts-sio',e5:'#epreuve-e5',e6:'#epreuve-e6',veille:'#veille',entreprise:'#entreprise',contact:'#contact'};
 
-  function showPage(key) {
-    if(!PAGE_MAP[key]) key='home';
+  function showPage(key){
+    if(!PAGE_MAP[key])key='home';
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.getElementById(PAGE_MAP[key]).classList.add('active');
-    document.querySelectorAll('[data-page]').forEach(el=>{
-      el.classList.toggle('active', el.dataset.page===key);
-    });
+    document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.dataset.page===key));
     history.replaceState(null,'',PAGE_HASH[key]);
     window.scrollTo(0,0);
   }
 
-  document.addEventListener('click', e=>{
-    const el = e.target.closest('[data-page]');
-    if(!el) return;
+  document.addEventListener('click',e=>{
+    const el=e.target.closest('[data-page]');
+    if(!el)return;
     e.preventDefault();
     showPage(el.dataset.page);
     document.getElementById('mobileNav').classList.remove('open');
   });
 
-  window.addEventListener('hashchange',()=> showPage(HASH_MAP[window.location.hash]||'home'));
+  window.addEventListener('hashchange',()=>showPage(HASH_MAP[window.location.hash]||'home'));
   showPage(HASH_MAP[window.location.hash]||'home');
 
-  /* ── Burger ── */
-  document.getElementById('burger').addEventListener('click',()=>{
-    document.getElementById('mobileNav').classList.toggle('open');
-  });
+  document.getElementById('burger').addEventListener('click',()=>document.getElementById('mobileNav').classList.toggle('open'));
 </script>
 </body>
 </html>
