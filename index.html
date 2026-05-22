@@ -853,6 +853,114 @@
       </div>
     </div>
 
+
+    <!-- RP : TP LINUX ROUTAGE -->
+    <div class="card mt-2">
+      <div class="badge">Travaux Pratiques — Réseau</div>
+      <h3>Infrastructure Réseau Linux — Routage, DHCP &amp; NAT</h3>
+      <div class="info-block">
+        <h4>Objectif du projet</h4>
+        <p>
+          Conception et déploiement d'une infrastructure réseau virtualisée permettant à des
+          postes clients Windows et Linux d'accéder au réseau WAN via un routeur Linux Debian.
+          Le routeur central assure trois fonctions essentielles : attribution automatique
+          des adresses IP (DHCP), routage inter-réseaux et traduction d'adresses (NAT).
+        </p>
+      </div>
+      <p class="body-text">
+        L'infrastructure simule une architecture réseau d'entreprise avec deux LAN isolés
+        (Windows et Linux) communiquant via un routeur central Debian. Chaque client obtient
+        automatiquement ses paramètres réseau et peut accéder au WAN grâce au NAT masquerade
+        configuré sur l'interface WAN du routeur.
+      </p>
+      <div class="sub-heading">Environnement technique</div>
+      <ul class="slist">
+        <li><strong>Routeur :</strong> RTR-INFRA — Debian 13 — 3 interfaces réseau (WAN, LAN Windows, LAN Linux)</li>
+        <li><strong>LAN Windows :</strong> 172.20.47.0/24 — Poste client PC47 (Windows)</li>
+        <li><strong>LAN Linux :</strong> 172.20.57.0/24 — Poste client PC57 (Debian graphique)</li>
+        <li><strong>DHCP :</strong> isc-dhcp-server — plages .100 à .200 sur chaque LAN</li>
+        <li><strong>NAT :</strong> iptables MASQUERADE sur interface WAN (NAT VMware)</li>
+        <li><strong>Virtualisation :</strong> VMware Workstation — LAN Segments isolés</li>
+      </ul>
+      <div class="sub-heading">Étapes réalisées</div>
+      <ul class="slist">
+        <li><strong>Mise en place des VMs :</strong> création et configuration du routeur Debian 13 avec trois cartes réseau, postes clients Windows et Linux sur leurs segments LAN respectifs</li>
+        <li><strong>Configuration réseau :</strong> interfaces statiques sur le routeur (ens37 LAN Windows, ens38 LAN Linux), interface WAN en DHCP depuis VMware NAT</li>
+        <li><strong>Service DHCP :</strong> deux sous-réseaux configurés sur isc-dhcp-server avec plage d'adresses, passerelle et DNS (1.1.1.1 / 8.8.8.8) pour chaque LAN</li>
+        <li><strong>Routage IP &amp; NAT :</strong> activation du forwarding IPv4, règle iptables MASQUERADE pour masquer les IP privées vers le WAN</li>
+        <li><strong>Validation :</strong> attribution DHCP vérifiée sur les deux clients, tests de connectivité inter-LAN et vers le WAN</li>
+      </ul>
+      <div class="sub-heading">Compétences développées</div>
+      <ul class="slist">
+        <li>Configuration d'un routeur Linux multi-interfaces (Debian)</li>
+        <li>Déploiement et paramétrage d'un service DHCP (isc-dhcp-server)</li>
+        <li>Activation du routage IPv4 et mise en place du NAT avec iptables</li>
+        <li>Segmentation réseau et isolation des LAN sous VMware</li>
+        <li>Validation de la connectivité dans un environnement multi-réseaux</li>
+      </ul>
+      <div class="tags" style="margin-top:1.2rem;">
+        <span class="tag">Debian 13</span>
+        <span class="tag">Routage IP</span>
+        <span class="tag">DHCP — isc-dhcp-server</span>
+        <span class="tag">NAT — iptables</span>
+        <span class="tag">VMware Workstation</span>
+        <span class="tag">LAN Segmentation</span>
+        <span class="tag">Réseau multi-sites</span>
+      </div>
+      <div class="btn-row">
+        <a href="TP_Linux__Topologie_Routage.docx" target="_blank" class="btn">Voir la documentation (DOCX)</a>
+      </div>
+    </div>
+
+
+    <!-- RP : ANNONCE EXPRESS EN COURS -->
+    <div class="card mt-2" style="border-color:rgba(201,168,76,0.3); position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--gold), transparent);"></div>
+      <div class="badge" style="background:rgba(201,168,76,.15);">En cours — Projet scolaire</div>
+      <h3>AnnonceExpress — Site de Petites Annonces</h3>
+      <div class="info-block">
+        <h4>Objectif du projet</h4>
+        <p>
+          Développement d'un site web de petites annonces complet en PHP / MySQL permettant
+          la publication, la consultation, la modification et la suppression d'annonces.
+          Projet réalisé dans le cadre du BTS SIO avec hébergement local via XAMPP.
+        </p>
+      </div>
+      <p class="body-text">
+        AnnonceExpress implémente les quatre opérations CRUD fondamentales
+        (selectAll, insert, delete, update) via des requêtes préparées MySQLi,
+        avec une interface en PHP mêlé à HTML. Le projet est versionné sur GitHub Desktop
+        et hébergé localement sous XAMPP.
+      </p>
+      <div class="sub-heading">Environnement technique</div>
+      <ul class="slist">
+        <li><strong>Langage :</strong> PHP avec MySQLi — requêtes préparées (GET / POST)</li>
+        <li><strong>Base de données :</strong> MySQL — fichier bdd.sql</li>
+        <li><strong>Hébergement local :</strong> XAMPP — htdocs</li>
+        <li><strong>Versioning :</strong> GitHub Desktop</li>
+        <li><strong>Fichiers clés :</strong> index.php, modifier.php, bdd.sql</li>
+      </ul>
+      <div class="sub-heading">Fonctionnalités développées</div>
+      <ul class="slist">
+        <li>Affichage de toutes les annonces (selectAll)</li>
+        <li>Publication d'une nouvelle annonce (insert)</li>
+        <li>Modification d'une annonce existante (update)</li>
+        <li>Suppression d'une annonce (delete)</li>
+      </ul>
+      <div class="tags" style="margin-top:1.2rem;">
+        <span class="tag">PHP</span>
+        <span class="tag">MySQL — MySQLi</span>
+        <span class="tag">XAMPP</span>
+        <span class="tag">HTML / CSS</span>
+        <span class="tag">GitHub Desktop</span>
+        <span class="tag">CRUD</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:.6rem; margin-top:1.5rem; padding:.9rem 1.2rem; background:rgba(201,168,76,.06); border:1px solid rgba(201,168,76,.2); border-radius:7px;">
+        <span style="width:8px; height:8px; border-radius:50%; background:var(--gold); flex-shrink:0; box-shadow:0 0 0 3px rgba(201,168,76,.2); animation:pulse 2s ease infinite;"></span>
+        <span style="font-family:'DM Mono',monospace; font-size:.72rem; color:var(--gold); letter-spacing:.08em; text-transform:uppercase;">Projet en cours — Rendu prévu juin 2026</span>
+      </div>
+    </div>
+
   </div>
   <footer><p>&copy; 2026 Younes Fri — Portfolio <span>BTS SIO</span></p></footer>
 </div>
