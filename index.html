@@ -470,7 +470,7 @@
     <div class="proj-grid">
 
       <!-- OCS / GLPI -->
-      <a class="proj-card" href="ocs-glpi-documentation.pdf" target="_blank">
+      <div class="proj-card" data-proj="ocs">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
           <div class="proj-cat-pill">Gestion de parc</div>
           <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
@@ -492,10 +492,10 @@
           </div>
           <span class="proj-link">Voir la documentation →</span>
         </div>
-      </a>
+      </div>
 
       <!-- WINDOWS SERVER / AD -->
-      <a class="proj-card" href="Projet_AD_Final.docx" target="_blank">
+      <div class="proj-card" data-proj="ad">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1730,#0a1020)">
           <div class="proj-cat-pill">Administration système</div>
           <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
@@ -517,10 +517,10 @@
           </div>
           <span class="proj-link">Voir la documentation →</span>
         </div>
-      </a>
+      </div>
 
       <!-- HAPROXY -->
-      <a class="proj-card" href="Haproxy_projet.docx" target="_blank">
+      <div class="proj-card" data-proj="haproxy">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a20,#0a1318)">
           <div class="proj-cat-pill">Haute disponibilité</div>
           <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
@@ -543,10 +543,10 @@
           </div>
           <span class="proj-link">Voir la documentation →</span>
         </div>
-      </a>
+      </div>
 
       <!-- TP LINUX ROUTAGE -->
-      <a class="proj-card" href="TP_Linux__Topologie_Routage.docx" target="_blank">
+      <div class="proj-card" data-proj="linux">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1f0d,#0a1508)">
           <div class="proj-cat-pill">Réseau</div>
           <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
@@ -568,7 +568,7 @@
           </div>
           <span class="proj-link">Voir la documentation →</span>
         </div>
-      </a>
+      </div>
 
       <!-- ANNONCE EXPRESS EN COURS -->
       <div class="proj-card proj-card-wip">
@@ -851,5 +851,105 @@
 
   document.getElementById('burger').addEventListener('click',()=>document.getElementById('mobileNav').classList.toggle('open'));
 </script>
+
+<!-- ═══════════════ PROJECT DETAIL OVERLAY ═══════════════ -->
+<style>
+  /* OVERLAY */
+  .proj-overlay{
+    position:fixed;inset:0;z-index:2000;
+    background:rgba(7,10,18,.96);
+    backdrop-filter:blur(8px);
+    overflow-y:auto;
+    display:none;
+    animation:overlayIn .3s ease both;
+  }
+  .proj-overlay.open{display:block}
+  @keyframes overlayIn{from{opacity:0}to{opacity:1}}
+
+  .proj-detail{
+    max-width:900px;margin:0 auto;
+    padding:5rem 2rem 6rem;
+    animation:detailIn .35s ease both;
+  }
+  @keyframes detailIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  /* BACK BUTTON */
+  .back-btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-size:.82rem;font-weight:600;color:var(--muted);
+    background:transparent;border:none;cursor:pointer;
+    padding:.5rem 0;margin-bottom:2.5rem;
+    transition:color .2s;
+  }
+  .back-btn:hover{color:var(--blue-l)}
+  .back-btn svg{transition:transform .2s}
+  .back-btn:hover svg{transform:translateX(-3px)}
+
+  /* DETAIL HERO */
+  .det-hero{
+    background:var(--card);border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;margin-bottom:2rem;
+  }
+  .det-hero-thumb{
+    height:180px;display:flex;align-items:center;justify-content:center;
+    border-bottom:1px solid var(--border);
+  }
+  .det-hero-body{padding:2rem}
+  .det-cat{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-l);margin-bottom:.6rem}
+  .det-title{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--white);line-height:1.2;margin-bottom:.75rem}
+  .det-intro{font-size:.93rem;color:var(--muted);line-height:1.85;max-width:720px}
+
+  /* DETAIL SECTIONS */
+  .det-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;margin-bottom:1.5rem}
+  .det-section h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+
+  /* STEP TIMELINE */
+  .step-list{display:flex;flex-direction:column;gap:1.1rem;margin-top:.5rem}
+  .step-item{display:flex;gap:1.1rem;align-items:flex-start}
+  .step-num{
+    flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.35);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;color:var(--blue-l);
+    margin-top:.1rem;
+  }
+  .step-content .step-title{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.2rem}
+  .step-content .step-desc{font-size:.82rem;color:var(--muted);line-height:1.7}
+
+  /* ENV GRID */
+  .env-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-top:.5rem}
+  .env-item{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem}
+  .env-key{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+  .env-val{font-size:.85rem;font-weight:600;color:var(--text)}
+
+  /* SKILLS PILLS */
+  .skills-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem}
+  .skill-pill{
+    display:flex;align-items:center;gap:.5rem;
+    background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);
+    border-radius:6px;padding:.45rem .9rem;
+    font-size:.8rem;font-weight:500;color:var(--blue-l);
+  }
+  .skill-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue-l);flex-shrink:0}
+
+  /* DOWNLOAD BTN */
+  .det-dl-btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    background:var(--blue);color:#fff;
+    border-radius:8px;padding:.75rem 1.6rem;
+    font-weight:600;font-size:.85rem;
+    transition:background .2s,transform .2s;
+    margin-top:1.5rem;
+  }
+  .det-dl-btn:hover{background:var(--blue-l);transform:translateY(-2px)}
+</style>
+
+<div class="proj-overlay" id="projOverlay">
+  <div class="proj-detail" id="projDetail">
+    <!-- content injected by JS -->
+  </div>
+</div>
+
 </body>
 </html>
