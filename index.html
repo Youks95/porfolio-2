@@ -649,59 +649,101 @@
 
     <div class="info-block mt-2">
       <h4>Périmètre des réalisations présentées</h4>
-      <p>Analyse des risques sur le parc informatique, sécurisation des accès réseau, mise en conformité avec les bonnes pratiques ANSSI, et étude des journaux système pour la détection d'anomalies.</p>
+      <p>Les deux réalisations ci-dessous s'appuient sur le même projet de déploiement Windows Server 2019, scindé en deux situations professionnelles distinctes : la mise en place du contrôleur de domaine et la sécurisation des accès d'une part, l'automatisation et le pilotage de l'infrastructure d'autre part.</p>
     </div>
 
-    <div class="sub-h mt-3" style="font-size:.8rem">Mes 2 réalisations professionnelles — Volet sécurité</div>
-    <div class="proj-grid">
+    <!-- ═══ RÉALISATIONS E6 — style liste verticale ═══ -->
+    <style>
+      .real-list{display:flex;flex-direction:column;gap:1.75rem;margin-top:1.75rem}
+      .real-item{
+        background:var(--card);border:1px solid var(--border);
+        border-radius:var(--radius);overflow:hidden;
+      }
+      .real-thumb{
+        height:170px;display:flex;align-items:center;justify-content:center;
+        border-bottom:1px solid var(--border);position:relative;
+      }
+      .real-body{padding:1.75rem 2rem}
+      .real-num{
+        display:inline-flex;align-items:center;gap:.5rem;
+        font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+        color:var(--blue-l);margin-bottom:.6rem;
+      }
+      .real-num::before{content:'';width:20px;height:2px;background:var(--blue-l)}
+      .real-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);line-height:1.35;margin-bottom:.9rem}
+      .real-desc{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:1.1rem}
+      .real-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.3rem}
+      .real-links{display:flex;gap:1rem;flex-wrap:wrap}
+      .real-link{
+        display:inline-flex;align-items:center;gap:.45rem;
+        font-size:.82rem;font-weight:600;color:var(--blue-l);
+        border:1px solid rgba(59,130,246,.3);border-radius:7px;
+        padding:.55rem 1.1rem;transition:background .2s,gap .2s;
+      }
+      .real-link:hover{background:rgba(59,130,246,.08);gap:.65rem}
+    </style>
 
-      <!-- OCS / GLPI -->
-      <a class="proj-card" href="ocs-glpi-documentation.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
-          <div class="proj-cat-pill">Gestion de parc &amp; sécurité</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <rect x="8" y="16" width="52" height="36" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
-            <path d="M18 28h32M18 36h20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="50" cy="36" r="5" stroke="#3b82f6" stroke-width="1.5"/>
-            <path d="M34 52v6M24 58h20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Administration OCS-NG Inventory &amp; GLPI</div>
-          <div class="proj-desc">Sécurisation des accès au serveur Debian, durcissement des droits sur les fichiers sensibles et gestion des mots de passe pour la solution ITSM.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">Sécurisation Apache2</span>
-            <span class="proj-tag">Droits fichiers</span>
-            <span class="proj-tag">Comptes & mots de passe</span>
-            <span class="proj-tag">MariaDB</span>
-          </div>
-          <span class="proj-link">Voir la documentation →</span>
-        </div>
-      </a>
+    <div class="sub-h mt-3" style="font-size:.8rem">Mes 2 réalisations professionnelles</div>
+    <div class="real-list">
 
-      <!-- WINDOWS SERVER / AD -->
-      <a class="proj-card" href="Projet_AD_Final.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1730,#0a1020)">
-          <div class="proj-cat-pill">Sécurité du domaine</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
+      <!-- RÉALISATION N°1 -->
+      <div class="real-item">
+        <div class="real-thumb" style="background:linear-gradient(135deg,#0d1730,#0a1020)">
+          <svg width="80" height="80" viewBox="0 0 68 68" fill="none">
             <circle cx="34" cy="26" r="10" stroke="#3b82f6" stroke-width="1.8"/>
             <circle cx="16" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
             <circle cx="52" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
             <path d="M34 36v8M34 44l-12 6M34 44l12 6" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="proj-body">
-          <div class="proj-title">Windows Server 2019 — Politique d'audit &amp; Sécurité AD</div>
-          <div class="proj-desc">Stratégie de mots de passe, verrouillage de compte après tentatives échouées, politique d'audit avancée et traçabilité des événements de sécurité du domaine.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">Politique d'audit</span>
-            <span class="proj-tag">Verrouillage de compte</span>
-            <span class="proj-tag">GPO Sécurité</span>
-            <span class="proj-tag">Active Directory</span>
+        <div class="real-body">
+          <div class="real-num">Réalisation n°1</div>
+          <div class="real-title">Mise en place d'un contrôleur de domaine sécurisé et politique de sécurité des comptes</div>
+          <div class="real-desc">
+            Déploiement d'Active Directory Domain Services sur Windows Server 2019 : promotion en contrôleur de domaine, configuration DNS, gestion des utilisateurs et des groupes. Mise en place d'une politique de sécurité des comptes — stratégie de mots de passe robuste (longueur, complexité, historique), verrouillage automatique après tentatives échouées — afin de réduire la surface d'attaque sur les comptes du domaine.
           </div>
-          <span class="proj-link">Voir la documentation →</span>
+          <div class="real-tags">
+            <span class="tag">Active Directory DS</span>
+            <span class="tag">Windows Server 2019</span>
+            <span class="tag">Politique de mots de passe</span>
+            <span class="tag">Verrouillage de compte</span>
+            <span class="tag">DNS</span>
+          </div>
+          <div class="real-links">
+            <a href="Projet_AD_Final.pdf" target="_blank" class="real-link">Fiche réalisation →</a>
+            <a href="Projet_AD_Final.pdf" target="_blank" class="real-link">Fiche TP →</a>
+          </div>
         </div>
-      </a>
+      </div>
+
+      <!-- RÉALISATION N°2 -->
+      <div class="real-item">
+        <div class="real-thumb" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
+          <svg width="80" height="80" viewBox="0 0 68 68" fill="none">
+            <rect x="10" y="14" width="48" height="40" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
+            <path d="M20 26h28M20 34h20M20 42h14" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="50" cy="44" r="3" fill="#3b82f6"/>
+          </svg>
+        </div>
+        <div class="real-body">
+          <div class="real-num">Réalisation n°2</div>
+          <div class="real-title">Audit, automatisation PowerShell et pilotage des stratégies de groupe (GPO)</div>
+          <div class="real-desc">
+            Configuration d'une politique d'audit avancée pour assurer la traçabilité des connexions, des accès aux objets et de la gestion des comptes du domaine. Automatisation des tâches d'administration via des scripts PowerShell (création d'utilisateurs depuis un fichier CSV, génération de rapports). Déploiement et test de stratégies de groupe (GPO) — héritage, blocage, Enforcer — pour homogénéiser et sécuriser la configuration du parc.
+          </div>
+          <div class="real-tags">
+            <span class="tag">Politique d'audit</span>
+            <span class="tag">PowerShell 5.1</span>
+            <span class="tag">GPO — Stratégies de groupe</span>
+            <span class="tag">Traçabilité & logs</span>
+            <span class="tag">Active Directory</span>
+          </div>
+          <div class="real-links">
+            <a href="Projet_AD_Final.pdf" target="_blank" class="real-link">Fiche réalisation →</a>
+            <a href="Projet_AD_Final.pdf" target="_blank" class="real-link">Fiche TP →</a>
+          </div>
+        </div>
+      </div>
 
     </div>
 
