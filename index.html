@@ -414,10 +414,7 @@ footer a{color:var(--primary);font-weight:600}
           <div><b>Nom :</b> Bernard Controls</div>
           <div><b>Activité :</b> actionneurs électriques</div>
           <div><b>Site de mon alternance :</b> Gonesse (95)</div>
-          <div><b>Création :</b> <span class="ph">à compléter</span></div>
-          <div><b>Siège social :</b> <span class="ph">à compléter</span></div>
-          <div><b>Effectif :</b> <span class="ph">à compléter</span></div>
-          <div><b>Direction :</b> <span class="ph">à compléter</span></div>
+          <div><b>Siège social :</b> Gonesse (95)</div>
         </div>
       </div>
     </div>
@@ -466,9 +463,9 @@ footer a{color:var(--primary);font-weight:600}
 
 <script>
 /* ===== A MODIFIER : coordonnées (laisser vide tant que non renseigné) ===== */
-const EMAIL = "";
-const TEL = "";
-const LINKEDIN = "";
+const EMAIL = "fri.younesfri95@gmail.com";
+const TEL = "07 66 03 43 49";
+const LINKEDIN = "https://www.linkedin.com/in/younes-fri-54a6773b1/";
 /* ========================================================================= */
 
 const DEFAULT_TITLE = document.title;
@@ -630,12 +627,7 @@ const D = {
            {id:'p4',x:488,y:228,w:136,h:52,t:'Entreprise',tone:'green'},
            {id:'p5',x:644,y:228,w:136,h:52,t:'Veille',tone:'green'}],
     edges:[{a:'gh',b:'idx',label:'publication',arrow:true},
-           ...['p1','p2','p3','p4','p5'].map(x=>({a:'idx',b:x,dash:true,tone:'green'}))]},
-  bot:{w:800,h:220,label:'Fonctionnement du bot : serveur Discord, bot et API Riot Games',
-    nodes:[{id:'dis',x:30,y:70,w:200,h:70,t:'Serveur Discord',s:'commandes, alertes',tone:'blue'},
-           {id:'bot',x:300,y:70,w:200,h:70,t:'Bot LoL',s:'calcul des scores',tone:'green'},
-           {id:'riot',x:570,y:70,w:200,h:70,t:'API Riot Games',s:'parties, rangs',tone:'orange'}],
-    edges:[{a:'dis',b:'bot',both:true,tone:'blue'},{a:'bot',b:'riot',label:'requêtes',arrow:true,tone:'orange'}]}
+           ...['p1','p2','p3','p4','p5'].map(x=>({a:'idx',b:x,dash:true,tone:'green'}))]}
 };
 
 /* ---------- Donnees ---------- */
@@ -687,7 +679,7 @@ const PROJECTS = {
       ["Diagnostic des GPO :","analyse des stratégies réellement appliquées avec rsop.msc et gpresult."]],
     tech:['Windows Server 2019','AD DS','DNS','PowerShell 5.1','GPMC','Windows 10 Pro'],
     info:[['Type','Projet de synthèse'],['Auteur','Younes FRI'],['Année','2025 - 2026'],['Statut','Terminé']],
-    resources:[['Voir le rapport PDF','Projet_AD_Final.pdf'],['Voir les réalisations E6','#e6']]},
+    resources:[['Voir le rapport PDF','Projet_AD_Final%20(2).pdf'],['Voir les réalisations E6','#e6']]},
 
   ocs:{section:'formation', cat:'Gestion de parc', card:'Administration OCS/GLPI',
     summary:"Inventaire automatique avec OCS Inventory NG et gestion de parc avec GLPI sur un serveur Debian.",
@@ -759,22 +751,8 @@ const PROJECTS = {
       ["Déploiement :","mise en ligne et mises à jour via un dépôt GitHub et GitHub Pages."]],
     tech:['HTML5','CSS3','JavaScript','GitHub Pages'],
     info:[['Type','Personnel'],['Auteur','Younes FRI'],['Année','2026'],['Statut','En ligne']],
-    resText:"Consulter le code source du site.",
-    resources:[['Voir le dépôt GitHub','https://github.com/Youks95/porfolio-2']]},
-
-  bot:{section:'perso', cat:'Développement', card:'Bot Discord League of Legends',
-    summary:"Bot pour mon serveur Discord : rangs, dernières parties, alertes de partie et désignation du meilleur joueur.",
-    tags:['Discord','API Riot Games'], type:'Projet personnel', date:'2026',
-    title:'Bot Discord League of Legends',
-    overview:["Développement d'un bot pour le serveur Discord que je partage avec mes amis, qui jouent beaucoup à League of Legends.",
-      "Le bot interroge l'API de Riot Games pour suivre les joueurs du serveur et animer la communauté."],
-    features:[['users',"Profil et rang des joueurs"],['clock',"Résumé de la dernière partie"],['bell',"Alertes quand un joueur lance une partie"],['award',"Meilleur joueur de la partie et hall of shame"]],
-    challenges:[["Désigner le meilleur joueur :","score basé sur le KDA, les dégâts, la participation aux kills, la vision et le farm, pas seulement sur les kills."],
-      ["Évolution prévue :","pondérer selon l'écart avec l'adversaire direct et tenir compte des morts causées par le jungler adverse."],
-      ["À venir :","choix de composition, statistiques de groupe, quiz et économie du serveur."]],
-    tech:['Discord','API Riot Games'],
-    info:[['Type','Personnel'],['Auteur','Younes FRI'],['Statut','En cours']],
-    resources:[]}
+    resText:"Consulter le site en ligne et son code source.",
+    resources:[['Visiter le site','https://youks95.github.io/porfolio-2/'],['Voir le dépôt GitHub','https://github.com/Youks95/porfolio-2']]}
 };
 const ORDER = Object.keys(PROJECTS);
 
@@ -782,11 +760,11 @@ const E6 = [
   {cat:'Réalisation n°1', title:'Contrôleur de domaine et politique de sécurité des comptes',
    text:"Installation d'un contrôleur de domaine Windows Server 2019 et mise en place d'une politique de sécurité des comptes.",
    tags:['Active Directory','Windows Server 2019','Sécurité des comptes'],
-   links:[['Fiche réalisation','Fiche_Realisation_1_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf'],['Présentation du projet','#projet-ad']]},
+   links:[['Fiche réalisation','Fiche_Realisation_1_Younes_Fri.pdf'],['Documentation','Projet_AD_Final%20(2).pdf'],['Présentation du projet','#projet-ad']]},
   {cat:'Réalisation n°2', title:'Audit, PowerShell et GPO',
    text:"Audit de l'annuaire, scripts PowerShell et stratégies de groupe pour administrer et sécuriser le parc.",
    tags:['Active Directory','PowerShell','GPO'],
-   links:[['Fiche réalisation','Fiche_Realisation_2_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf'],['Présentation du projet','#projet-ad']]}
+   links:[['Fiche réalisation','Fiche_Realisation_2_Younes_Fri.pdf'],['Documentation','Projet_AD_Final%20(2).pdf'],['Présentation du projet','#projet-ad']]}
 ];
 
 const VEILLE_PLACEHOLDER = [
