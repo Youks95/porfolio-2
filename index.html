@@ -21,6 +21,8 @@ img{max-width:100%}
 ::-webkit-scrollbar-track{background:#f1f1f1}
 ::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#profil,#contact{scroll-margin-top:66px}
+[id^="sec-"]{scroll-margin-top:96px}
 
 /* En-tete */
 header{position:sticky;top:0;z-index:50;background:rgba(26,26,46,.95);backdrop-filter:blur(6px);box-shadow:0 20px 25px -5px rgba(0,0,0,.2)}
@@ -132,6 +134,8 @@ form input:focus,form textarea:focus{outline:2px solid var(--primary);border-col
 .thumb{height:192px;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff}
 .thumb .icon{font-size:3.5rem;color:#5aa9ff;stroke-width:1.5}
 .thumb span{font-size:.8rem;opacity:.7;letter-spacing:.04em}
+.thumb.diag{background:#fff;border-bottom:1px solid var(--gray-200);padding:12px}
+.thumb.diag svg{width:100%;height:100%}
 .card-body{padding:24px;display:flex;flex-direction:column;flex:1}
 .cat{font-size:.75rem;font-weight:700;text-transform:uppercase;color:var(--primary)}
 .card h3{font-size:1.25rem;font-weight:700;margin:8px 0 12px}
@@ -139,11 +143,10 @@ form input:focus,form textarea:focus{outline:2px solid var(--primary);border-col
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .tag{padding:4px 8px;background:var(--gray-100);font-size:.75rem;border-radius:4px}
 .links{display:flex;flex-direction:column;gap:6px}
-.links a{color:var(--primary);font-weight:600}
-.links a:hover{text-decoration:underline}
+.links a,.card .more{color:var(--primary);font-weight:600}
+.links a:hover,a.card:hover .more{text-decoration:underline}
 .links .none{color:var(--gray-600);font-size:.875rem}
 .status{display:inline-block;font-size:.75rem;font-weight:700;background:#fff3cd;color:#856404;border-radius:9999px;padding:2px 10px;margin-left:8px;text-transform:none}
-.sub-block{margin-top:8px}
 
 /* E6 / Entreprise / Veille */
 .obj{margin:0 0 24px;padding-left:20px;font-size:1.125rem}
@@ -159,12 +162,66 @@ form input:focus,form textarea:focus{outline:2px solid var(--primary);border-col
 @media(max-width:1000px){.tools{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.tools{grid-template-columns:1fr}}
 .tool{background:#fff;border-radius:12px;padding:24px;border:1px solid var(--gray-200);box-shadow:0 4px 6px -1px rgba(0,0,0,.08)}
-.tool .badge{width:44px;height:44px;border-radius:10px;background:#eff6ff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
+.tool .badge-t{width:44px;height:44px;border-radius:10px;background:#eff6ff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
 .tool h3{margin:0 0 8px;font-size:1.125rem}
 .tool p{margin:0 0 12px;font-size:.9rem;color:var(--gray-600)}
 .tool a{color:var(--primary);font-weight:600;font-size:.875rem}
 .back{text-align:center;margin:0 0 64px}
 .back a{color:var(--primary);font-weight:600}
+
+/* Page projet (theme sombre, comme les pages projet de la reference) */
+.pj{background:#0B1120;color:#E2E8F0}
+.pj-in{padding-top:28px;padding-bottom:64px}
+.pj-back{display:inline-flex;align-items:center;gap:8px;color:#94A3B8;font-weight:600;margin-bottom:20px}
+.pj-back:hover{color:#fff}
+.pj-hero{background:#fff;border-radius:12px;padding:20px;border:1px solid #2D3748;margin-bottom:30px}
+.pj-hero svg{display:block;width:100%;height:auto;max-height:400px}
+.pj-meta{display:flex;gap:10px;margin-bottom:15px;font-size:.9rem;font-weight:600;flex-wrap:wrap}
+.badge{padding:5px 12px;border-radius:6px;background:#1E293B;color:#3B82F6;display:inline-flex;align-items:center;gap:6px}
+.badge.date{color:#94A3B8}
+.pj h1{font-size:2.5rem;font-weight:700;margin:0 0 40px;color:#fff;line-height:1.15}
+.pj-grid{display:grid;grid-template-columns:2fr 1fr;gap:30px;margin-bottom:50px}
+.pj h2{font-size:1.25rem;margin:0 0 15px;color:#fff;border-bottom:2px solid #1E293B;padding-bottom:10px;display:inline-block}
+.pj-block{margin-bottom:40px}
+.pj-block p{color:#94A3B8;margin:0 0 16px;text-align:justify}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.feat{background:#0F1623;padding:15px;border-radius:8px;display:flex;align-items:center;gap:12px;border:1px solid #1E293B;transition:transform .2s,border-color .2s}
+.feat:hover{transform:translateY(-2px);border-color:#3B82F6}
+.feat .icon{color:#10B981;font-size:1.15rem}
+.feat span{font-size:.9rem;font-weight:500}
+.chal-list{display:flex;flex-direction:column;gap:15px}
+.chal{background:linear-gradient(90deg,rgba(30,41,59,.5),rgba(15,23,42,0));padding:15px;border-radius:8px;display:flex;align-items:center;gap:15px;border:1px solid #1E293B;border-left:4px solid #F59E0B}
+.chal .ico{color:#F59E0B;background:rgba(245,158,11,.1);border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chal span{font-size:.92rem;color:#CBD5E1}
+.chal strong{color:#fff}
+.pj-side{display:flex;flex-direction:column;gap:20px}
+.side-card{background:#151E32;padding:20px;border-radius:12px;border:1px solid #2D3748}
+.side-card h2 .icon{color:#3B82F6;font-size:1rem;margin-right:6px}
+.tech-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.tech{background:#172554;color:#60A5FA;padding:5px 12px;border-radius:6px;font-size:.8rem;font-weight:600;border:1px solid #1E3A8A}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.lab{font-size:.85rem;color:#94A3B8}
+.val{font-weight:600;font-size:.95rem;color:#fff;text-align:right}
+.val.done{color:#10B981;background:rgba(16,185,129,.1);padding:2px 8px;border-radius:4px;font-size:.8rem}
+.val.prog{color:#F59E0B;background:rgba(245,158,11,.1);padding:2px 8px;border-radius:4px;font-size:.8rem}
+.side-card p{color:#94A3B8;font-size:.9rem;margin:0 0 10px}
+.cta{display:block;width:100%;background:#3B82F6;color:#fff;text-align:center;padding:12px;border-radius:8px;font-weight:600;margin-top:15px;transition:background .2s}
+.cta:hover{background:#2563EB}
+.cta.cta2{background:transparent;border:1px solid #3B82F6;color:#60A5FA;margin-top:10px}
+.cta.cta2:hover{background:rgba(59,130,246,.12)}
+.pj .other-h{font-size:1.5rem;border:0;border-left:4px solid var(--accent);padding:0 0 0 16px;margin:16px 0 24px;display:block}
+.other-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.other{display:block;background:#151E32;border-radius:12px;overflow:hidden;border:1px solid #374151;transition:transform .3s,border-color .3s}
+.other:hover{transform:translateY(-4px);border-color:var(--primary)}
+.other .othumb{height:160px;background:#fff;padding:10px}
+.other .othumb svg{width:100%;height:100%}
+.other .ob{padding:20px}
+.other h3{font-size:1.125rem;font-weight:700;color:#fff;margin:0 0 8px;transition:color .2s}
+.other:hover h3{color:#3B82F6}
+.other p{font-size:.875rem;color:#9CA3AF;margin:0 0 12px}
+.otags{display:flex;gap:8px;flex-wrap:wrap}
+.otags span{font-size:.75rem;background:#1F2937;color:#93C5FD;padding:4px 8px;border-radius:4px}
+@media(max-width:768px){.pj-grid,.feat-grid,.other-grid{grid-template-columns:1fr}.pj h1{font-size:1.9rem;margin-bottom:28px}.pj-hero{padding:10px}.pj-block p{text-align:left}}
 
 footer{background:var(--dark);color:#fff;padding:40px 0;text-align:center}
 footer p{margin:4px 0;opacity:.85}
@@ -215,15 +272,15 @@ footer a{color:var(--primary);font-weight:600}
         <div class="stack gap-24">
           <div class="panel">
             <h3>À propos de moi</h3>
-            <p>Étudiant en <strong>BTS SIO</strong> option <strong>SISR</strong> à l'école IRIS à Paris. Passionné par l'<strong>informatique</strong>, les <strong>infrastructures réseaux</strong> et l'<strong>administration système</strong>.</p>
+            <p>Actuellement étudiant en deuxième année de <strong>BTS SIO</strong> option <strong>SISR</strong> à l'école IRIS à Paris. Passionné par l'<strong>informatique</strong>, les <strong>infrastructures réseaux</strong> et l'<strong>administration système</strong>.</p>
             <p>Mon alternance chez Bernard Controls me permet de mettre en pratique mes compétences en support utilisateur, en gestion de parc et en administration de serveurs.</p>
             <p>Cette expérience renforce mon sens de l'organisation, mon autonomie et mon travail d'équipe.</p>
           </div>
           <div class="two-panels">
             <div class="panel green">
-              <div class="head"><span id="ic-book"></span><h3>Formation</h3></div>
+              <div class="head"><span id="ic-book" style="display:flex"></span><h3>Formation</h3></div>
               <ul>
-                <li><strong>BTS SIO SISR</strong> (en cours) – IRIS Paris</li>
+                <li><strong>BTS SIO SISR</strong> (2025 - Aujourd'hui) – IRIS Paris</li>
               </ul>
             </div>
             <div class="panel blue">
@@ -305,18 +362,21 @@ footer a{color:var(--primary);font-weight:600}
       <div class="center" style="margin-top:24px"><a class="btn-dl" href="E5_Tableau_de_synthese.pdf" download><span id="ic-dl-e5" style="display:flex"></span>Télécharger mon Tableau de synthèse (PDF)</a></div>
     </div>
 
-    <h2 class="h2-left">Réalisations en cours de formation</h2>
+    <h2 class="h2-left" id="sec-formation">Réalisations en cours de formation</h2>
     <div class="cards" id="cards-formation"></div>
 
-    <h2 class="h2-left">Réalisations en milieu professionnel</h2>
+    <h2 class="h2-left" id="sec-pro">Réalisations en milieu professionnel</h2>
     <div class="cards" id="cards-pro"></div>
 
-    <h2 class="h2-left">Projets personnels</h2>
+    <h2 class="h2-left" id="sec-perso">Projets personnels</h2>
     <div class="cards" id="cards-perso"></div>
 
     <div class="back"><a href="#accueil">Retour à l'accueil</a></div>
   </div>
 </main>
+
+<!-- PAGE PROJET (contenu genere par renderProject) -->
+<main id="page-projet" class="page pj"></main>
 
 <!-- E6 -->
 <main id="page-e6" class="page">
@@ -330,7 +390,7 @@ footer a{color:var(--primary);font-weight:600}
         <li><strong>Mise en œuvre :</strong> déployer et configurer les services sur Windows Server (Active Directory, GPO).</li>
         <li><strong>Exploitation :</strong> auditer, automatiser avec PowerShell et sécuriser les comptes.</li>
       </ul>
-      <p>Les deux réalisations ci-dessous sont issues de mon projet Active Directory sous Windows Server 2019.</p>
+      <p>Les deux réalisations ci-dessous sont issues de mon <a href="#projet-ad" style="color:var(--primary);font-weight:600">projet Active Directory sous Windows Server 2019</a>.</p>
     </div>
     <h2 class="h2-left">Les réalisations en cours de formation</h2>
     <div class="cards two" id="cards-e6"></div>
@@ -364,8 +424,8 @@ footer a{color:var(--primary);font-weight:600}
     <h2 class="h2-left">Localisation</h2>
     <div class="map" style="margin:0 0 64px"><iframe title="Localisation de Bernard Controls" loading="lazy" style="height:380px" src="https://www.google.com/maps?q=Bernard+Controls+Gonesse&output=embed"></iframe></div>
     <h2 class="h2-left">Projets professionnels</h2>
-    <p style="font-size:1.125rem;margin:0 0 24px">Les réalisations menées en entreprise sont présentées sur la page E5.</p>
-    <p style="margin:0 0 80px"><a class="btn-dl" href="#e5">Voir mes projets professionnels</a></p>
+    <p style="font-size:1.125rem;margin:0 0 24px">Découvrez les réalisations menées pendant mon alternance.</p>
+    <p style="margin:0 0 80px"><a class="btn-dl" href="#e5" data-section="sec-pro">Voir mes projets professionnels</a></p>
   </div>
 </main>
 
@@ -411,9 +471,11 @@ const TEL = "";
 const LINKEDIN = "";
 /* ========================================================================= */
 
+const DEFAULT_TITLE = document.title;
+
+/* ---------- Icones (traces Feather) ---------- */
 const P = {
   menu:'<line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>',
-  x:'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
   download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
   eye:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
   mail:'<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
@@ -425,7 +487,6 @@ const P = {
   shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
   monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
   zap:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
-  music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
   target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
   terminal:'<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>',
   users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
@@ -435,109 +496,400 @@ const P = {
   layers:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
   lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
   file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
-  rss:'<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>'
+  rss:'<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>',
+  globe:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+  shuffle:'<polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/>',
+  repeat:'<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>',
+  activity:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',
+  bar:'<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+  branch:'<line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/>',
+  network:'<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>',
+  image:'<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>',
+  grid:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>',
+  cpu:'<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>',
+  drive:'<line x1="22" y1="12" x2="2" y2="12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/>',
+  key:'<path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>',
+  clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  bell:'<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+  award:'<circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>',
+  calendar:'<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+  left:'<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>',
+  tool:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>',
+  info:'<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>',
+  link:'<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>'
 };
 const ic = (n,extra='') => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${P[n]}</svg>`;
 const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+
+/* ---------- Schemas d'architecture (SVG generes) ---------- */
+const TONES = {blue:'#0066CC',green:'#00A651',orange:'#D97706',red:'#DC2626',gray:'#64748B'};
+let SVG_N = 0;
+function diagram(d){
+  const n = ++SVG_N, byId = {}, T = t => TONES[t||'gray'];
+  d.nodes.forEach(o => byId[o.id] = o);
+  const defs = '<defs>' + Object.entries(TONES).map(([k,c]) =>
+    `<marker id="m${n}${k}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${c}"/></marker>`).join('') + '</defs>';
+  const zones = (d.zones||[]).map(o =>
+    `<rect x="${o.x}" y="${o.y}" width="${o.w}" height="${o.h}" rx="14" fill="${T(o.tone)}" fill-opacity=".06" stroke="${T(o.tone)}" stroke-opacity=".55" stroke-dasharray="6 5"/>` +
+    `<text x="${o.x+14}" y="${o.y+22}" font-size="13" font-weight="700" fill="${T(o.tone)}">${esc(o.label)}</text>`).join('');
+  const clip = (a,tx,ty) => {
+    const cx=a.x+a.w/2, cy=a.y+a.h/2, dx=tx-cx, dy=ty-cy;
+    const sx = dx ? (a.w/2)/Math.abs(dx) : Infinity, sy = dy ? (a.h/2)/Math.abs(dy) : Infinity, s = Math.min(sx,sy);
+    return [cx+dx*s, cy+dy*s];
+  };
+  let lines = '', labels = '';
+  (d.edges||[]).forEach(o => {
+    const A=byId[o.a], B=byId[o.b], c=T(o.tone), tone=o.tone||'gray';
+    const p1 = clip(A, B.x+B.w/2, B.y+B.h/2), p2 = clip(B, A.x+A.w/2, A.y+A.h/2);
+    lines += `<line x1="${p1[0].toFixed(1)}" y1="${p1[1].toFixed(1)}" x2="${p2[0].toFixed(1)}" y2="${p2[1].toFixed(1)}" stroke="${c}" stroke-width="2"${o.dash?' stroke-dasharray="6 5"':''}${o.arrow||o.both?` marker-end="url(#m${n}${tone})"`:''}${o.both?` marker-start="url(#m${n}${tone})"`:''}/>`;
+    if(o.label){
+      const mx=(p1[0]+p2[0])/2, my=(p1[1]+p2[1])/2, w=o.label.length*6.4+14;
+      labels += `<rect x="${(mx-w/2).toFixed(1)}" y="${(my-10).toFixed(1)}" width="${w.toFixed(1)}" height="20" rx="4" fill="#fff" stroke="${c}" stroke-opacity=".4"/>` +
+                `<text x="${mx.toFixed(1)}" y="${(my+4).toFixed(1)}" font-size="11.5" text-anchor="middle" fill="#334155">${esc(o.label)}</text>`;
+    }
+  });
+  const nodes = d.nodes.map(o => {
+    const c=T(o.tone), sub=(o.s||'').split('\n').filter(Boolean), cx=o.x+o.w/2;
+    const y0 = o.y + o.h/2 - sub.length*15/2 + 5;
+    let t = `<text x="${cx}" y="${y0}" font-size="14.5" font-weight="700" text-anchor="middle" fill="#0F172A">${esc(o.t)}</text>`;
+    sub.forEach((l,i) => t += `<text x="${cx}" y="${y0+17+i*15}" font-size="12" text-anchor="middle" fill="#475569">${esc(l)}</text>`);
+    return `<rect x="${o.x}" y="${o.y}" width="${o.w}" height="${o.h}" rx="10" fill="#fff" stroke="${c}" stroke-width="2"${o.dash?' stroke-dasharray="6 4"':''}/>${t}`;
+  }).join('');
+  return `<svg viewBox="0 0 ${d.w} ${d.h}" role="img" aria-label="${esc(d.label)}" preserveAspectRatio="xMidYMid meet" font-family="system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">${defs}${zones}${lines}${nodes}${labels}</svg>`;
+}
+
+const D = {
+  linux:{w:800,h:380,label:"Schéma de l'infrastructure : routeur RTR-INFRA reliant le WAN et deux réseaux locaux",
+    zones:[{x:250,y:12,w:300,h:84,label:'WAN',tone:'gray'},
+           {x:20,y:250,w:350,h:118,label:'LAN Windows – 172.20.47.0/24',tone:'blue'},
+           {x:430,y:250,w:350,h:118,label:'LAN Linux – 172.20.57.0/24',tone:'green'}],
+    nodes:[{id:'wan',x:310,y:40,w:180,h:46,t:'NAT VMware',tone:'gray'},
+           {id:'rtr',x:280,y:138,w:240,h:68,t:'RTR-INFRA',s:'Debian 13 – DHCP, routage, NAT',tone:'orange'},
+           {id:'pc47',x:105,y:290,w:180,h:62,t:'PC47',s:'Client Windows (DHCP)',tone:'blue'},
+           {id:'pc57',x:515,y:290,w:180,h:62,t:'PC57',s:'Client Debian (DHCP)',tone:'green'}],
+    edges:[{a:'rtr',b:'wan',label:'ens33 (DHCP)'},{a:'rtr',b:'pc47',label:'ens37 – .254',tone:'blue'},{a:'rtr',b:'pc57',label:'ens38 – .254',tone:'green'}]},
+  haproxy:{w:800,h:420,label:'Schéma HAProxy et Heartbeat : VIP, deux load balancers et deux serveurs web',
+    zones:[{x:12,y:12,w:776,h:170,label:'WAN – 192.168.0.0/24',tone:'blue'},
+           {x:12,y:240,w:776,h:168,label:'LAN – 172.20.0.0/24',tone:'green'}],
+    nodes:[{id:'cli',x:40,y:62,w:170,h:58,t:'CLI-01',s:'Client Windows – .100',tone:'blue'},
+           {id:'vip',x:315,y:44,w:170,h:52,t:'VIP 192.168.0.10',s:'portée par Heartbeat',tone:'orange'},
+           {id:'h1',x:170,y:156,w:190,h:66,t:'HAProxy1',s:'Nœud actif\nWAN .11 – LAN .11',tone:'blue'},
+           {id:'h2',x:440,y:156,w:190,h:66,t:'HAProxy2',s:'Nœud de secours\nWAN .12 – LAN .12',tone:'gray',dash:true},
+           {id:'w1',x:170,y:326,w:190,h:62,t:'SERV-WEB1',s:'Apache2 / PHP – .21',tone:'green'},
+           {id:'w2',x:440,y:326,w:190,h:62,t:'SERV-WEB2',s:'Apache2 / PHP – .22',tone:'green'}],
+    edges:[{a:'cli',b:'vip',label:'HTTP',arrow:true,tone:'blue'},{a:'vip',b:'h1',tone:'orange'},{a:'vip',b:'h2',dash:true,tone:'orange'},
+           {a:'h1',b:'h2',label:'Heartbeat',dash:true,both:true,tone:'orange'},
+           {a:'h1',b:'w1',label:'round-robin',arrow:true,tone:'green'},{a:'h1',b:'w2',arrow:true,tone:'green'},
+           {a:'h2',b:'w1',dash:true},{a:'h2',b:'w2',dash:true}]},
+  ad:{w:800,h:360,label:'Schéma du domaine Active Directory : contrôleur de domaine, poste client et composants du projet',
+    zones:[{x:12,y:12,w:776,h:336,label:'Domaine subdomain.yourdomainname.org',tone:'blue'}],
+    nodes:[{id:'dc',x:60,y:62,w:280,h:78,t:'DC – Windows Server 2019',s:'AD DS, DNS, GPO\n192.168.114.142',tone:'blue'},
+           {id:'cl',x:460,y:62,w:280,h:78,t:'PC-DUPO-01',s:'Windows 10 Pro\njoint au domaine',tone:'green'},
+           {id:'c1',x:30,y:244,w:170,h:66,t:'Comptes',s:'mots de passe,\nverrouillage'},
+           {id:'c2',x:220,y:244,w:170,h:66,t:'Audit',s:'stratégie avancée'},
+           {id:'c3',x:410,y:244,w:170,h:66,t:'PowerShell',s:'scripts idempotents,\nrapports HTML'},
+           {id:'c4',x:600,y:244,w:170,h:66,t:'GPO',s:'LSDOU, Enforcer,\nblocage d\'héritage'}],
+    edges:[{a:'dc',b:'cl',label:'jonction',both:true,tone:'blue'},
+           {a:'dc',b:'c1',dash:true},{a:'dc',b:'c2',dash:true},{a:'dc',b:'c3',dash:true},{a:'dc',b:'c4',dash:true}]},
+  ocs:{w:800,h:380,label:'Schéma du serveur OCS-GLPI et des agents d\'inventaire',
+    zones:[{x:12,y:178,w:380,h:190,label:'Administration – 192.168.114.0/24',tone:'blue'},
+           {x:408,y:178,w:380,h:190,label:'Réseau des agents – 172.20.0.0/24',tone:'green'}],
+    nodes:[{id:'srv',x:280,y:22,w:240,h:84,t:'OCS-GLPI (Debian)',s:'OCS-NG 2.12.3, GLPI 11.0.1\nMariaDB, Apache2',tone:'orange'},
+           {id:'win',x:92,y:262,w:220,h:62,t:'Poste Windows',s:'Agent OCS Windows',tone:'blue'},
+           {id:'lin',x:488,y:262,w:220,h:62,t:'Machines Linux (x2)',s:'Agent OCS Unix',tone:'green'}],
+    edges:[{a:'win',b:'srv',label:'ens33 – .130',arrow:true,tone:'blue'},{a:'lin',b:'srv',label:'ens37 – .10',arrow:true,tone:'green'}]},
+  annonce:{w:800,h:250,label:'Architecture d\'AnnonceExpress : navigateur, Apache et PHP, base MySQL',
+    nodes:[{id:'nav',x:30,y:30,w:180,h:64,t:'Navigateur',s:'utilisateur',tone:'gray'},
+           {id:'php',x:310,y:30,w:180,h:64,t:'Apache + PHP',s:'XAMPP',tone:'blue'},
+           {id:'db',x:590,y:30,w:180,h:64,t:'MySQL',s:'bdd.sql – mysqli',tone:'orange'},
+           {id:'idx',x:230,y:166,w:160,h:58,t:'index.php',s:'accueil et annonces',tone:'green'},
+           {id:'mod',x:410,y:166,w:160,h:58,t:'modifier.php',s:'formulaire pré-rempli',tone:'green'}],
+    edges:[{a:'nav',b:'php',label:'GET / POST',arrow:true,tone:'blue'},{a:'php',b:'db',label:'requêtes préparées',arrow:true,tone:'orange'},
+           {a:'php',b:'idx',dash:true,tone:'green'},{a:'php',b:'mod',dash:true,tone:'green'}]},
+  ocsbc:{w:800,h:290,label:'Réorientation du déploiement OCS Inventory NG vers une machine virtuelle Debian',
+    nodes:[{id:'win',x:30,y:40,w:270,h:80,t:'Windows Server',s:'version serveur OCS\nnon maintenue depuis 2014',tone:'red',dash:true},
+           {id:'vm',x:470,y:40,w:300,h:80,t:'VM Debian',s:'OCS-NG 2.12.3\nMariaDB, Apache2',tone:'green'},
+           {id:'parc',x:470,y:196,w:300,h:64,t:'Parc informatique',s:'Bernard Controls',tone:'blue'}],
+    edges:[{a:'win',b:'vm',label:'réorientation',arrow:true,dash:true,tone:'red'},{a:'parc',b:'vm',label:'inventaire',arrow:true,tone:'blue'}]},
+  support:{w:800,h:300,label:'Principaux types d\'interventions de support utilisateur',
+    nodes:[{id:'c',x:300,y:118,w:200,h:64,t:'Support utilisateur',s:'Bernard Controls',tone:'blue'},
+           {id:'a',x:30,y:20,w:190,h:56,t:'Teams',s:'historique, cache'},
+           {id:'b',x:30,y:122,w:190,h:56,t:'Dell Command Update',s:'erreur 1603'},
+           {id:'e',x:30,y:224,w:190,h:56,t:'Pilote Intel RST',s:'installation Windows'},
+           {id:'f',x:580,y:20,w:190,h:56,t:'Comptes AD',s:'mots de passe, FGPP'},
+           {id:'g',x:580,y:122,w:190,h:56,t:'Clés USB',s:'Windows 11'},
+           {id:'h',x:580,y:224,w:190,h:56,t:'Comptes locaux',s:'réinitialisation'}],
+    edges:['a','b','e','f','g','h'].map(x=>({a:'c',b:x,dash:true}))},
+  portfolio:{w:800,h:300,label:'Structure du portfolio : un fichier index.html publié sur GitHub Pages',
+    nodes:[{id:'gh',x:300,y:16,w:200,h:52,t:'GitHub Pages',s:'hébergement',tone:'gray'},
+           {id:'idx',x:290,y:116,w:220,h:62,t:'index.html',s:'HTML, CSS, JavaScript',tone:'blue'},
+           {id:'p1',x:20,y:228,w:136,h:52,t:'Accueil',tone:'green'},
+           {id:'p2',x:176,y:228,w:136,h:52,t:'Épreuve E5',s:'fiches projets',tone:'green'},
+           {id:'p3',x:332,y:228,w:136,h:52,t:'Épreuve E6',tone:'green'},
+           {id:'p4',x:488,y:228,w:136,h:52,t:'Entreprise',tone:'green'},
+           {id:'p5',x:644,y:228,w:136,h:52,t:'Veille',tone:'green'}],
+    edges:[{a:'gh',b:'idx',label:'publication',arrow:true},
+           ...['p1','p2','p3','p4','p5'].map(x=>({a:'idx',b:x,dash:true,tone:'green'}))]},
+  bot:{w:800,h:220,label:'Fonctionnement du bot : serveur Discord, bot et API Riot Games',
+    nodes:[{id:'dis',x:30,y:70,w:200,h:70,t:'Serveur Discord',s:'commandes, alertes',tone:'blue'},
+           {id:'bot',x:300,y:70,w:200,h:70,t:'Bot LoL',s:'calcul des scores',tone:'green'},
+           {id:'riot',x:570,y:70,w:200,h:70,t:'API Riot Games',s:'parties, rangs',tone:'orange'}],
+    edges:[{a:'dis',b:'bot',both:true,tone:'blue'},{a:'bot',b:'riot',label:'requêtes',arrow:true,tone:'orange'}]}
+};
 
 /* ---------- Donnees ---------- */
-const PAGES = [
-  ['accueil','Accueil'],['e5','Epreuve E5'],['e6','Epreuve E6'],['entreprise','Entreprise'],['veille','Veille Technologique']
-];
+const PAGES = [['accueil','Accueil'],['e5','Epreuve E5'],['e6','Epreuve E6'],['entreprise','Entreprise'],['veille','Veille Technologique']];
 
-const INTERESTS = [
-  ['server','Réseaux'],['shield','Cybersécurité'],['layers','Virtualisation'],
-  ['zap','Gaming'],['monitor','Montage PC'],['target','Football']
-];
+const INTERESTS = [['server','Réseaux'],['shield','Cybersécurité'],['layers','Virtualisation'],['zap','Gaming'],['monitor','Montage PC'],['target','Football']];
 
-const FORMATION = [
-  {icon:'terminal', thumb:'Debian', cat:'Configuration & Routage Réseau Linux', title:'TP Linux : Topologie Routage',
-   text:'Mise en place d\'une topologie réseau et configuration du routage, du DHCP et du NAT sous Linux.',
-   tags:['Linux','Routage','DHCP','NAT'], links:[['Voir la documentation','TP_Linux__Topologie_Routage.pdf']]},
-  {icon:'server', thumb:'HAProxy', cat:'Haute Disponibilité', title:'Redondance & Load Balancing',
-   text:'Mise en place de HAProxy et Heartbeat pour garantir la continuité de service.',
-   tags:['HAProxy','Heartbeat'], links:[['Voir la documentation','Haproxy_projet.pdf']]},
-  {icon:'users', thumb:'Windows Server 2019', cat:'Administration système', title:'Active Directory, PowerShell et GPO',
-   text:'Déploiement d\'un domaine Active Directory sous Windows Server 2019, automatisation avec PowerShell et stratégies de groupe.',
-   tags:['Active Directory','PowerShell','GPO'], links:[['Voir la documentation','Projet_AD_Final.pdf']]},
-  {icon:'code', thumb:'PHP / MySQL', cat:'Développement web', title:'AnnonceExpress',
-   text:'Site de petites annonces en PHP et MySQLi : affichage, ajout, modification et suppression des annonces.',
-   tags:['PHP','MySQL','CRUD'], links:[['Voir la présentation','AnnonceExpress_presentation.pdf']]}
-];
+/* Une entree = une carte E5 + sa page de presentation (#projet-<id>) */
+const PROJECTS = {
+  linux:{section:'formation', cat:'Configuration & routage réseau Linux', card:'TP Linux : Topologie Routage',
+    summary:"Routeur Linux (Debian 13) assurant le DHCP, le routage entre deux réseaux locaux et le NAT vers le WAN.",
+    tags:['Debian','Routage','DHCP','NAT'], type:'Projet académique', date:'2025 - 2026',
+    title:'Infrastructure réseau avec routage, DHCP et NAT',
+    overview:["Conception et mise en œuvre d'une infrastructure réseau virtualisée permettant à des postes Windows et Linux d'accéder au réseau WAN via un routeur Linux.",
+      "Le routeur central RTR-INFRA, sous Debian 13, attribue automatiquement les adresses IP (DHCP), route le trafic entre deux réseaux locaux séparés (LAN Windows 172.20.47.0/24 et LAN Linux 172.20.57.0/24) et traduit les adresses (NAT) pour l'accès à l'extérieur."],
+    features:[['server',"Serveur DHCP isc-dhcp-server avec une étendue par LAN"],['network',"Deux réseaux locaux isolés par des LAN Segments VMware"],['branch',"Routage IPv4 entre les LAN et le WAN"],['globe',"NAT MASQUERADE sur l'interface WAN"]],
+    challenges:[["Interfaces du routeur :","ens33 en DHCP côté WAN, ens37 (172.20.47.254) et ens38 (172.20.57.254) en statique comme passerelles des deux LAN."],
+      ["Configuration DHCP :","plages .100 à .200 sur chaque LAN, avec passerelle et serveurs DNS (1.1.1.1 et 8.8.8.8) distribués automatiquement."],
+      ["Tests de connectivité :","baux DHCP validés sur chaque client et échanges internes fonctionnels ; les tests vers 1.1.1.1 restent dépendants des restrictions de l'environnement de virtualisation."]],
+    tech:['Debian 13','Windows','isc-dhcp-server','Routage / NAT','VMware'],
+    info:[['Type','TP / Labo'],['Année','2025 - 2026'],['Statut','Terminé']],
+    resources:[['Voir le rapport PDF','TP_Linux__Topologie_Routage.pdf']]},
 
-const PRO = [
-  {icon:'database', thumb:'OCS Inventory NG', cat:'Gestion de parc', title:'Déploiement d\'OCS Inventory NG',
-   text:'Mise en place d\'OCS Inventory NG sur une machine virtuelle Linux pour inventorier le parc informatique de l\'entreprise.',
-   tags:['OCS Inventory NG','Debian','MariaDB','Apache'], links:[['Voir la documentation','ocs-glpi-documentation.pdf']]}
-];
+  haproxy:{section:'formation', cat:'Haute disponibilité', card:'Redondance & Load Balancing',
+    summary:"HAProxy répartit le trafic entre deux serveurs web et Heartbeat bascule automatiquement une IP virtuelle en cas de panne.",
+    tags:['HAProxy','Heartbeat','Apache2'], type:'Projet académique', date:'2025 - 2026',
+    title:'Haute disponibilité et répartition de charge : HAProxy + Heartbeat',
+    overview:["Mise en place d'une infrastructure web hautement disponible sur VMware Workstation : cinq machines virtuelles réparties sur un réseau WAN (192.168.0.0/24) et un réseau LAN (172.20.0.0/24).",
+      "HAProxy distribue les requêtes HTTP en round-robin entre deux serveurs Apache2/PHP. Heartbeat fait porter une adresse IP virtuelle (VIP 192.168.0.10) par le nœud actif et la bascule vers le nœud de secours en cas de panne : le client accède toujours au service par la même adresse."],
+    features:[['shuffle',"Répartition de charge round-robin entre SERV-WEB1 et SERV-WEB2"],['repeat',"Bascule automatique de la VIP vers HAProxy2 en une dizaine de secondes"],['activity',"Health-checks HTTP : un serveur web en panne est retiré automatiquement"],['bar',"Page de statistiques HAProxy et retour automatique (auto_failback)"]],
+    challenges:[["Éviter le split-brain :","un seul nœud doit porter la VIP à la fois ; vérification avec ip a sur chaque nœud."],
+      ["Configuration symétrique :","haproxy.cfg strictement identique sur les deux load balancers, puisque chacun peut devenir actif."],
+      ["Tests de panne :","arrêt de Heartbeat sur le nœud primaire, puis d'Apache sur un serveur web, sans interruption côté client."],
+      ["Limites identifiées :","Heartbeat est peu maintenu et son authentification repose sur MD5 ; les données des serveurs web ne sont pas synchronisées."]],
+    tech:['HAProxy','Heartbeat','Apache2 / PHP','Linux','VMware Workstation'],
+    info:[['Type','TP / Labo'],['Auteurs','Younes & Saidou'],['Année','2025 - 2026'],['Statut','Terminé']],
+    resources:[['Voir le rapport PDF','Haproxy_projet.pdf']]},
 
-const PERSO = [
-  {icon:'code', thumb:'HTML / CSS / JS', cat:'Développement web', title:'Conception du portfolio numérique',
-   text:'Développement du site présentant mon parcours, hébergé sur GitHub Pages.',
-   tags:['HTML','CSS','JavaScript','GitHub Pages'], links:[['Voir le dépôt','https://github.com/Youks95/portfolio-2']]},
-  {icon:'msg', thumb:'Discord', cat:'Développement', title:'Bot Discord League of Legends', status:'en cours',
-   text:'Bot pour mon serveur Discord : profil et rang, dernière partie, alertes de partie, désignation du meilleur joueur et hall of shame.',
-   tags:['Discord','API Riot'], links:[]}
-];
+  ad:{section:'formation', cat:'Administration système', card:'Active Directory, PowerShell et GPO',
+    summary:"Projet de synthèse Windows Server 2019 : contrôleur de domaine, audit, automatisation PowerShell et stratégies de groupe.",
+    tags:['Windows Server 2019','Active Directory','PowerShell','GPO'], type:'Projet de synthèse', date:'2025 - 2026',
+    title:'Administration Windows Server 2019 : Active Directory, PowerShell et GPO',
+    overview:["Simulation du déploiement complet d'une infrastructure d'entreprise, de l'installation du premier serveur jusqu'à l'automatisation de l'administration.",
+      "Un serveur Windows Server 2019 joue le rôle de contrôleur de domaine et un poste Windows 10 Pro est intégré au domaine. Le projet suit six étapes : Active Directory, politique d'audit, PowerShell en deux parties, intégration des postes clients et stratégies de groupe.",
+      "Ce projet sert de base à mes deux réalisations de l'épreuve E6."],
+    features:[['users',"Contrôleur de domaine AD DS, DNS intégré et zone de recherche inversée"],['lock',"Stratégie de mots de passe et verrouillage après 5 tentatives"],['eye',"Stratégie d'audit avancée pour tracer les événements de sécurité"],['terminal',"Scripts PowerShell idempotents, export CSV et rapports HTML"],['monitor',"Jonction d'un poste au domaine en graphique puis par PowerShell"],['layers',"GPO contradictoires : héritage LSDOU, Enforcer, blocage d'héritage"]],
+    challenges:[["Sécurisation des comptes :","renommage du compte Administrateur par défaut pour compliquer les attaques par force brute."],
+      ["Scripts fiables :","logique test, action puis vérification, pour qu'un script puisse s'exécuter plusieurs fois sans effet de bord."],
+      ["Diagnostic des GPO :","analyse des stratégies réellement appliquées avec rsop.msc et gpresult."]],
+    tech:['Windows Server 2019','AD DS','DNS','PowerShell 5.1','GPMC','Windows 10 Pro'],
+    info:[['Type','Projet de synthèse'],['Auteur','Younes FRI'],['Année','2025 - 2026'],['Statut','Terminé']],
+    resources:[['Voir le rapport PDF','Projet_AD_Final.pdf'],['Voir les réalisations E6','#e6']]},
+
+  ocs:{section:'formation', cat:'Gestion de parc', card:'Administration OCS/GLPI',
+    summary:"Inventaire automatique avec OCS Inventory NG et gestion de parc avec GLPI sur un serveur Debian.",
+    tags:['OCS Inventory NG','GLPI','MariaDB','Apache2'], type:'Projet académique', date:'2025 - 2026',
+    title:'Gestion de parc : OCS Inventory NG et GLPI',
+    overview:["Déploiement sur un serveur Debian d'OCS Inventory NG 2.12.3, qui inventorie automatiquement les machines, et de GLPI 11.0.1, l'outil de gestion de parc et d'assistance.",
+      "Le serveur dispose de deux interfaces : une pour l'administration (192.168.114.130) et une pour le réseau des agents (172.20.0.10). Les données sont stockées dans MariaDB et les interfaces web sont servies par Apache2."],
+    features:[['database',"Bases dédiées ocsweb et dbglpi sous MariaDB"],['download',"Agents OCS déployés sur deux machines Linux et un poste Windows"],['server',"Interfaces web OCS Reports et GLPI publiées par Apache2"],['shield',"Suppression d'install.php et changement des identifiants par défaut"]],
+    challenges:[["Mise à jour du schéma :","passage de la base OCS de la version 7068 à 7079 lors de la première connexion."],
+      ["Alertes de sécurité :","fichier install.php encore présent et identifiants par défaut actifs, corrigés avant l'exploitation."],
+      ["Agent Windows :","gestion de la validation des certificats dans un environnement de test sans SSL."]],
+    tech:['Debian','OCS Inventory NG 2.12.3','GLPI 11.0.1','MariaDB','Apache2'],
+    info:[['Type','TP / Labo'],['Année','2025 - 2026'],['Statut','Terminé']],
+    resources:[['Voir le rapport PDF','ocs-glpi-documentation.pdf']]},
+
+  annonce:{section:'formation', cat:'Développement web', card:'AnnonceExpress',
+    summary:"Plateforme de petites annonces en PHP et MySQL : dépôt, consultation, modification et suppression.",
+    tags:['PHP','MySQL','CRUD'], type:'Projet académique', date:'Juin 2026',
+    title:'AnnonceExpress : plateforme de petites annonces en PHP / MySQL',
+    overview:["Réalisation en binôme d'une plateforme qui reprend les fonctions essentielles d'un site de petites annonces : déposer, consulter, modifier et supprimer une annonce.",
+      "Le site est développé en PHP natif avec une base MySQL, testé en local sous XAMPP et versionné avec GitHub Desktop. J'étais en charge du développement : PHP, CSS et base de données."],
+    features:[['layers',"CRUD complet des annonces"],['image',"Ajout de photos (jpg, png, gif, webp) avec nom de fichier régénéré"],['grid',"Grille responsive et formulaire de modification pré-rempli"],['lock',"Requêtes préparées, htmlspecialchars et vérification du propriétaire"]],
+    challenges:[["bind_param :","un espace dans la chaîne de types bloquait la requête ; vérification rigoureuse des paramètres."],
+      ["Photo écrasée à la modification :","ajout d'un champ caché qui conserve l'ancienne image."],
+      ["Headers already sent :","traitement PHP déplacé avant le rendu HTML."],
+      ["InnoDB lock timeout :","transactions bloquées par phpMyAdmin resté ouvert pendant les tests."]],
+    tech:['PHP','MySQL (mysqli)','HTML / CSS','XAMPP','GitHub Desktop','Trello'],
+    info:[['Type','Projet en binôme'],['Auteurs','Younes & Saidou'],['Livraison','26 juin 2026'],['Statut','Terminé']],
+    resText:"Consulter la présentation du projet et son code source.",
+    resources:[['Voir la présentation PDF','AnnonceExpress_presentation.pdf'],['Voir le code sur GitHub','https://github.com/Youks95/AnnonceExpress']]},
+
+  ocsbc:{section:'pro', cat:'Gestion de parc', card:'Inventaire du parc avec OCS Inventory NG',
+    summary:"Mise en place d'OCS Inventory NG sur une machine virtuelle Debian pour inventorier le parc de l'entreprise.",
+    tags:['OCS Inventory NG','Debian','MariaDB','Apache2'], type:'Projet professionnel', date:'Alternance',
+    title:'Inventaire du parc avec OCS Inventory NG',
+    overview:["Mise en place d'un outil d'inventaire automatique du parc informatique chez Bernard Controls.",
+      "Le serveur devait initialement être installé sous Windows Server. En préparant l'installation, j'ai constaté que la version serveur pour Windows n'est plus maintenue depuis 2014 : j'ai donc réorienté le déploiement vers une machine virtuelle Linux (Debian, MariaDB, Apache2, OCS-NG 2.12.3)."],
+    features:[['server',"Serveur OCS Inventory NG 2.12.3 sur machine virtuelle Debian"],['database',"Base MariaDB et interface web Apache2"],['file',"Installation guidée par ma documentation OCS-NG / GLPI"]],
+    challenges:[["Choix technique :","abandon de la piste Windows Server au profit de Linux, seule version serveur encore maintenue."],
+      ["Réutilisation de l'existant :","application en entreprise de la procédure documentée en formation."]],
+    tech:['OCS Inventory NG 2.12.3','Debian','MariaDB','Apache2'],
+    info:[['Type','Projet en entreprise'],['Entreprise','Bernard Controls'],['Statut','Déployé']],
+    resText:"Consulter la procédure d'installation suivie.",
+    resources:[['Voir la procédure PDF','ocs-glpi-documentation.pdf']]},
+
+  support:{section:'pro', cat:'Support informatique', card:'Support utilisateur et maintenance du parc',
+    summary:"Traitement des incidents du quotidien : applications, mises à jour, pilotes, comptes et postes de travail.",
+    tags:['Windows','Active Directory','Teams','Dell'], type:'Projet professionnel', date:'Alternance',
+    title:'Support utilisateur et maintenance du parc',
+    overview:["Au quotidien, je traite les demandes et incidents des utilisateurs : diagnostic, résolution, puis retour à l'utilisateur.",
+      "Voici quelques interventions représentatives."],
+    features:[['msg',"Historique Teams disparu : réinitialisation du cache du nouveau Teams"],['download',"Dell Command Update : erreur 1603 liée au service Windows Installer désactivé"],['cpu',"Pilote Intel RST chargé pendant l'installation de Windows"],['users',"Mots de passe AD : stratégie de domaine, FGPP, événements 4723 et 4724"],['drive',"Création de clés USB d'installation Windows 11"],['key',"Réinitialisation de comptes locaux"]],
+    challenges:[["Teams :","renommage du dossier LocalCache du package MSTeams en _old, puis relance de l'application."],
+      ["Installation bloquée :","identification du service Windows Installer désactivé derrière l'erreur 1603."],
+      ["Comptes Active Directory :","analyse de la stratégie de mot de passe et des journaux de sécurité pour expliquer un changement refusé."]],
+    tech:['Windows 10 / 11','Active Directory','Microsoft Teams','Dell Command Update','Intel RST'],
+    info:[['Type','Missions en entreprise'],['Entreprise','Bernard Controls'],['Statut','En cours']],
+    resources:[]},
+
+  portfolio:{section:'perso', cat:'Développement web', card:'Conception du portfolio numérique',
+    summary:"Développement du site présentant mon parcours, hébergé sur GitHub Pages.",
+    tags:['HTML','CSS','JavaScript','GitHub Pages'], type:'Projet personnel', date:'2026',
+    title:'Développement web : portfolio personnel',
+    overview:["Conception du site qui présente mon parcours, mes épreuves E5 et E6, mon alternance et ma veille technologique.",
+      "Le site tient dans un seul fichier HTML : les pages, les fiches projets et les schémas sont générés en JavaScript à partir de données, ce qui permet d'ajouter un projet sans dupliquer de code."],
+    features:[['grid',"Design responsive : ordinateur, tablette et mobile"],['layers',"Navigation entre les pages sans rechargement"],['menu',"Menu burger sur mobile"],['file',"Aperçu des PDF intégré (CV, tableau de synthèse)"]],
+    challenges:[["Architecture :","séparer les données (projets, liens) de l'affichage pour faciliter la maintenance."],
+      ["Responsive :","passage du menu horizontal au menu burger et grilles adaptatives."],
+      ["Déploiement :","mise en ligne et mises à jour via un dépôt GitHub et GitHub Pages."]],
+    tech:['HTML5','CSS3','JavaScript','GitHub Pages'],
+    info:[['Type','Personnel'],['Auteur','Younes FRI'],['Année','2026'],['Statut','En ligne']],
+    resText:"Consulter le code source du site.",
+    resources:[['Voir le dépôt GitHub','https://github.com/Youks95/porfolio-2']]},
+
+  bot:{section:'perso', cat:'Développement', card:'Bot Discord League of Legends',
+    summary:"Bot pour mon serveur Discord : rangs, dernières parties, alertes de partie et désignation du meilleur joueur.",
+    tags:['Discord','API Riot Games'], type:'Projet personnel', date:'2026',
+    title:'Bot Discord League of Legends',
+    overview:["Développement d'un bot pour le serveur Discord que je partage avec mes amis, qui jouent beaucoup à League of Legends.",
+      "Le bot interroge l'API de Riot Games pour suivre les joueurs du serveur et animer la communauté."],
+    features:[['users',"Profil et rang des joueurs"],['clock',"Résumé de la dernière partie"],['bell',"Alertes quand un joueur lance une partie"],['award',"Meilleur joueur de la partie et hall of shame"]],
+    challenges:[["Désigner le meilleur joueur :","score basé sur le KDA, les dégâts, la participation aux kills, la vision et le farm, pas seulement sur les kills."],
+      ["Évolution prévue :","pondérer selon l'écart avec l'adversaire direct et tenir compte des morts causées par le jungler adverse."],
+      ["À venir :","choix de composition, statistiques de groupe, quiz et économie du serveur."]],
+    tech:['Discord','API Riot Games'],
+    info:[['Type','Personnel'],['Auteur','Younes FRI'],['Statut','En cours']],
+    resources:[]}
+};
+const ORDER = Object.keys(PROJECTS);
 
 const E6 = [
-  {icon:'lock', thumb:'Windows Server 2019', cat:'Réalisation n°1', title:'Contrôleur de domaine et politique de sécurité des comptes',
-   text:'Installation d\'un contrôleur de domaine Windows Server 2019 et mise en place d\'une politique de sécurité des comptes.',
+  {cat:'Réalisation n°1', title:'Contrôleur de domaine et politique de sécurité des comptes',
+   text:"Installation d'un contrôleur de domaine Windows Server 2019 et mise en place d'une politique de sécurité des comptes.",
    tags:['Active Directory','Windows Server 2019','Sécurité des comptes'],
-   links:[['Fiche réalisation','Fiche_Realisation_1_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf']]},
-  {icon:'terminal', thumb:'PowerShell', cat:'Réalisation n°2', title:'Audit, PowerShell et GPO',
-   text:'Audit de l\'annuaire, scripts PowerShell et stratégies de groupe pour administrer et sécuriser le parc.',
+   links:[['Fiche réalisation','Fiche_Realisation_1_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf'],['Présentation du projet','#projet-ad']]},
+  {cat:'Réalisation n°2', title:'Audit, PowerShell et GPO',
+   text:"Audit de l'annuaire, scripts PowerShell et stratégies de groupe pour administrer et sécuriser le parc.",
    tags:['Active Directory','PowerShell','GPO'],
-   links:[['Fiche réalisation','Fiche_Realisation_2_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf']]}
+   links:[['Fiche réalisation','Fiche_Realisation_2_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf'],['Présentation du projet','#projet-ad']]}
 ];
 
 const VEILLE_PLACEHOLDER = [
-  {icon:'rss', thumb:'Article', cat:'Mois Année', title:'Titre de l\'article', text:'Résumé en deux ou trois phrases : ce que dit l\'article et pourquoi il compte pour ton métier.', tags:['Mot-clé'], links:[], ph:true},
-  {icon:'rss', thumb:'Article', cat:'Mois Année', title:'Titre de l\'article', text:'Résumé en deux ou trois phrases : ce que dit l\'article et pourquoi il compte pour ton métier.', tags:['Mot-clé'], links:[], ph:true}
+  {icon:'rss', thumb:'Article', cat:'Mois Année', title:"Titre de l'article", text:"Résumé en deux ou trois phrases : ce que dit l'article et pourquoi il compte pour ton métier.", tags:['Mot-clé'], links:[], ph:true},
+  {icon:'rss', thumb:'Article', cat:'Mois Année', title:"Titre de l'article", text:"Résumé en deux ou trois phrases : ce que dit l'article et pourquoi il compte pour ton métier.", tags:['Mot-clé'], links:[], ph:true}
 ];
 
 const TOOLS = [
-  ['CF','CERT-FR','Centre gouvernemental de veille et d\'alerte : bulletins et avis de sécurité officiels.','https://www.cert.ssi.gouv.fr/'],
-  ['IT','IT-Connect','Site francophone d\'administration système : tutoriels Windows, Linux, PowerShell, Active Directory.','https://www.it-connect.fr/'],
-  ['GA','Google Actualités','Alertes sur des mots-clés choisis pour suivre l\'actualité en continu.','https://news.google.com/'],
-  ['in','LinkedIn','Suivi d\'experts en cybersécurité et en administration système.','https://www.linkedin.com/']
+  ['CF','CERT-FR',"Centre gouvernemental de veille et d'alerte : bulletins et avis de sécurité officiels.",'https://www.cert.ssi.gouv.fr/'],
+  ['IT','IT-Connect',"Site francophone d'administration système : tutoriels Windows, Linux, PowerShell, Active Directory.",'https://www.it-connect.fr/'],
+  ['GA','Google Actualités',"Alertes sur des mots-clés choisis pour suivre l'actualité en continu.",'https://news.google.com/'],
+  ['in','LinkedIn',"Suivi d'experts en cybersécurité et en administration système.",'https://www.linkedin.com/']
 ];
 
 /* ---------- Rendu ---------- */
-function cardHTML(c){
-  const tags = c.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+const tagsHTML = list => list.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+const statusOf = p => (p.info.find(r=>r[0]==='Statut')||[])[1];
+const linkAttrs = u => u.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
+
+function projectCard(id){
+  const p = PROJECTS[id], st = statusOf(p);
+  return `<a class="card" href="#projet-${id}">
+    <div class="thumb diag">${diagram(D[id])}</div>
+    <div class="card-body">
+      <span class="cat">${esc(p.cat)}${st==='En cours'?'<span class="status">en cours</span>':''}</span>
+      <h3>${esc(p.card)}</h3>
+      <p>${esc(p.summary)}</p>
+      <div class="tags">${tagsHTML(p.tags)}</div>
+      <span class="more">Voir le projet →</span>
+    </div></a>`;
+}
+
+function linkCard(c, thumbHTML){
   const links = c.links.length
-    ? c.links.map(([l,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} →</a>`).join('')
+    ? c.links.map(([l,u])=>`<a href="${esc(u)}"${linkAttrs(u)}>${esc(l)} →</a>`).join('')
     : `<span class="none">${c.ph?'Lien de la source à ajouter':'Documentation à venir'}</span>`;
   return `<article class="card">
-    <div class="thumb">${ic(c.icon)}<span>${esc(c.thumb)}</span></div>
+    ${thumbHTML}
     <div class="card-body">
-      <span class="cat">${esc(c.cat)}${c.status?`<span class="status">${esc(c.status)}</span>`:''}</span>
+      <span class="cat">${esc(c.cat)}</span>
       <h3>${c.ph?`<span class="ph">${esc(c.title)}</span>`:esc(c.title)}</h3>
       <p>${esc(c.text)}</p>
-      <div class="tags">${tags}</div>
+      <div class="tags">${tagsHTML(c.tags)}</div>
       <div class="links">${links}</div>
     </div></article>`;
 }
-const fill = (id,list) => $(id).innerHTML = list.map(cardHTML).join('');
+
+function renderProject(id){
+  const p = PROJECTS[id];
+  const feats = p.features.map(([i,t])=>`<div class="feat">${ic(i)}<span>${esc(t)}</span></div>`).join('');
+  const chals = p.challenges.map(([b,t])=>`<div class="chal"><span class="ico">${ic('tool')}</span><span><strong>${esc(b)}</strong> ${esc(t)}</span></div>`).join('');
+  const info = p.info.map(([l,v])=>{
+    const cls = l==='Statut' ? (v==='En cours'?' prog':' done') : '';
+    return `<div class="row"><span class="lab">${esc(l)}</span><span class="val${cls}">${esc(v)}</span></div>`;
+  }).join('');
+  const res = p.resources.length ? `<div class="side-card"><h2>${ic('file')}Ressources</h2>
+      <p>${esc(p.resText||'Consulter la documentation technique complète de ce projet.')}</p>
+      ${p.resources.map(([l,u],i)=>`<a class="cta${i?' cta2':''}" href="${esc(u)}"${linkAttrs(u)}>${esc(l)}</a>`).join('')}</div>` : '';
+  const k = ORDER.indexOf(id);
+  const others = [ORDER[(k+1)%ORDER.length], ORDER[(k+2)%ORDER.length]].map(o=>{
+    const q = PROJECTS[o];
+    return `<a class="other" href="#projet-${o}"><div class="othumb">${diagram(D[o])}</div>
+      <div class="ob"><h3>${esc(q.card)}</h3><p>${esc(q.summary)}</p><div class="otags">${q.tags.slice(0,3).map(t=>`<span>${esc(t)}</span>`).join('')}</div></div></a>`;
+  }).join('');
+  $('page-projet').innerHTML = `<div class="container pj-in">
+    <a class="pj-back" href="#e5" data-section="sec-${p.section}">${ic('left')}Retour à l'épreuve E5</a>
+    <div class="pj-hero">${diagram(D[id])}</div>
+    <div class="pj-meta"><span class="badge">${esc(p.type)}</span><span class="badge date">${ic('calendar')}${esc(p.date)}</span></div>
+    <h1>${esc(p.title)}</h1>
+    <div class="pj-grid">
+      <div>
+        <section class="pj-block"><h2>Aperçu du projet</h2>${p.overview.map(t=>`<p>${esc(t)}</p>`).join('')}</section>
+        <section class="pj-block"><h2>Fonctionnalités principales</h2><div class="feat-grid">${feats}</div></section>
+        <section class="pj-block"><h2>Défis techniques</h2><div class="chal-list">${chals}</div></section>
+      </div>
+      <aside class="pj-side">
+        <div class="side-card"><h2>${ic('code')}Technologies</h2><div class="tech-tags">${p.tech.map(t=>`<span class="tech">${esc(t)}</span>`).join('')}</div></div>
+        <div class="side-card"><h2>${ic('info')}Informations</h2>${info}</div>
+        ${res}
+      </aside>
+    </div>
+    <h2 class="other-h">Autres projets</h2>
+    <div class="other-grid">${others}</div>
+  </div>`;
+  document.title = p.title + ' - Younes FRI';
+}
 
 function render(){
-  $('menu-button').innerHTML = ic('menu','style="width:1em;height:1em"');
+  $('menu-button').innerHTML = ic('menu');
   $('nav-links').innerHTML = PAGES.map(([k,l])=>`<a href="#${k}" data-nav="${k}">${l}</a>`).join('');
   $('mobile-menu').innerHTML = PAGES.map(([k,l])=>`<a href="#${k}">${l}</a>`).join('');
   $('interests').innerHTML = INTERESTS.map(([i,l])=>`<div class="int-item">${ic(i)}<p>${l}</p></div>`).join('');
   $('ic-book').innerHTML = ic('book','style="width:24px;height:24px;color:var(--secondary)"');
   $('ic-brief').innerHTML = ic('brief');
-  $('ic-dl-cv').innerHTML = ic('download');
-  $('ic-eye-cv').innerHTML = ic('eye');
-  $('ic-eye-e5').innerHTML = ic('eye');
-  $('ic-dl-e5').innerHTML = ic('download');
-  fill('cards-formation',FORMATION); fill('cards-pro',PRO); fill('cards-perso',PERSO); fill('cards-e6',E6);
-  fill('cards-veille1',VEILLE_PLACEHOLDER); fill('cards-veille2',VEILLE_PLACEHOLDER);
-  $('tools').innerHTML = TOOLS.map(([b,n,d,u])=>`<div class="tool"><div class="badge">${b}</div><h3>${n}</h3><p>${d}</p><a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}</a></div>`).join('');
+  ['ic-dl-cv','ic-dl-e5'].forEach(i=>$(i).innerHTML = ic('download'));
+  ['ic-eye-cv','ic-eye-e5'].forEach(i=>$(i).innerHTML = ic('eye'));
+  ['formation','pro','perso'].forEach(s=>$('cards-'+s).innerHTML = ORDER.filter(id=>PROJECTS[id].section===s).map(projectCard).join(''));
+  $('cards-e6').innerHTML = E6.map(c=>linkCard(c, `<div class="thumb diag">${diagram(D.ad)}</div>`)).join('');
+  const veille = VEILLE_PLACEHOLDER.map(c=>linkCard(c, `<div class="thumb">${ic(c.icon)}<span>${esc(c.thumb)}</span></div>`)).join('');
+  $('cards-veille1').innerHTML = veille; $('cards-veille2').innerHTML = veille;
+  $('tools').innerHTML = TOOLS.map(([b,n,d,u])=>`<div class="tool"><div class="badge-t">${b}</div><h3>${n}</h3><p>${d}</p><a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}</a></div>`).join('');
 
-  const row = (icon,color,label,val,href)=>`<div class="c-item"><div class="c-ico" style="background:${color}">${ic(icon)}</div><div><p class="l">${label}</p><p class="v">${val?(href?`<a href="${href}" ${href.startsWith('http')?'target="_blank" rel="noopener"':''}>${esc(val)}</a>`:esc(val)):'<span class="ph">à compléter</span>'}</p></div></div>`;
+  const row = (icon,color,label,val,href)=>`<div class="c-item"><div class="c-ico" style="background:${color}">${ic(icon)}</div><div><p class="l">${label}</p><p class="v">${val?(href?`<a href="${href}"${href.startsWith('http')?' target="_blank" rel="noopener"':''}>${esc(val)}</a>`:esc(val)):'<span class="ph">à compléter</span>'}</p></div></div>`;
   $('contact-list').innerHTML =
     row('mail','var(--primary)','Email',EMAIL,EMAIL&&'mailto:'+EMAIL) +
     row('phone','var(--secondary)','Téléphone',TEL,TEL&&'tel:'+TEL.replace(/\s/g,'')) +
@@ -546,34 +898,46 @@ function render(){
 }
 
 /* ---------- Navigation ---------- */
-function showPage(name){
-  if(!PAGES.some(p=>p[0]===name)) name='accueil';
-  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));
-  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===name));
+const MAIN = PAGES.map(p=>p[0]);
+let pendingSection = null;
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  let page = h, nav = h;
+  if(h.startsWith('projet-') && PROJECTS[h.slice(7)]){ renderProject(h.slice(7)); page = 'projet'; nav = 'e5'; }
+  else { if(!MAIN.includes(h)) page = nav = 'accueil'; document.title = DEFAULT_TITLE; }
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active', p.id==='page-'+page));
+  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active', a.dataset.nav===nav));
   $('mobile-menu').classList.remove('open'); $('menu-button').setAttribute('aria-expanded','false');
-  window.scrollTo({top:0,behavior:'instant'});
+  if(pendingSection){ const el = $(pendingSection); pendingSection = null; if(el){ el.scrollIntoView(); return; } }
+  window.scrollTo({top:0, behavior:'instant'});
 }
-function route(){ showPage(location.hash.replace('#','')); }
-window.addEventListener('hashchange',route);
+window.addEventListener('hashchange', route);
 
 $('menu-button').addEventListener('click',()=>{
   const open = $('mobile-menu').classList.toggle('open');
-  $('menu-button').setAttribute('aria-expanded',String(open));
+  $('menu-button').setAttribute('aria-expanded', String(open));
 });
-document.addEventListener('click',e=>{
+document.addEventListener('click', e=>{
   const b = e.target.closest('[data-scroll]');
-  if(b) $(b.dataset.scroll).scrollIntoView({behavior:'smooth'});
+  if(b){ $(b.dataset.scroll).scrollIntoView({behavior:'smooth'}); return; }
+  const a = e.target.closest('a[data-section]');
+  if(a){
+    e.preventDefault();
+    pendingSection = a.dataset.section;
+    const target = a.getAttribute('href');
+    if(location.hash === target) route(); else location.hash = target;
+  }
 });
 
 /* ---------- Formulaire : ouvre le client mail ---------- */
-$('contact-form').addEventListener('submit',e=>{
+$('contact-form').addEventListener('submit', e=>{
   e.preventDefault();
   const f = e.target, note = $('form-note');
-  if(!f.nom.value.trim()||!f.email.value.trim()||!f.message.value.trim()){ note.textContent='Renseigne ton nom, ton email et ton message.'; return; }
-  if(!EMAIL){ note.textContent='Adresse de destination non renseignée.'; return; }
+  if(!f.nom.value.trim() || !f.email.value.trim() || !f.message.value.trim()){ note.textContent = 'Renseigne ton nom, ton email et ton message.'; return; }
+  if(!EMAIL){ note.textContent = 'Adresse de destination non renseignée.'; return; }
   const body = `${f.message.value}\n\n${f.nom.value} (${f.email.value})`;
   location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Contact depuis le portfolio')}&body=${encodeURIComponent(body)}`;
-  note.textContent='Ton client mail va s\'ouvrir pour envoyer le message.';
+  note.textContent = "Ton client mail va s'ouvrir pour envoyer le message.";
 });
 
 render(); route();
