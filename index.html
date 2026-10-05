@@ -1,952 +1,582 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Younes Fri — Portfolio BTS SIO SISR</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg:       #0b0f19;
-      --surface:  #111827;
-      --surface2: #1a2235;
-      --card:     #141d2e;
-      --border:   rgba(255,255,255,0.07);
-      --border-h: rgba(99,179,237,0.35);
-      --blue:     #3b82f6;
-      --blue-l:   #60a5fa;
-      --blue-d:   #1d4ed8;
-      --teal:     #14b8a6;
-      --text:     #e2e8f0;
-      --muted:    #64748b;
-      --white:    #f8fafc;
-      --green:    #22c55e;
-      --orange:   #f59e0b;
-      --nav-h:    64px;
-      --radius:   12px;
-      --ease:     cubic-bezier(.4,0,.2,1);
-    }
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    html{font-size:16px;scroll-behavior:smooth}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
-    ul{list-style:none}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio BTS SIO SISR - Younes FRI</title>
+<style>
+:root{
+  --primary:#0066CC; --primary-dark:#0052a3; --secondary:#00A651; --accent:#FF6B35;
+  --dark:#1A1A2E; --light:#F8F9FA; --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db;
+  --gray-600:#4b5563; --gray-800:#1f2937;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--light);color:var(--dark);line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 24px}
+.icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;vertical-align:-0.125em}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#f1f1f1}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:4px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 
-    /* ── NAV ── */
-    nav{
-      position:fixed;inset:0 0 auto 0;
-      height:var(--nav-h);
-      background:rgba(11,15,25,0.92);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border-bottom:1px solid var(--border);
-      z-index:999;display:flex;align-items:center;
-    }
-    .nav-inner{width:100%;max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between}
-    .logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);letter-spacing:.02em}
-    .logo span{color:var(--blue-l)}
-    .nav-links{display:flex;gap:.25rem}
-    .nav-links a{
-      font-size:.78rem;font-weight:500;color:var(--muted);
-      padding:.45rem .9rem;border-radius:8px;letter-spacing:.04em;
-      text-transform:uppercase;cursor:pointer;
-      transition:color .25s,background .25s;
-    }
-    .nav-links a:hover,.nav-links a.active{color:var(--blue-l);background:rgba(59,130,246,.1)}
-    .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-    .burger span{display:block;width:22px;height:2px;background:var(--muted);border-radius:2px}
-    .mobile-nav{display:none;position:fixed;inset:var(--nav-h) 0 0 0;background:rgba(11,15,25,.98);z-index:998;flex-direction:column;padding:1.5rem;gap:.3rem;overflow-y:auto}
-    .mobile-nav.open{display:flex}
-    .mobile-nav a{font-size:.95rem;font-weight:500;color:var(--muted);padding:.8rem 1rem;border-radius:8px;text-transform:uppercase;letter-spacing:.04em;transition:.2s;cursor:pointer}
-    .mobile-nav a:hover,.mobile-nav a.active{color:var(--blue-l);background:rgba(59,130,246,.08)}
+/* En-tete */
+header{position:sticky;top:0;z-index:50;background:rgba(26,26,46,.95);backdrop-filter:blur(6px);box-shadow:0 20px 25px -5px rgba(0,0,0,.2)}
+header nav{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;max-width:1200px;margin:0 auto}
+.brand{font-size:1.5rem;font-weight:700;color:#fff;transition:color .3s}
+.brand:hover{color:var(--accent)}
+.brand span{color:var(--primary)}
+.nav-links{display:flex;gap:32px;font-size:1.125rem;font-weight:500}
+.nav-links a{color:#fff;transition:color .2s;padding:2px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a.active{border-bottom-color:var(--primary)}
+#menu-button{display:none;background:none;border:0;color:#fff;cursor:pointer;font-size:2rem;padding:0}
+#mobile-menu{display:none;background:rgba(26,26,46,.95);text-align:center;padding-bottom:16px}
+#mobile-menu a{display:block;padding:8px;color:#fff;transition:background .2s}
+#mobile-menu a:hover{background:rgba(0,102,204,.5)}
+#mobile-menu.open{display:block}
+@media(max-width:768px){.nav-links{display:none}#menu-button{display:block}.brand{font-size:1.25rem}}
 
-    /* ── PAGES ── */
-    .page{display:none;min-height:100vh;padding-top:var(--nav-h);animation:pageFade .35s ease both}
-    .page.active{display:block}
-    @keyframes pageFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* Pages */
+.page{display:none}
+.page.active{display:block}
 
-    /* ── LAYOUT ── */
-    .container{max-width:1100px;margin:0 auto;padding:3.5rem 2rem 6rem}
-    .section-label{
-      display:inline-flex;align-items:center;gap:.6rem;
-      font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-      color:var(--blue-l);margin-bottom:.9rem;
-    }
-    .section-label::before{content:'';width:24px;height:2px;background:var(--blue-l);border-radius:2px}
-    .page-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:.8rem}
-    .page-subtitle{font-size:.95rem;color:var(--muted);line-height:1.75;max-width:620px;margin-bottom:2.5rem}
-    .page-header{margin-bottom:2.5rem}
+/* Hero */
+.hero{min-height:calc(100vh - 66px);display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary),#2563eb,var(--secondary));color:#fff;padding:48px 0}
+.glass-card{background:rgba(255,255,255,.1);backdrop-filter:blur(16px);border-radius:24px;padding:48px;box-shadow:0 25px 50px -12px rgba(0,0,0,.35);max-width:896px;margin:0 auto}
+.hero-row{display:flex;align-items:center;justify-content:space-between;gap:32px}
+.hero-text{flex:1;text-align:left}
+.hero h1{font-size:3.75rem;font-weight:700;margin:0 0 16px;line-height:1.1}
+.hero .sub{font-size:1.5rem;margin:0 0 24px;opacity:.9}
+.hero .alt{font-size:1.125rem;margin:0 0 32px;opacity:.85}
+.hero .alt b{color:var(--accent)}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn-outline{border:2px solid #fff;color:#fff;background:transparent;padding:12px 32px;border-radius:9999px;font-size:1rem;cursor:pointer;font-family:inherit;transition:all .2s}
+.btn-outline:hover{background:#fff;color:var(--primary)}
+.hero-photo{flex:1}
+.photo-ring{width:320px;height:320px;margin:0 auto;border-radius:50%;border:4px solid rgba(255,255,255,.3);background:rgba(255,255,255,.2);box-shadow:0 25px 50px -12px rgba(0,0,0,.35);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:5rem;font-weight:700}
+.photo-ring img{width:100%;height:100%;object-fit:cover}
+@media(max-width:768px){.glass-card{padding:28px}.hero-row{flex-direction:column-reverse}.hero h1{font-size:2.5rem}.hero .sub{font-size:1.25rem}.photo-ring{width:220px;height:220px}}
 
-    /* ── HERO ── */
-    #page-home{background:radial-gradient(ellipse 75% 60% at 70% 0%,rgba(59,130,246,.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 5% 90%,rgba(20,184,166,.05) 0%,transparent 55%)}
-    .hero{max-width:1100px;margin:0 auto;padding:0 2rem;min-height:calc(100vh - var(--nav-h));display:flex;align-items:center}
-    .hero-layout{display:flex;align-items:center;justify-content:space-between;gap:4rem;width:100%}
-    .hero-text{flex:1;max-width:580px}
-    .hero-eyebrow{
-      display:inline-flex;align-items:center;gap:.7rem;
-      font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
-      color:var(--blue-l);margin-bottom:1.4rem;
-    }
-    .hero-eyebrow::before{content:'';width:28px;height:1.5px;background:var(--blue-l)}
-    .hero-text h1{font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--white);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem}
-    .hero-text h1 em{font-style:normal;color:var(--blue-l)}
-    .hero-text p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:2rem;max-width:500px}
-    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
-    .hero-stats{display:flex;gap:2rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap}
-    .stat-item .stat-val{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--white)}
-    .stat-item .stat-lbl{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+/* Sections */
+.section{padding:80px 0}
+.bg-white{background:#fff}
+.h2{font-size:2.25rem;font-weight:700;text-align:center;margin:0 0 64px;color:var(--primary)}
+.h2-left{font-size:1.875rem;font-weight:700;margin:0 0 40px;border-bottom:2px solid var(--primary);display:inline-block}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.stack{display:flex;flex-direction:column}
+.gap-24{gap:24px}.gap-32{gap:32px}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr;gap:32px}}
+.panel{background:var(--light);border-radius:16px;padding:24px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);border-left:4px solid var(--primary)}
+.panel.green{border-left-color:var(--secondary);padding:32px;box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
+.panel.blue{padding:32px;box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
+.panel h3{margin:0 0 12px;font-size:1.5rem;font-weight:600;color:var(--primary)}
+.panel.green h3{color:var(--secondary);font-size:1.25rem}
+.panel.blue h3{font-size:1.25rem}
+.panel .head{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.panel .head h3{margin:0}
+.panel p{font-size:1.125rem;margin:0 0 16px}
+.panel p:last-child{margin-bottom:0}
+.panel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.panel li .t{font-weight:600;margin:0;font-size:1rem}
+.panel li .d{font-size:.75rem;font-style:italic;margin:0}
+.panel li{font-size:1rem}
+.two-panels{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media(max-width:640px){.two-panels{grid-template-columns:1fr}}
+.btn-cv{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:16px 32px;font-size:1.25rem;font-weight:700;border-radius:12px;color:#fff;background:var(--primary);box-shadow:0 10px 15px -3px rgba(0,0,0,.2);transition:all .3s}
+.btn-cv:hover{background:var(--secondary);transform:scale(1.05)}
+.center{display:flex;justify-content:center;margin-top:8px}
+.interests{background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:16px;padding:32px;color:#fff;box-shadow:0 25px 50px -12px rgba(0,0,0,.25)}
+.interests h3{margin:0 0 24px;text-align:center;font-size:1.5rem;font-weight:600}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.int-item{background:rgba(255,255,255,.2);border-radius:12px;padding:16px;text-align:center;backdrop-filter:blur(4px);transition:background .2s}
+.int-item:hover{background:rgba(255,255,255,.4)}
+.int-item .icon{font-size:2rem;display:block;margin:0 auto 8px}
+.int-item p{margin:0;font-weight:600}
+.preview h3{font-size:1.25rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px}
+.preview h3 .icon{color:var(--primary)}
+.pdf-frame{width:100%;height:600px;border-radius:8px;overflow:hidden;border:1px solid var(--gray-300);background:#fff;box-shadow:inset 0 2px 4px rgba(0,0,0,.06)}
+.pdf-frame iframe{width:100%;height:100%;border:0}
 
-    /* profile card */
-    .hero-profile{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:1.25rem}
-    .avatar-ring{width:180px;height:180px;border-radius:50%;padding:3px;background:linear-gradient(135deg,var(--blue),var(--teal))}
-    .avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .avatar-inner img{width:100%;height:100%;object-fit:cover}
-    .avatar-initials{font-family:'Syne',sans-serif;font-size:3rem;font-weight:700;color:var(--blue-l);opacity:.5}
-    .profile-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.6rem;min-width:200px;text-align:center}
-    .pc-name{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.2rem}
-    .pc-role{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l)}
-    .pc-status{font-size:.75rem;color:var(--muted);margin-top:.6rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
-    .dot-green{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2px rgba(34,197,94,.2);animation:pulse 2s infinite}
-    @keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(34,197,94,.2)}50%{box-shadow:0 0 0 5px rgba(34,197,94,.06)}}
+/* Contact */
+.contact-list{display:flex;flex-direction:column;gap:16px}
+.c-item{display:flex;align-items:center;gap:16px}
+.c-ico{color:#fff;padding:12px;border-radius:50%;font-size:1.25rem;display:flex}
+.c-item .l{font-weight:600;margin:0}
+.c-item .v{color:var(--gray-600);margin:0}
+.contact h3{font-size:1.5rem;font-weight:600;color:var(--primary);margin:0 0 16px}
+.contact p.lead{font-size:1.125rem;margin:0 0 24px}
+.map{margin-top:24px;border-radius:12px;overflow:hidden;border:1px solid var(--gray-200)}
+.map iframe{width:100%;height:220px;border:0;display:block}
+form label{display:block;font-weight:600;margin-bottom:6px}
+form input,form textarea{width:100%;padding:12px 16px;border:1px solid var(--gray-300);border-radius:8px;font:inherit;margin-bottom:16px;background:#fff}
+form input:focus,form textarea:focus{outline:2px solid var(--primary);border-color:var(--primary)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border:0;color:#fff;padding:12px 24px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;transition:all .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,102,204,.3)}
+.form-note{font-size:.875rem;color:var(--gray-600);margin-top:12px}
 
-    /* ── BUTTONS ── */
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.6rem;background:var(--blue);color:#fff;border-radius:8px;font-weight:600;font-size:.85rem;letter-spacing:.03em;border:none;cursor:pointer;transition:background .25s,transform .25s}
-    .btn:hover{background:var(--blue-l);transform:translateY(-2px)}
-    .btn-ghost{background:transparent;color:var(--blue-l);border:1px solid rgba(59,130,246,.4)}
-    .btn-ghost:hover{background:rgba(59,130,246,.08);color:var(--blue-l)}
+/* Pages internes */
+.page-head{padding:64px 0 24px}
+.page-head h1{font-size:2.5rem;font-weight:700;margin:0 0 20px;color:var(--primary)}
+.page-head p{font-size:1.125rem;max-width:900px;margin:0 0 16px;color:var(--gray-800)}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--primary);color:#fff;font-weight:700;border-radius:8px;box-shadow:0 4px 6px -1px rgba(0,0,0,.15);transition:all .2s}
+.btn-dl:hover{background:var(--primary-dark)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:80px}
+.cards.two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.cards,.cards.two{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:12px;box-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);overflow:hidden;border:1px solid #f3f4f6;display:flex;flex-direction:column;transition:box-shadow .3s,transform .3s}
+.card:hover{box-shadow:0 25px 50px -12px rgba(0,0,0,.25);transform:translateY(-5px)}
+.thumb{height:192px;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff}
+.thumb .icon{font-size:3.5rem;color:#5aa9ff;stroke-width:1.5}
+.thumb span{font-size:.8rem;opacity:.7;letter-spacing:.04em}
+.card-body{padding:24px;display:flex;flex-direction:column;flex:1}
+.cat{font-size:.75rem;font-weight:700;text-transform:uppercase;color:var(--primary)}
+.card h3{font-size:1.25rem;font-weight:700;margin:8px 0 12px}
+.card p{color:var(--gray-600);font-size:.875rem;margin:0 0 16px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tag{padding:4px 8px;background:var(--gray-100);font-size:.75rem;border-radius:4px}
+.links{display:flex;flex-direction:column;gap:6px}
+.links a{color:var(--primary);font-weight:600}
+.links a:hover{text-decoration:underline}
+.links .none{color:var(--gray-600);font-size:.875rem}
+.status{display:inline-block;font-size:.75rem;font-weight:700;background:#fff3cd;color:#856404;border-radius:9999px;padding:2px 10px;margin-left:8px;text-transform:none}
+.sub-block{margin-top:8px}
 
-    /* ── CARDS ── */
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;transition:border-color .25s,transform .25s}
-    .card:hover{border-color:rgba(59,130,246,.3);transform:translateY(-3px)}
-    .card h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:.75rem}
-    .card p{font-size:.9rem;color:var(--muted);line-height:1.8}
-    .mt-2{margin-top:2rem}
-    .mt-3{margin-top:3rem}
+/* E6 / Entreprise / Veille */
+.obj{margin:0 0 24px;padding-left:20px;font-size:1.125rem}
+.obj li{margin-bottom:8px}
+.id-grid{display:grid;grid-template-columns:1fr;gap:12px;font-size:1.0625rem}
+.id-grid b{color:var(--primary)}
+.ph{color:var(--accent);font-style:italic}
+.theme{margin:56px 0 24px}
+.theme .k{font-size:.8rem;font-weight:700;color:var(--secondary)}
+.theme h2{font-size:1.875rem;margin:4px 0 8px}
+.theme p{color:var(--gray-600);margin:0;max-width:760px}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:80px}
+@media(max-width:1000px){.tools{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.tools{grid-template-columns:1fr}}
+.tool{background:#fff;border-radius:12px;padding:24px;border:1px solid var(--gray-200);box-shadow:0 4px 6px -1px rgba(0,0,0,.08)}
+.tool .badge{width:44px;height:44px;border-radius:10px;background:#eff6ff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:12px}
+.tool h3{margin:0 0 8px;font-size:1.125rem}
+.tool p{margin:0 0 12px;font-size:.9rem;color:var(--gray-600)}
+.tool a{color:var(--primary);font-weight:600;font-size:.875rem}
+.back{text-align:center;margin:0 0 64px}
+.back a{color:var(--primary);font-weight:600}
 
-    /* ── GRID ── */
-    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-
-    /* ── SLIST ── */
-    .slist{margin-top:.5rem}
-    .slist li{position:relative;padding:.5rem 0 .5rem 1.3rem;font-size:.88rem;color:var(--muted);border-bottom:1px solid var(--border)}
-    .slist li:last-child{border-bottom:none}
-    .slist li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--blue)}
-    .slist li strong{color:var(--text)}
-
-    /* ── BADGE ── */
-    .badge{display:inline-block;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);border-radius:5px;padding:.25rem .65rem;margin-bottom:.85rem}
-    .badge-orange{color:var(--orange);background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.25)}
-    .badge-green{color:var(--green);background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.25)}
-
-    /* ── INFO BLOCK ── */
-    .info-block{background:rgba(59,130,246,.05);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:1.1rem 1.4rem;margin:1.3rem 0}
-    .info-block h4{font-size:.72rem;font-weight:700;color:var(--blue-l);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.45rem}
-    .info-block p{font-size:.88rem;color:var(--muted);line-height:1.75}
-
-    /* ── SUB HEADING ── */
-    .sub-h{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-l);margin:1.6rem 0 .65rem}
-
-    /* ── TAGS ── */
-    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
-    .tag{font-size:.68rem;font-weight:500;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:.25rem .6rem;transition:border-color .2s,color .2s}
-    .tag:hover{border-color:rgba(59,130,246,.4);color:var(--blue-l)}
-
-    /* ── TIMELINE ── */
-    .timeline{position:relative;margin:1.25rem 0}
-    .timeline::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:1px;background:var(--border)}
-    .tl-item{position:relative;padding:0 0 2rem 3.2rem}
-    .tl-item:last-child{padding-bottom:0}
-    .tl-dot{position:absolute;left:11px;top:4px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center}
-    .tl-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--blue)}
-    .tl-date{font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l);margin-bottom:.35rem}
-    .tl-title{font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.25rem}
-    .tl-desc{font-size:.85rem;color:var(--muted);line-height:1.7}
-
-    /* ── EPREUVE NUM ── */
-    .ep-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border:2px solid var(--blue);border-radius:10px;font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--blue-l);flex-shrink:0}
-    .ep-header{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.5rem}
-
-    /* ── BTN ROW ── */
-    .btn-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
-
-    /* ─────────────────────────────────────────
-       PROJECT CARDS (Ajay-inspired style)
-    ───────────────────────────────────────── */
-    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.5rem;margin-top:1.5rem}
-    .proj-card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:var(--radius);overflow:hidden;
-      display:flex;flex-direction:column;
-      transition:border-color .25s,transform .25s,box-shadow .25s;
-      cursor:pointer;
-    }
-    .proj-card:hover{border-color:rgba(59,130,246,.4);transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
-    .proj-card-wip{border-color:rgba(245,158,11,.25)}
-    .proj-thumb{
-      height:140px;display:flex;align-items:center;justify-content:center;
-      border-bottom:1px solid var(--border);position:relative;overflow:hidden;
-    }
-    .proj-thumb-bg{position:absolute;inset:0;opacity:.6}
-    .proj-thumb svg,.proj-thumb img.thumb-logo{position:relative;z-index:1}
-    .proj-thumb img.thumb-logo{width:80px;height:80px;object-fit:contain;filter:brightness(1.1)}
-    .proj-cat-pill{
-      position:absolute;top:.75rem;left:.85rem;z-index:2;
-      font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-      color:var(--blue-l);background:rgba(11,15,25,.85);
-      border:1px solid rgba(59,130,246,.3);border-radius:5px;padding:.2rem .55rem;
-    }
-    .proj-wip-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),transparent)}
-    .proj-cat-pill-orange{color:var(--orange);border-color:rgba(245,158,11,.3)}
-    .proj-body{padding:1.4rem 1.5rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
-    .proj-title{font-family:'Syne',sans-serif;font-size:.97rem;font-weight:700;color:var(--white);line-height:1.3}
-    .proj-desc{font-size:.83rem;color:var(--muted);line-height:1.7;flex:1}
-    .proj-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.3rem}
-    .proj-tag{font-size:.63rem;font-weight:500;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:.18rem .5rem}
-    .proj-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:.85rem;font-size:.8rem;font-weight:600;color:var(--blue-l);transition:gap .2s}
-    .proj-card:hover .proj-link{gap:.6rem}
-    .proj-wip-badge{display:inline-flex;align-items:center;gap:.5rem;margin-top:.85rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:5px;padding:.38rem .75rem}
-    .wip-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse-o 2s infinite}
-    @keyframes pulse-o{0%,100%{box-shadow:0 0 0 2px rgba(245,158,11,.2)}50%{box-shadow:0 0 0 5px rgba(245,158,11,.06)}}
-
-    /* ── VEILLE ARTICLES ── */
-    .veille-article{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:220px 1fr;transition:border-color .25s,transform .25s}
-    .veille-article:hover{border-color:rgba(59,130,246,.3);transform:translateY(-2px)}
-    .v-img{background:var(--surface2);display:flex;align-items:center;justify-content:center;min-height:160px}
-    .v-img svg{opacity:.7}
-    .v-body{padding:1.6rem 1.8rem}
-    .v-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:.7rem;flex-wrap:wrap}
-    .v-tag{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-l);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:4px;padding:.2rem .55rem}
-    .v-date{font-size:.75rem;color:var(--muted)}
-    .v-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--white);margin-bottom:.6rem;line-height:1.3}
-    .v-text{font-size:.87rem;color:var(--muted);line-height:1.75}
-
-    /* ── CONTACT ── */
-    .ci-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem}
-    .ci-panel h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:1.4rem}
-    .ci-row{display:flex;align-items:flex-start;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--border)}
-    .ci-row:last-child{border-bottom:none}
-    .ci-icon{width:36px;height:36px;border-radius:8px;background:rgba(59,130,246,.1);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--blue-l);font-weight:700}
-    .ci-lbl{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.12rem}
-    .ci-val{font-size:.88rem;color:var(--text)}
-    .ci-val a{color:var(--blue-l);transition:color .2s}
-    .ci-val a:hover{color:var(--blue-l);text-decoration:underline}
-
-    /* ── FOOTER ── */
-    footer{border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:.78rem;color:var(--muted)}
-    footer span{color:var(--blue-l)}
-
-    /* ── RESPONSIVE ── */
-    @media(max-width:900px){
-      .hero-layout{flex-direction:column-reverse;gap:2rem;padding-top:3rem}
-      .hero-profile{flex-direction:row;gap:1.5rem;align-self:flex-start}
-      .avatar-ring{width:90px;height:90px}
-      .veille-article{grid-template-columns:1fr}
-      .v-img{min-height:120px}
-    }
-    @media(max-width:768px){
-      .nav-links{display:none}
-      .burger{display:flex}
-    }
-    @media(max-width:560px){
-      .hero-profile{display:none}
-      .hero-stats{flex-direction:column;gap:1rem}
-      .btn-row,.hero-btns{flex-direction:column}
-      .proj-grid{grid-template-columns:1fr}
-    }
-  </style>
+footer{background:var(--dark);color:#fff;padding:40px 0;text-align:center}
+footer p{margin:4px 0;opacity:.85}
+footer a{color:var(--primary);font-weight:600}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <div class="logo">Younes <span>Fri</span></div>
-    <ul class="nav-links">
-      <li><a data-page="home">Accueil</a></li>
-      <li><a data-page="apropos">À propos</a></li>
-      <li><a data-page="bts">BTS SIO</a></li>
-      <li><a data-page="e5">Épreuve E5</a></li>
-      <li><a data-page="e6">Épreuve E6</a></li>
-      <li><a data-page="veille">Veille</a></li>
-      <li><a data-page="entreprise">Entreprise</a></li>
-      <li><a data-page="contact">Contact</a></li>
-    </ul>
-    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mobile-nav" id="mobileNav">
-  <a data-page="home">Accueil</a>
-  <a data-page="apropos">À propos</a>
-  <a data-page="bts">BTS SIO</a>
-  <a data-page="e5">Épreuve E5</a>
-  <a data-page="e6">Épreuve E6</a>
-  <a data-page="veille">Veille Technologique</a>
-  <a data-page="entreprise">Mon Entreprise</a>
-  <a data-page="contact">Contact</a>
-</div>
+<header>
+  <nav>
+    <a href="#accueil" class="brand">Younes FRI <span>SIO SISR</span></a>
+    <div class="nav-links" id="nav-links"></div>
+    <button id="menu-button" aria-label="Ouvrir le menu" aria-expanded="false"></button>
+  </nav>
+  <div id="mobile-menu"></div>
+</header>
 
-<!-- ═══════════════ ACCUEIL ═══════════════ -->
-<div class="page" id="page-home">
-  <div class="hero">
-    <div class="hero-layout">
-      <div class="hero-text">
-        <div class="hero-eyebrow">Portfolio BTS SIO SISR</div>
-        <h1>Younes <em>Fri</em></h1>
-        <p>Étudiant en BTS SIO option SISR à l'École Iris. Passionné par les infrastructures réseaux, l'administration systèmes et la cybersécurité. Actuellement en alternance chez Bernard Controls à Gonesse.</p>
-        <div class="hero-btns">
-          <button class="btn" data-page="e5">Voir mes projets</button>
-          <a href="CV_Younes_Fri.pdf" target="_blank" class="btn btn-ghost">Télécharger mon CV</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-item"><div class="stat-val">BTS SIO</div><div class="stat-lbl">1re Année</div></div>
-          <div class="stat-item"><div class="stat-val">SISR</div><div class="stat-lbl">Option</div></div>
-          <div class="stat-item"><div class="stat-val">Iris</div><div class="stat-lbl">École</div></div>
-          <div class="stat-item"><div class="stat-val">Bernard Controls</div><div class="stat-lbl">Entreprise</div></div>
-        </div>
-      </div>
-      <div class="hero-profile">
-        <div class="avatar-ring">
-          <div class="avatar-inner"><span class="avatar-initials">YF</span></div>
-        </div>
-        <div class="profile-card">
-          <div class="pc-name">Younes Fri</div>
-          <div class="pc-role">BTS SIO SISR</div>
-          <div class="pc-status"><span class="dot-green"></span>Disponible en alternance</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
-
-<!-- ═══════════════ À PROPOS ═══════════════ -->
-<div class="page" id="page-apropos">
-  <div class="container">
-    <div class="page-header">
-      <div class="section-label">01 — Présentation</div>
-      <h1 class="page-title">À propos de moi</h1>
-      <p class="page-subtitle">Étudiant passionné par les systèmes et réseaux, actuellement en formation BTS SIO à l'École Iris et en alternance chez Bernard Controls.</p>
-    </div>
-
-    <div class="grid-2" style="align-items:start">
-      <div>
-        <div class="sub-h" style="margin-top:0">Parcours</div>
-        <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2026 — Aujourd'hui</div>
-            <div class="tl-title">BTS SIO — École Iris</div>
-            <div class="tl-desc">Première année de BTS SIO option SISR. Formation aux infrastructures réseaux, cybersécurité et administration systèmes.</div>
+<!-- ACCUEIL -->
+<main id="page-accueil" class="page">
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="glass-card">
+        <div class="hero-row">
+          <div class="hero-text">
+            <h1>Younes FRI</h1>
+            <p class="sub">Étudiant en BTS SIO SISR</p>
+            <p class="alt">Alternant chez <b>BERNARD CONTROLS</b><br>Technicien informatique</p>
+            <div class="hero-btns">
+              <button class="btn-outline" data-scroll="profil">Profil</button>
+              <button class="btn-outline" data-scroll="contact">Contacter</button>
+            </div>
           </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2026 — Aujourd'hui</div>
-            <div class="tl-title">Technicien IT — Bernard Controls</div>
-            <div class="tl-desc">Alternance à Gonesse (95). Déploiement de solutions de gestion de parc (GLPI / OCS Inventory), support technique aux utilisateurs.</div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2025</div>
-            <div class="tl-title">Baccalauréat Scientifique</div>
-            <div class="tl-desc">Spécialités Physique-Chimie et SVT, puis orientation vers le BTS SIO pour une spécialisation en informatique et réseaux.</div>
+          <div class="hero-photo">
+            <div class="photo-ring" id="photo-ring">
+              <img src="photo.png" alt="Photo de Younes FRI" onerror="this.remove();document.getElementById('photo-ring').textContent='YF'">
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div>
-        <div class="sub-h" style="margin-top:0">Centres d'intérêt</div>
-        <div class="grid-2" style="gap:1rem">
-          <div class="card" style="padding:1.25rem">
-            <div style="font-size:1.5rem;margin-bottom:.5rem">🌐</div>
-            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Réseaux</div>
-            <div style="font-size:.78rem;color:var(--muted)">Infrastructure et protocoles</div>
+  <section class="section bg-white" id="profil">
+    <div class="container" style="max-width:1152px">
+      <h2 class="h2">Mon Profil</h2>
+      <div class="grid-2">
+        <div class="stack gap-24">
+          <div class="panel">
+            <h3>À propos de moi</h3>
+            <p>Étudiant en <strong>BTS SIO</strong> option <strong>SISR</strong> à l'école IRIS à Paris. Passionné par l'<strong>informatique</strong>, les <strong>infrastructures réseaux</strong> et l'<strong>administration système</strong>.</p>
+            <p>Mon alternance chez Bernard Controls me permet de mettre en pratique mes compétences en support utilisateur, en gestion de parc et en administration de serveurs.</p>
+            <p>Cette expérience renforce mon sens de l'organisation, mon autonomie et mon travail d'équipe.</p>
           </div>
-          <div class="card" style="padding:1.25rem">
-            <div style="font-size:1.5rem;margin-bottom:.5rem">🔒</div>
-            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Cybersécurité</div>
-            <div style="font-size:.78rem;color:var(--muted)">Sécurité des systèmes</div>
+          <div class="two-panels">
+            <div class="panel green">
+              <div class="head"><span id="ic-book"></span><h3>Formation</h3></div>
+              <ul>
+                <li><strong>BTS SIO SISR</strong> (en cours) – IRIS Paris</li>
+              </ul>
+            </div>
+            <div class="panel blue">
+              <div class="head"><span id="ic-brief" style="color:var(--primary);font-size:1.5rem;display:flex"></span><h3>Expériences Pro</h3></div>
+              <ul>
+                <li><p class="t">Technicien informatique – Bernard Controls</p><p class="d">Alternance, Gonesse (95) – en cours</p></li>
+              </ul>
+            </div>
           </div>
-          <div class="card" style="padding:1.25rem">
-            <div style="font-size:1.5rem;margin-bottom:.5rem">🖥️</div>
-            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Administration</div>
-            <div style="font-size:.78rem;color:var(--muted)">Systèmes Linux & Windows</div>
-          </div>
-          <div class="card" style="padding:1.25rem">
-            <div style="font-size:1.5rem;margin-bottom:.5rem">💻</div>
-            <div style="font-size:.88rem;font-weight:600;color:var(--white);margin-bottom:.25rem">Développement</div>
-            <div style="font-size:.78rem;color:var(--muted)">Web & scripting</div>
+          <div class="center" style="margin-top:24px">
+            <a class="btn-cv" href="CV_Younes_Fri.pdf" download><span id="ic-dl-cv" style="display:flex;font-size:1.5rem"></span>Télécharger mon CV</a>
           </div>
         </div>
-
-        <div class="sub-h">Objectifs</div>
-        <div class="card" style="margin-top:0">
-          <p>Maîtriser les compétences techniques et professionnelles du secteur informatique. Approfondir mes connaissances en administration systèmes et réseaux, cybersécurité et gestion de projets IT pour devenir un professionnel polyvalent et autonome.</p>
+        <div class="stack gap-32">
+          <div class="interests">
+            <h3>Mes centres d'intérêt</h3>
+            <div class="int-grid" id="interests"></div>
+          </div>
+          <div class="preview">
+            <h3><span id="ic-eye-cv" style="display:flex"></span>Aperçu de mon Curriculum vitæ</h3>
+            <div class="pdf-frame"><iframe src="CV_Younes_Fri.pdf#view=FitH" title="Aperçu du CV"></iframe></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
+  </section>
 
-<!-- ═══════════════ BTS SIO ═══════════════ -->
-<div class="page" id="page-bts">
-  <div class="container">
-    <div class="page-header">
-      <div class="section-label">02 — Formation</div>
-      <h1 class="page-title">BTS SIO</h1>
-      <p class="page-subtitle">Services Informatiques aux Organisations — Présentation de la formation et de ses deux options.</p>
+  <!--
+  Section Certifications (à décommenter quand tu as une attestation à présenter)
+  <section class="section bg-white" id="certification">
+    <div class="container">
+      <h2 class="h2">Mes Certifications</h2>
+      ... une carte par attestation : image, titre, lien "Ouvrir le PDF" ...
     </div>
+  </section>
+  -->
 
-    <div class="card">
-      <h3>Présentation du diplôme</h3>
-      <p>Le BTS SIO est un diplôme de niveau Bac+2 formant aux métiers de l'informatique. Il se divise en deux spécialités : SISR (Solutions d'Infrastructure, Systèmes et Réseaux) et SLAM (Solutions Logicielles et Applications Métiers). La formation combine enseignements généraux, matières professionnelles et périodes en entreprise.</p>
-    </div>
-
-    <div class="grid-2 mt-2">
-      <div class="card" style="border-top:3px solid var(--blue)">
-        <div class="badge">Option SISR — Mon option</div>
-        <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
-        <p>Spécialisation dans la gestion des infrastructures informatiques : installation, configuration, sécurisation et maintenance des réseaux et systèmes d'une organisation.</p>
-        <div class="sub-h">Débouchés</div>
-        <ul class="slist">
-          <li>Technicien Systèmes et Réseaux</li>
-          <li>Technicien d'Infrastructure</li>
-          <li>Administrateur Systèmes et Réseaux</li>
-          <li>Technicien Réseau / Télécoms</li>
-          <li>Technicien d'Exploitation Informatique</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="badge" style="color:var(--teal);background:rgba(20,184,166,.1);border-color:rgba(20,184,166,.25)">Option SLAM</div>
-        <h3>Solutions Logicielles et Applications Métiers</h3>
-        <p>Spécialisation dans la conception, le développement, le test et la maintenance de solutions logicielles adaptées aux besoins des entreprises.</p>
-        <div class="sub-h">Débouchés</div>
-        <ul class="slist">
-          <li>Développeur Web / Mobile</li>
-          <li>Développeur d'Applications</li>
-          <li>Programmeur / Analyste Programmeur</li>
-          <li>Technicien Support Applicatif</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
-
-<!-- ═══════════════ ÉPREUVE E5 ═══════════════ -->
-<div class="page" id="page-e5">
-  <div class="container">
-    <div class="page-header">
-      <div class="section-label">03 — Épreuve E5</div>
-      <h1 class="page-title">Support et Mise à Disposition<br>de Services Informatiques</h1>
-      <p class="page-subtitle">L'épreuve E5 évalue la maîtrise des compétences liées au support, à l'administration et à la mise à disposition de services informatiques en contexte professionnel réel.</p>
-    </div>
-
-    <!-- Présentation -->
-    <div class="card">
-      <div class="ep-header">
-        <div class="ep-num">E5</div>
+  <section class="section bg-white contact" id="contact" style="padding-top:0">
+    <div class="container" style="max-width:896px">
+      <h2 class="h2">Contact</h2>
+      <div class="grid-2">
         <div>
-          <h3 style="margin-bottom:.2rem">Présentation de l'épreuve</h3>
-          <p style="font-size:.82rem;color:var(--muted)">Support, administration et mise à disposition de services</p>
-        </div>
-      </div>
-      <ul class="slist" style="margin-top:0">
-        <li>Analyser un besoin exprimé par une organisation</li>
-        <li>Concevoir et proposer une solution informatique adaptée</li>
-        <li>Installer, configurer et tester un service</li>
-        <li>Mettre en production une solution et assurer le support</li>
-        <li>Maintenir la continuité et la sécurité des services</li>
-      </ul>
-      <div class="btn-row">
-        <a href="E5_Tableau_de_synthese.pdf" target="_blank" class="btn btn-ghost">Télécharger le tableau de synthèse</a>
-      </div>
-    </div>
-
-    <!-- APERÇU TABLEAU DE SYNTHÈSE -->
-    <div class="sub-h mt-3" style="font-size:.8rem">Aperçu de mon Tableau de Synthèse</div>
-    <div style="border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--card);">
-      <iframe
-        src="E5_Tableau_de_synthese.pdf#view=FitH"
-        width="100%"
-        height="600px"
-        style="display:block;border:none;"
-        title="Tableau de synthèse E5">
-        <p style="padding:2rem;color:var(--muted);font-size:.9rem">
-          Votre navigateur ne supporte pas l'affichage PDF.
-          <a href="E5_Tableau_de_synthese.pdf" target="_blank" style="color:var(--blue-l)">Télécharger le document</a>
-        </p>
-      </iframe>
-    </div>
-
-    <!-- Réalisations en cours de formation -->
-    <div class="sub-h mt-3" style="font-size:.8rem">Réalisations en cours de formation</div>
-    <div class="proj-grid">
-
-      <!-- OCS / GLPI -->
-      <a class="proj-card" href="ocs-glpi-documentation.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
-          <div class="proj-cat-pill">Gestion de parc</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <rect x="8" y="16" width="52" height="36" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
-            <path d="M18 28h32M18 36h20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="50" cy="36" r="5" stroke="#3b82f6" stroke-width="1.5"/>
-            <path d="M34 52v6M24 58h20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Administration OCS-NG Inventory &amp; GLPI</div>
-          <div class="proj-desc">Déploiement d'une solution ITSM complète sur Debian — inventaire automatisé avec OCS-NG et helpdesk avec GLPI.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">Debian Linux</span>
-            <span class="proj-tag">OCS-NG 2.12</span>
-            <span class="proj-tag">GLPI 11.0</span>
-            <span class="proj-tag">MariaDB</span>
-            <span class="proj-tag">Apache2</span>
+          <h3>Restons en contact</h3>
+          <p class="lead">N'hésitez pas à me contacter pour discuter de projets, d'opportunités ou simplement échanger autour des technologies.</p>
+          <div class="contact-list" id="contact-list"></div>
+          <div class="map">
+            <iframe title="Localisation de l'école IRIS" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d20988.778787215062!2d2.2933550000000005!3d48.884952!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f91aa85bfb1%3A0xca6c403c8e457b76!2sIRIS%20-%20%C3%89cole%20sup%C3%A9rieure%20d'informatique!5e0!3m2!1sfr!2sfr!4v1765322023932!5m2!1sfr!2sfr"></iframe>
           </div>
-          <span class="proj-link">Voir la documentation →</span>
         </div>
-      </a>
-
-      <!-- WINDOWS SERVER / AD -->
-      <a class="proj-card" href="Projet_AD_Final.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1730,#0a1020)">
-          <div class="proj-cat-pill">Administration système</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <circle cx="34" cy="26" r="10" stroke="#3b82f6" stroke-width="1.8"/>
-            <circle cx="16" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
-            <circle cx="52" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
-            <path d="M34 36v8M34 44l-12 6M34 44l12 6" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Windows Server 2019 — Active Directory, PowerShell &amp; GPO</div>
-          <div class="proj-desc">Déploiement complet d'un contrôleur de domaine AD DS, politique d'audit avancée, automatisation PowerShell et stratégies de groupe.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">Windows Server 2019</span>
-            <span class="proj-tag">Active Directory</span>
-            <span class="proj-tag">PowerShell 5.1</span>
-            <span class="proj-tag">GPO</span>
-            <span class="proj-tag">DNS</span>
-          </div>
-          <span class="proj-link">Voir la documentation →</span>
-        </div>
-      </a>
-
-      <!-- HAPROXY -->
-      <a class="proj-card" href="Haproxy_projet.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1a20,#0a1318)">
-          <div class="proj-cat-pill">Haute disponibilité</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <rect x="6" y="26" width="18" height="16" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
-            <rect x="44" y="26" width="18" height="16" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
-            <rect x="25" y="40" width="18" height="14" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
-            <rect x="25" y="14" width="18" height="14" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
-            <path d="M24 34H15M44 34H53M34 40V28" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Redondance &amp; Load Balancing — HAProxy + Heartbeat</div>
-          <div class="proj-desc">Infrastructure web hautement disponible avec VIP flottante Heartbeat et répartition de charge HAProxy sur 5 VMs VMware.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">HAProxy</span>
-            <span class="proj-tag">Heartbeat</span>
-            <span class="proj-tag">VIP Flottante</span>
-            <span class="proj-tag">VMware</span>
-            <span class="proj-tag">Debian</span>
-          </div>
-          <span class="proj-link">Voir la documentation →</span>
-        </div>
-      </a>
-
-      <!-- TP LINUX ROUTAGE -->
-      <a class="proj-card" href="TP_Linux__Topologie_Routage.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1f0d,#0a1508)">
-          <div class="proj-cat-pill">Réseau</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <circle cx="34" cy="34" r="13" stroke="#3b82f6" stroke-width="1.8"/>
-            <path d="M12 34h9M47 34h9M34 12v9M34 47v9" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="34" cy="34" r="4" fill="#3b82f6" opacity=".5"/>
-            <path d="M19 19l5.5 5.5M43.5 43.5L49 49M49 19l-5.5 5.5M24.5 43.5L19 49" stroke="#3b82f6" stroke-width="1" stroke-linecap="round" opacity=".4"/>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">Infrastructure Réseau Linux — Routage, DHCP &amp; NAT</div>
-          <div class="proj-desc">Routeur Debian multi-interfaces assurant le DHCP, le routage inter-LAN et le NAT pour des clients Windows et Linux sous VMware.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">Debian 13</span>
-            <span class="proj-tag">Routage IP</span>
-            <span class="proj-tag">DHCP</span>
-            <span class="proj-tag">NAT iptables</span>
-            <span class="proj-tag">VMware</span>
-          </div>
-          <span class="proj-link">Voir la documentation →</span>
-        </div>
-      </a>
-
-      <!-- ANNONCE EXPRESS EN COURS -->
-      <a class="proj-card" href="AnnonceExpress_presentation.pdf" target="_blank">
-        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d1f0a,#0a1508)">
-          <div class="proj-cat-pill">Développement Web</div>
-          <svg width="68" height="68" viewBox="0 0 68 68" fill="none">
-            <rect x="10" y="14" width="48" height="40" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
-            <path d="M20 26h28M20 34h18M20 42h12" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="50" cy="44" r="9" fill="#0b0f19" stroke="#22c55e" stroke-width="1.8"/>
-            <path d="M46.5 44l2 2 4-4" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="proj-body">
-          <div class="proj-title">AnnonceExpress — Site de Petites Annonces</div>
-          <div class="proj-desc">Site web PHP / MySQL de petites annonces avec les 4 opérations CRUD via requêtes préparées MySQLi. Hébergé sous XAMPP, versionné sur GitHub.</div>
-          <div class="proj-tags">
-            <span class="proj-tag">PHP</span>
-            <span class="proj-tag">MySQL</span>
-            <span class="proj-tag">XAMPP</span>
-            <span class="proj-tag">CRUD</span>
-            <span class="proj-tag">GitHub</span>
-          </div>
-          <span class="proj-link">Voir la présentation →</span>
-        </div>
-      </a>
-
-    </div>
-  </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
-
-<!-- ═══════════════ ÉPREUVE E6 ═══════════════ -->
-<div class="page" id="page-e6">
-  <div class="container">
-    <div class="page-header">
-      <div class="section-label">04 — Épreuve E6</div>
-      <h1 class="page-title">Cybersécurité des Services Informatiques</h1>
-      <p class="page-subtitle">Évaluation de la capacité à identifier les vulnérabilités, analyser les risques et intégrer la cybersécurité dans toute activité informatique.</p>
-    </div>
-
-    <div class="card">
-      <div class="ep-header">
-        <div class="ep-num">E6</div>
         <div>
-          <h3 style="margin-bottom:.2rem">Présentation de l'épreuve</h3>
-          <p style="font-size:.82rem;color:var(--muted)">Sécurisation des services et systèmes d'information</p>
+          <form id="contact-form" novalidate>
+            <label for="f-nom">Nom</label>
+            <input id="f-nom" name="nom" type="text" autocomplete="name" required>
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" name="message" rows="6" required></textarea>
+            <button class="btn-primary" type="submit">Envoyer le message</button>
+            <p class="form-note" id="form-note" role="status"></p>
+          </form>
         </div>
       </div>
-      <ul class="slist" style="margin-top:0">
-        <li>Identifier les vulnérabilités d'un système d'information</li>
-        <li>Analyser les risques liés à la sécurité</li>
-        <li>Mettre en place des mesures de protection adaptées</li>
-        <li>Sécuriser les accès et les données</li>
-        <li>Assurer la surveillance et la protection des services</li>
+    </div>
+  </section>
+</main>
+
+<!-- E5 -->
+<main id="page-e5" class="page">
+  <div class="container">
+    <div class="page-head">
+      <h1>Épreuve E5</h1>
+      <p>L'épreuve <strong>E5</strong> évalue la capacité du candidat à répondre aux besoins d'une organisation en concevant, déployant et maintenant des solutions d'infrastructure réseau et système.</p>
+      <p>Elle prend la forme d'une présentation orale s'appuyant sur un dossier technique. Le jury évalue ma maîtrise des compétences du référentiel SISR à travers les réalisations présentées dans mon <strong>Tableau de synthèse</strong>.</p>
+    </div>
+    <div class="preview" style="margin:24px 0 80px">
+      <h3 style="justify-content:center"><span id="ic-eye-e5" style="display:flex"></span>Aperçu de mon Tableau de synthèse</h3>
+      <div class="pdf-frame"><iframe src="E5_Tableau_de_synthese.pdf#view=FitH" title="Aperçu du tableau de synthèse E5"></iframe></div>
+      <div class="center" style="margin-top:24px"><a class="btn-dl" href="E5_Tableau_de_synthese.pdf" download><span id="ic-dl-e5" style="display:flex"></span>Télécharger mon Tableau de synthèse (PDF)</a></div>
+    </div>
+
+    <h2 class="h2-left">Réalisations en cours de formation</h2>
+    <div class="cards" id="cards-formation"></div>
+
+    <h2 class="h2-left">Réalisations en milieu professionnel</h2>
+    <div class="cards" id="cards-pro"></div>
+
+    <h2 class="h2-left">Projets personnels</h2>
+    <div class="cards" id="cards-perso"></div>
+
+    <div class="back"><a href="#accueil">Retour à l'accueil</a></div>
+  </div>
+</main>
+
+<!-- E6 -->
+<main id="page-e6" class="page">
+  <div class="container">
+    <div class="page-head">
+      <h1>Épreuve E6</h1>
+      <p>L'épreuve <strong>E6</strong> du BTS SIO SISR porte sur la cybersécurité des services informatiques. Elle s'appuie sur deux réalisations professionnelles, chacune décrite dans une fiche descriptive (annexe VII-1-A).</p>
+      <h2 style="font-size:1.25rem;margin:24px 0 12px">Objectifs de l'épreuve</h2>
+      <ul class="obj">
+        <li><strong>Conception :</strong> analyser un besoin et choisir une architecture adaptée.</li>
+        <li><strong>Mise en œuvre :</strong> déployer et configurer les services sur Windows Server (Active Directory, GPO).</li>
+        <li><strong>Exploitation :</strong> auditer, automatiser avec PowerShell et sécuriser les comptes.</li>
       </ul>
-      <div class="info-block" style="margin-top:1.3rem">
-        <h4>Forme ponctuelle orale — 40 minutes</h4>
-        <p>Entretien avec le jury au cours duquel le candidat présente le contexte de la mission, la problématique de sécurité, les solutions mises en œuvre et les résultats obtenus.</p>
-      </div>
+      <p>Les deux réalisations ci-dessous sont issues de mon projet Active Directory sous Windows Server 2019.</p>
     </div>
-
-    <div class="info-block mt-2">
-      <h4>Périmètre des réalisations présentées</h4>
-      <p>Les deux réalisations ci-dessous s'appuient sur le même projet de déploiement Windows Server 2019, scindé en deux situations professionnelles distinctes : la mise en place du contrôleur de domaine et la sécurisation des accès d'une part, l'automatisation et le pilotage de l'infrastructure d'autre part.</p>
-    </div>
-
-    <!-- ═══ RÉALISATIONS E6 — style liste verticale ═══ -->
-    <style>
-      .real-list{display:flex;flex-direction:column;gap:1.75rem;margin-top:1.75rem}
-      .real-item{
-        background:var(--card);border:1px solid var(--border);
-        border-radius:var(--radius);overflow:hidden;
-      }
-      .real-thumb{
-        height:170px;display:flex;align-items:center;justify-content:center;
-        border-bottom:1px solid var(--border);position:relative;
-      }
-      .real-body{padding:1.75rem 2rem}
-      .real-num{
-        display:inline-flex;align-items:center;gap:.5rem;
-        font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-        color:var(--blue-l);margin-bottom:.6rem;
-      }
-      .real-num::before{content:'';width:20px;height:2px;background:var(--blue-l)}
-      .real-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);line-height:1.35;margin-bottom:.9rem}
-      .real-desc{font-size:.88rem;color:var(--muted);line-height:1.8;margin-bottom:1.1rem}
-      .real-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.3rem}
-      .real-links{display:flex;gap:1rem;flex-wrap:wrap}
-      .real-link{
-        display:inline-flex;align-items:center;gap:.45rem;
-        font-size:.82rem;font-weight:600;color:var(--blue-l);
-        border:1px solid rgba(59,130,246,.3);border-radius:7px;
-        padding:.55rem 1.1rem;transition:background .2s,gap .2s;
-      }
-      .real-link:hover{background:rgba(59,130,246,.08);gap:.65rem}
-    </style>
-
-    <div class="sub-h mt-3" style="font-size:.8rem">Mes 2 réalisations professionnelles</div>
-    <div class="real-list">
-
-      <!-- RÉALISATION N°1 -->
-      <div class="real-item">
-        <div class="real-thumb" style="background:linear-gradient(135deg,#0d1730,#0a1020)">
-          <svg width="80" height="80" viewBox="0 0 68 68" fill="none">
-            <circle cx="34" cy="26" r="10" stroke="#3b82f6" stroke-width="1.8"/>
-            <circle cx="16" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
-            <circle cx="52" cy="50" r="7" stroke="#3b82f6" stroke-width="1.5"/>
-            <path d="M34 36v8M34 44l-12 6M34 44l12 6" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="real-body">
-          <div class="real-num">Réalisation n°1</div>
-          <div class="real-title">Mise en place d'un contrôleur de domaine sécurisé et politique de sécurité des comptes</div>
-          <div class="real-desc">
-            Déploiement d'Active Directory Domain Services sur Windows Server 2019 : promotion en contrôleur de domaine, configuration DNS, gestion des utilisateurs et des groupes. Mise en place d'une politique de sécurité des comptes — stratégie de mots de passe robuste (longueur, complexité, historique), verrouillage automatique après tentatives échouées — afin de réduire la surface d'attaque sur les comptes du domaine.
-          </div>
-          <div class="real-tags">
-            <span class="tag">Active Directory DS</span>
-            <span class="tag">Windows Server 2019</span>
-            <span class="tag">Politique de mots de passe</span>
-            <span class="tag">Verrouillage de compte</span>
-            <span class="tag">DNS</span>
-          </div>
-          <div class="real-links">
-            <a href="Projet_AD_Final.pdf" target="_blank" class="real-link">Fiche TP →</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- RÉALISATION N°2 -->
-      <div class="real-item">
-        <div class="real-thumb" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
-          <svg width="80" height="80" viewBox="0 0 68 68" fill="none">
-            <rect x="10" y="14" width="48" height="40" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
-            <path d="M20 26h28M20 34h20M20 42h14" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="50" cy="44" r="3" fill="#3b82f6"/>
-          </svg>
-        </div>
-        <div class="real-body">
-          <div class="real-num">Réalisation n°2</div>
-          <div class="real-title">Audit, automatisation PowerShell et pilotage des stratégies de groupe (GPO)</div>
-          <div class="real-desc">
-            Configuration d'une politique d'audit avancée pour assurer la traçabilité des connexions, des accès aux objets et de la gestion des comptes du domaine. Automatisation des tâches d'administration via des scripts PowerShell (création d'utilisateurs depuis un fichier CSV, génération de rapports). Déploiement et test de stratégies de groupe (GPO) — héritage, blocage, Enforcer — pour homogénéiser et sécuriser la configuration du parc.
-          </div>
-          <div class="real-tags">
-            <span class="tag">Politique d'audit</span>
-            <span class="tag">PowerShell 5.1</span>
-            <span class="tag">GPO — Stratégies de groupe</span>
-            <span class="tag">Traçabilité & logs</span>
-            <span class="tag">Active Directory</span>
-          </div>
-          <div class="real-links">
-            <a href="Projet_AD_Final.pdf" target="_blank" class="real-link">Fiche TP →</a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="sub-h mt-3">Thématiques de sécurité abordées</div>
-    <div class="tags">
-      <span class="tag">ANSSI</span>
-      <span class="tag">OWASP</span>
-      <span class="tag">Analyse EBIOS</span>
-      <span class="tag">Wireshark</span>
-      <span class="tag">Nmap</span>
-      <span class="tag">Pare-feu</span>
-      <span class="tag">Active Directory</span>
-    </div>
+    <h2 class="h2-left">Les réalisations en cours de formation</h2>
+    <div class="cards two" id="cards-e6"></div>
+    <div class="back"><a href="#accueil">Retour à l'accueil</a></div>
   </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
+</main>
 
-<!-- ═══════════════ VEILLE ═══════════════ -->
-<div class="page" id="page-veille">
+<!-- ENTREPRISE -->
+<main id="page-entreprise" class="page">
   <div class="container">
-    <div class="page-header">
-      <div class="section-label">05 — Veille Technologique</div>
-      <h1 class="page-title">Veille Technologique</h1>
-      <p class="page-subtitle">Sujet étudié : les passkeys, une nouvelle méthode d'authentification qui remplace les mots de passe traditionnels.</p>
-    </div>
-
-    <div class="card mt-2">
-      <div class="sub-h" style="margin-top:0">Qu'est-ce que la veille technologique ?</div>
-      <p style="font-size:.9rem;color:var(--muted);line-height:1.8">La veille technologique regroupe tous les moyens déployés pour collecter et analyser des informations techniques afin de rester à jour sur les évolutions du secteur informatique. Elle permet d'anticiper les changements et d'adapter ses pratiques professionnelles.</p>
-    </div>
-
-    <!-- Article Passkeys -->
-    <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem">
-      <div class="veille-article">
-        <div class="v-img" style="background:linear-gradient(135deg,#0d1a2e,#0a1520)">
-          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-            <rect x="12" y="28" width="46" height="32" rx="5" stroke="#3b82f6" stroke-width="1.8"/>
-            <path d="M26 28v-8a9 9 0 0 1 18 0v8" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="35" cy="44" r="5" fill="#3b82f6" opacity=".6"/>
-            <path d="M35 49v5" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="v-body">
-          <div class="v-meta">
-            <span class="v-tag">Authentification</span>
-            <span class="v-date">2025 — 2026</span>
-          </div>
-          <div class="v-title">Les Passkeys — Se connecter sans mot de passe</div>
-          <div class="v-text" style="margin-bottom:1rem">Les passkeys permettent de s'authentifier via empreinte digitale, Face ID ou code PIN, sans aucun mot de passe. Elles reposent sur la cryptographie à clé publique/privée : la clé privée reste sur l'appareil, la clé publique est envoyée au service. Résultat : le phishing ne fonctionne plus, rien ne peut être volé.</div>
-          <div class="sub-h" style="margin-top:.5rem">Pourquoi c'est important</div>
-          <ul class="slist">
-            <li>Les mots de passe sont souvent faibles ou réutilisés — les passkeys suppriment ce risque</li>
-            <li>Résistant au phishing : aucun secret ne transite sur le réseau</li>
-            <li>Connexion plus rapide et plus simple pour l'utilisateur</li>
-            <li>Déjà adopté par Google, Apple et Microsoft</li>
-          </ul>
-          <div class="sub-h">Limites</div>
-          <ul class="slist">
-            <li>Perte d'appareil : nécessite un mécanisme de récupération de compte</li>
-            <li>Pas encore universel : certains services ne le proposent pas</li>
-            <li>Nécessite une explication aux utilisateurs non-initiés</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">FIDO2 / WebAuthn</span>
-            <span class="tag">Cryptographie asymétrique</span>
-            <span class="tag">Anti-phishing</span>
-            <span class="tag">Google / Apple / Microsoft</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
-
-<!-- ═══════════════ ENTREPRISE ═══════════════ -->
-<div class="page" id="page-entreprise">
-  <div class="container">
-    <div class="page-header">
-      <div class="section-label">06 — Entreprise</div>
-      <h1 class="page-title">Bernard Controls</h1>
-      <p class="page-subtitle">Groupe industriel international spécialisé dans la conception d'actionneurs, au sein duquel j'effectue mon alternance dans le cadre du BTS SIO.</p>
-    </div>
-
-    <div class="grid-2">
-      <div class="card">
+    <div class="page-head"><h1>Mon alternance chez BERNARD CONTROLS</h1></div>
+    <div class="grid-2" style="margin-bottom:64px">
+      <div class="panel">
         <h3>Présentation</h3>
-        <ul class="slist">
-          <li><strong>Nom :</strong> Bernard Controls</li>
-          <li><strong>Localisation :</strong> Gonesse, Val-d'Oise (95)</li>
-          <li><strong>Effectif :</strong> ~500 employés dans le monde</li>
-          <li><strong>Secteur :</strong> Industrie — Actionneurs énergie, pétrole, eau</li>
-          <li><strong>Présence :</strong> Filiales en Europe, Asie et Amérique</li>
-        </ul>
-        <p style="margin-top:1.1rem;font-size:.88rem;color:var(--muted);line-height:1.8">Bernard Controls conçoit et fabrique des actionneurs électriques et hydrauliques pour les secteurs critiques. Le groupe dispose d'une DSI internalisée gérant l'ensemble de l'infrastructure IT mondiale.</p>
+        <p><strong>Bernard Controls</strong> est une entreprise industrielle spécialisée dans les actionneurs électriques.</p>
+        <p>J'y effectue mon alternance en tant que technicien informatique, sur le site de Gonesse (95). Mon rôle couvre le support aux utilisateurs, la gestion du parc informatique et l'administration de services système.</p>
       </div>
-      <div class="card">
-        <h3>Compétences développées</h3>
-        <ul class="slist">
-          <li>Travail en équipe dans un environnement professionnel international</li>
-          <li>Gestion de projet IT et communication avec les utilisateurs</li>
-          <li>Administration de serveurs Linux en production</li>
-          <li>Déploiement et configuration de solutions open source</li>
-          <li>Rédaction de documentations techniques structurées</li>
-          <li>Adaptabilité et autonomie en contexte réel</li>
-        </ul>
+      <div class="panel blue" style="border-left-color:var(--secondary)">
+        <h3 style="color:var(--secondary)">Identité de l'entreprise</h3>
+        <div class="id-grid">
+          <div><b>Nom :</b> Bernard Controls</div>
+          <div><b>Activité :</b> actionneurs électriques</div>
+          <div><b>Site de mon alternance :</b> Gonesse (95)</div>
+          <div><b>Création :</b> <span class="ph">à compléter</span></div>
+          <div><b>Siège social :</b> <span class="ph">à compléter</span></div>
+          <div><b>Effectif :</b> <span class="ph">à compléter</span></div>
+          <div><b>Direction :</b> <span class="ph">à compléter</span></div>
+        </div>
       </div>
     </div>
-
-    <div class="card mt-2">
-      <h3>Missions réalisées</h3>
-      <div class="info-block">
-        <h4>Mission principale documentée</h4>
-        <p>Déploiement d'OCS-NG Inventory et GLPI sur serveur Debian pour la gestion du parc informatique — voir le détail complet dans la page Épreuve E5.</p>
-      </div>
-      <div class="sub-h">Autres missions</div>
-      <ul class="slist">
-        <li>Support technique niveaux 1 et 2 auprès des utilisateurs du site de Gonesse</li>
-        <li>Participation aux interventions de maintenance sur le parc informatique</li>
-        <li>Contribution à la documentation interne du service IT</li>
-        <li>Observation et participation aux réunions d'équipe DSI</li>
-      </ul>
-    </div>
+    <h2 class="h2-left">Localisation</h2>
+    <div class="map" style="margin:0 0 64px"><iframe title="Localisation de Bernard Controls" loading="lazy" style="height:380px" src="https://www.google.com/maps?q=Bernard+Controls+Gonesse&output=embed"></iframe></div>
+    <h2 class="h2-left">Projets professionnels</h2>
+    <p style="font-size:1.125rem;margin:0 0 24px">Les réalisations menées en entreprise sont présentées sur la page E5.</p>
+    <p style="margin:0 0 80px"><a class="btn-dl" href="#e5">Voir mes projets professionnels</a></p>
   </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
+</main>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
-<div class="page" id="page-contact">
+<!-- VEILLE -->
+<main id="page-veille" class="page">
   <div class="container">
-    <div class="page-header">
-      <div class="section-label">07 — Contact</div>
-      <h1 class="page-title">Restons en contact</h1>
-      <p class="page-subtitle">N'hésitez pas à me contacter pour discuter de projets, d'opportunités ou simplement échanger autour des technologies.</p>
-    </div>
-
-    <div style="max-width:520px">
-      <div class="ci-panel">
-        <h3>Informations de contact</h3>
-        <div class="ci-row">
-          <div class="ci-icon">@</div>
-          <div>
-            <div class="ci-lbl">Email</div>
-            <div class="ci-val"><a href="mailto:fri.younesfri95@gmail.com">fri.younesfri95@gmail.com</a></div>
-          </div>
-        </div>
-        <div class="ci-row">
-          <div class="ci-icon">in</div>
-          <div>
-            <div class="ci-lbl">LinkedIn</div>
-            <div class="ci-val"><a href="https://www.linkedin.com/in/younes-fri-54a6773b1/" target="_blank">younes-fri-54a6773b1</a></div>
-          </div>
-        </div>
-        <div class="ci-row">
-          <div class="ci-icon">CV</div>
-          <div>
-            <div class="ci-lbl">Curriculum Vitae</div>
-            <div class="ci-val"><a href="CV_Younes_Fri.pdf" target="_blank">Télécharger mon CV (PDF)</a></div>
-          </div>
-        </div>
-        <div class="ci-row">
-          <div class="ci-icon">📍</div>
-          <div>
-            <div class="ci-lbl">Localisation</div>
-            <div class="ci-val">École Iris, Île-de-France</div>
-          </div>
-        </div>
-        <div class="ci-row">
-          <div class="ci-icon">🎓</div>
-          <div>
-            <div class="ci-lbl">Formation</div>
-            <div class="ci-val">BTS SIO — 1re Année — Option SISR</div>
-          </div>
-        </div>
+    <div class="page-head"><h1>La Veille Technologique</h1></div>
+    <div class="grid-2" style="margin-bottom:24px">
+      <div class="panel">
+        <h3>Qu'est-ce qu'une veille technologique ?</h3>
+        <p>C'est l'ensemble des méthodes qui permettent de surveiller, collecter et analyser les informations techniques d'un domaine, afin de rester informé des évolutions et d'anticiper les changements.</p>
+      </div>
+      <div class="panel blue" style="border-left-color:var(--secondary)">
+        <h3 style="color:var(--secondary)">Ma méthode</h3>
+        <p><span class="ph">À compléter : fréquence, temps consacré, outils réellement utilisés.</span></p>
       </div>
     </div>
+
+    <div class="theme"><div class="k">Thématique 1</div><h2><span class="ph">Titre de la thématique</span></h2><p><span class="ph">Une phrase qui explique pourquoi tu suis ce sujet.</span></p></div>
+    <div class="cards" id="cards-veille1" style="margin-bottom:24px"></div>
+
+    <div class="theme"><div class="k">Thématique 2</div><h2><span class="ph">Titre de la thématique</span></h2><p><span class="ph">Une phrase qui explique pourquoi tu suis ce sujet.</span></p></div>
+    <div class="cards" id="cards-veille2"></div>
+
+    <h2 class="h2-left">Mes outils de veille</h2>
+    <div class="tools" id="tools"></div>
+    <div class="back"><a href="#accueil">Retour à l'accueil</a></div>
   </div>
-  <footer><p>© 2026 Younes Fri — Portfolio <span>BTS SIO SISR</span></p></footer>
-</div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© Younes FRI - Portfolio BTS SIO SISR</p>
+    <p>2026 Tous droits réservés.</p>
+    <p id="foot-linkedin"></p>
+  </div>
+</footer>
 
 <script>
-  const PAGE_MAP  = {home:'page-home',apropos:'page-apropos',bts:'page-bts',e5:'page-e5',e6:'page-e6',veille:'page-veille',entreprise:'page-entreprise',contact:'page-contact'};
-  const HASH_MAP  = {'#accueil':'home','#apropos':'apropos','#bts-sio':'bts','#epreuve-e5':'e5','#epreuve-e6':'e6','#veille':'veille','#entreprise':'entreprise','#contact':'contact'};
-  const PAGE_HASH = {home:'#accueil',apropos:'#apropos',bts:'#bts-sio',e5:'#epreuve-e5',e6:'#epreuve-e6',veille:'#veille',entreprise:'#entreprise',contact:'#contact'};
+/* ===== A MODIFIER : coordonnées (laisser vide tant que non renseigné) ===== */
+const EMAIL = "";
+const TEL = "";
+const LINKEDIN = "";
+/* ========================================================================= */
 
-  function showPage(key){
-    if(!PAGE_MAP[key])key='home';
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    document.getElementById(PAGE_MAP[key]).classList.add('active');
-    document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.dataset.page===key));
-    history.replaceState(null,'',PAGE_HASH[key]);
-    window.scrollTo(0,0);
-  }
+const P = {
+  menu:'<line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>',
+  x:'<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
+  download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',
+  eye:'<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+  mail:'<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+  phone:'<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  linkedin:'<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+  book:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+  brief:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  server:'<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>',
+  shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+  monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>',
+  zap:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+  target:'<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>',
+  terminal:'<polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>',
+  users:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  database:'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>',
+  code:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>',
+  msg:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+  layers:'<polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>',
+  lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>',
+  rss:'<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>'
+};
+const ic = (n,extra='') => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" ${extra}>${P[n]}</svg>`;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
-  document.addEventListener('click',e=>{
-    const el=e.target.closest('[data-page]');
-    if(!el)return;
-    e.preventDefault();
-    showPage(el.dataset.page);
-    document.getElementById('mobileNav').classList.remove('open');
-  });
+/* ---------- Donnees ---------- */
+const PAGES = [
+  ['accueil','Accueil'],['e5','Epreuve E5'],['e6','Epreuve E6'],['entreprise','Entreprise'],['veille','Veille Technologique']
+];
 
-  window.addEventListener('hashchange',()=>showPage(HASH_MAP[window.location.hash]||'home'));
-  showPage(HASH_MAP[window.location.hash]||'home');
+const INTERESTS = [
+  ['server','Réseaux'],['shield','Cybersécurité'],['layers','Virtualisation'],
+  ['zap','Gaming'],['monitor','Montage PC'],['target','Football']
+];
 
-  document.getElementById('burger').addEventListener('click',()=>document.getElementById('mobileNav').classList.toggle('open'));
+const FORMATION = [
+  {icon:'terminal', thumb:'Debian', cat:'Configuration & Routage Réseau Linux', title:'TP Linux : Topologie Routage',
+   text:'Mise en place d\'une topologie réseau et configuration du routage, du DHCP et du NAT sous Linux.',
+   tags:['Linux','Routage','DHCP','NAT'], links:[['Voir la documentation','TP_Linux__Topologie_Routage.pdf']]},
+  {icon:'server', thumb:'HAProxy', cat:'Haute Disponibilité', title:'Redondance & Load Balancing',
+   text:'Mise en place de HAProxy et Heartbeat pour garantir la continuité de service.',
+   tags:['HAProxy','Heartbeat'], links:[['Voir la documentation','Haproxy_projet.pdf']]},
+  {icon:'users', thumb:'Windows Server 2019', cat:'Administration système', title:'Active Directory, PowerShell et GPO',
+   text:'Déploiement d\'un domaine Active Directory sous Windows Server 2019, automatisation avec PowerShell et stratégies de groupe.',
+   tags:['Active Directory','PowerShell','GPO'], links:[['Voir la documentation','Projet_AD_Final.pdf']]},
+  {icon:'code', thumb:'PHP / MySQL', cat:'Développement web', title:'AnnonceExpress',
+   text:'Site de petites annonces en PHP et MySQLi : affichage, ajout, modification et suppression des annonces.',
+   tags:['PHP','MySQL','CRUD'], links:[['Voir la présentation','AnnonceExpress_presentation.pdf']]}
+];
+
+const PRO = [
+  {icon:'database', thumb:'OCS Inventory NG', cat:'Gestion de parc', title:'Déploiement d\'OCS Inventory NG',
+   text:'Mise en place d\'OCS Inventory NG sur une machine virtuelle Linux pour inventorier le parc informatique de l\'entreprise.',
+   tags:['OCS Inventory NG','Debian','MariaDB','Apache'], links:[['Voir la documentation','ocs-glpi-documentation.pdf']]}
+];
+
+const PERSO = [
+  {icon:'code', thumb:'HTML / CSS / JS', cat:'Développement web', title:'Conception du portfolio numérique',
+   text:'Développement du site présentant mon parcours, hébergé sur GitHub Pages.',
+   tags:['HTML','CSS','JavaScript','GitHub Pages'], links:[['Voir le dépôt','https://github.com/Youks95/portfolio-2']]},
+  {icon:'msg', thumb:'Discord', cat:'Développement', title:'Bot Discord League of Legends', status:'en cours',
+   text:'Bot pour mon serveur Discord : profil et rang, dernière partie, alertes de partie, désignation du meilleur joueur et hall of shame.',
+   tags:['Discord','API Riot'], links:[]}
+];
+
+const E6 = [
+  {icon:'lock', thumb:'Windows Server 2019', cat:'Réalisation n°1', title:'Contrôleur de domaine et politique de sécurité des comptes',
+   text:'Installation d\'un contrôleur de domaine Windows Server 2019 et mise en place d\'une politique de sécurité des comptes.',
+   tags:['Active Directory','Windows Server 2019','Sécurité des comptes'],
+   links:[['Fiche réalisation','Fiche_Realisation_1_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf']]},
+  {icon:'terminal', thumb:'PowerShell', cat:'Réalisation n°2', title:'Audit, PowerShell et GPO',
+   text:'Audit de l\'annuaire, scripts PowerShell et stratégies de groupe pour administrer et sécuriser le parc.',
+   tags:['Active Directory','PowerShell','GPO'],
+   links:[['Fiche réalisation','Fiche_Realisation_2_Younes_Fri.pdf'],['Documentation','Projet_AD_Final.pdf']]}
+];
+
+const VEILLE_PLACEHOLDER = [
+  {icon:'rss', thumb:'Article', cat:'Mois Année', title:'Titre de l\'article', text:'Résumé en deux ou trois phrases : ce que dit l\'article et pourquoi il compte pour ton métier.', tags:['Mot-clé'], links:[], ph:true},
+  {icon:'rss', thumb:'Article', cat:'Mois Année', title:'Titre de l\'article', text:'Résumé en deux ou trois phrases : ce que dit l\'article et pourquoi il compte pour ton métier.', tags:['Mot-clé'], links:[], ph:true}
+];
+
+const TOOLS = [
+  ['CF','CERT-FR','Centre gouvernemental de veille et d\'alerte : bulletins et avis de sécurité officiels.','https://www.cert.ssi.gouv.fr/'],
+  ['IT','IT-Connect','Site francophone d\'administration système : tutoriels Windows, Linux, PowerShell, Active Directory.','https://www.it-connect.fr/'],
+  ['GA','Google Actualités','Alertes sur des mots-clés choisis pour suivre l\'actualité en continu.','https://news.google.com/'],
+  ['in','LinkedIn','Suivi d\'experts en cybersécurité et en administration système.','https://www.linkedin.com/']
+];
+
+/* ---------- Rendu ---------- */
+function cardHTML(c){
+  const tags = c.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+  const links = c.links.length
+    ? c.links.map(([l,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} →</a>`).join('')
+    : `<span class="none">${c.ph?'Lien de la source à ajouter':'Documentation à venir'}</span>`;
+  return `<article class="card">
+    <div class="thumb">${ic(c.icon)}<span>${esc(c.thumb)}</span></div>
+    <div class="card-body">
+      <span class="cat">${esc(c.cat)}${c.status?`<span class="status">${esc(c.status)}</span>`:''}</span>
+      <h3>${c.ph?`<span class="ph">${esc(c.title)}</span>`:esc(c.title)}</h3>
+      <p>${esc(c.text)}</p>
+      <div class="tags">${tags}</div>
+      <div class="links">${links}</div>
+    </div></article>`;
+}
+const fill = (id,list) => $(id).innerHTML = list.map(cardHTML).join('');
+
+function render(){
+  $('menu-button').innerHTML = ic('menu','style="width:1em;height:1em"');
+  $('nav-links').innerHTML = PAGES.map(([k,l])=>`<a href="#${k}" data-nav="${k}">${l}</a>`).join('');
+  $('mobile-menu').innerHTML = PAGES.map(([k,l])=>`<a href="#${k}">${l}</a>`).join('');
+  $('interests').innerHTML = INTERESTS.map(([i,l])=>`<div class="int-item">${ic(i)}<p>${l}</p></div>`).join('');
+  $('ic-book').innerHTML = ic('book','style="width:24px;height:24px;color:var(--secondary)"');
+  $('ic-brief').innerHTML = ic('brief');
+  $('ic-dl-cv').innerHTML = ic('download');
+  $('ic-eye-cv').innerHTML = ic('eye');
+  $('ic-eye-e5').innerHTML = ic('eye');
+  $('ic-dl-e5').innerHTML = ic('download');
+  fill('cards-formation',FORMATION); fill('cards-pro',PRO); fill('cards-perso',PERSO); fill('cards-e6',E6);
+  fill('cards-veille1',VEILLE_PLACEHOLDER); fill('cards-veille2',VEILLE_PLACEHOLDER);
+  $('tools').innerHTML = TOOLS.map(([b,n,d,u])=>`<div class="tool"><div class="badge">${b}</div><h3>${n}</h3><p>${d}</p><a href="${u}" target="_blank" rel="noopener">${u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}</a></div>`).join('');
+
+  const row = (icon,color,label,val,href)=>`<div class="c-item"><div class="c-ico" style="background:${color}">${ic(icon)}</div><div><p class="l">${label}</p><p class="v">${val?(href?`<a href="${href}" ${href.startsWith('http')?'target="_blank" rel="noopener"':''}>${esc(val)}</a>`:esc(val)):'<span class="ph">à compléter</span>'}</p></div></div>`;
+  $('contact-list').innerHTML =
+    row('mail','var(--primary)','Email',EMAIL,EMAIL&&'mailto:'+EMAIL) +
+    row('phone','var(--secondary)','Téléphone',TEL,TEL&&'tel:'+TEL.replace(/\s/g,'')) +
+    row('linkedin','var(--accent)','LinkedIn',LINKEDIN&&'Younes FRI',LINKEDIN);
+  $('foot-linkedin').innerHTML = LINKEDIN ? `<a href="${LINKEDIN}" target="_blank" rel="noopener">LinkedIn</a>` : '';
+}
+
+/* ---------- Navigation ---------- */
+function showPage(name){
+  if(!PAGES.some(p=>p[0]===name)) name='accueil';
+  document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));
+  document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===name));
+  $('mobile-menu').classList.remove('open'); $('menu-button').setAttribute('aria-expanded','false');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function route(){ showPage(location.hash.replace('#','')); }
+window.addEventListener('hashchange',route);
+
+$('menu-button').addEventListener('click',()=>{
+  const open = $('mobile-menu').classList.toggle('open');
+  $('menu-button').setAttribute('aria-expanded',String(open));
+});
+document.addEventListener('click',e=>{
+  const b = e.target.closest('[data-scroll]');
+  if(b) $(b.dataset.scroll).scrollIntoView({behavior:'smooth'});
+});
+
+/* ---------- Formulaire : ouvre le client mail ---------- */
+$('contact-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const f = e.target, note = $('form-note');
+  if(!f.nom.value.trim()||!f.email.value.trim()||!f.message.value.trim()){ note.textContent='Renseigne ton nom, ton email et ton message.'; return; }
+  if(!EMAIL){ note.textContent='Adresse de destination non renseignée.'; return; }
+  const body = `${f.message.value}\n\n${f.nom.value} (${f.email.value})`;
+  location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Contact depuis le portfolio')}&body=${encodeURIComponent(body)}`;
+  note.textContent='Ton client mail va s\'ouvrir pour envoyer le message.';
+});
+
+render(); route();
 </script>
 </body>
 </html>
